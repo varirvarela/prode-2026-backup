@@ -1,0 +1,10 @@
+{
+  "name": "prode-2026-scripts",
+  "version": "1.0.0",
+  "description": "Server-side scripts for Prode 2026",
+  "main": "fetch-results.js",
+  "dependencies": {
+    "firebase-admin": "^12.0.0",
+    "node-fetch": "^3.3.0"
+  }
+}
