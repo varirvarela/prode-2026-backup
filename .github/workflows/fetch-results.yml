@@ -1,0 +1,34 @@
+name: Fetch WC 2026 Results
+
+on:
+  schedule:
+    # Runs every 5 minutes — smart polling checks if matches are live before calling API
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+    # Also allows manual trigger from GitHub Actions UI
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install firebase-admin node-fetch
+        working-directory: scripts
+
+      - name: Fetch results
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_DATABASE_URL: https://prode-2026-7838f-default-rtdb.firebaseio.com
+        run: node fetch-results.js
+        working-directory: scripts
