@@ -2,10 +2,8 @@ name: Fetch WC 2026 Results
 
 on:
   schedule:
-    # Runs every 5 minutes — smart polling checks if matches are live before calling API
     - cron: '*/5 * * * *'
   workflow_dispatch:
-    # Also allows manual trigger from GitHub Actions UI
 
 jobs:
   fetch:
@@ -14,12 +12,12 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Install dependencies
         run: npm install firebase-admin node-fetch
