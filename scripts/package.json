@@ -1,6 +1,7 @@
 {
   "name": "prode-2026-scripts",
   "version": "1.0.0",
+  "type": "module",
   "description": "Server-side scripts for Prode 2026",
   "main": "fetch-results.js",
   "dependencies": {
