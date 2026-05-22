@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080b10">
-<title>Prode 2026 — v0.44</title>
+<title>Prode 2026 — v0.45</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -1247,9 +1247,9 @@ function validateCode(){
           OB.uid = codeData.userId || 'player_'+Date.now()+'_'+Math.random().toString(36).slice(2,5);
           OB.playerData = { playerName:codeData.playerName, username:codeData.username, alias:codeData.alias };
           setErr('ib-err','');
-          document.getElementById('step1-name').textContent     = codeData.playerName || '—';
-          document.getElementById('step1-username').textContent = '@'+(codeData.username||'');
-          document.getElementById('step1-alias').textContent    = codeData.alias || '';
+          document.getElementById('ob-show-name').textContent   = codeData.playerName || '—';
+          document.getElementById('ob-show-user').textContent   = '@'+(codeData.username||'');
+          document.getElementById('ob-show-alias').textContent  = codeData.alias || '';
           goStep(1);
         } else if(checked === tids.length && !found) {
           setErr('ib-err','Invalid code. Check with your admin.');
