@@ -103,3 +103,8 @@ self.addEventListener('notificationclick', e => {
     })
   );
 });
+
+// ── FORCE ACTIVATE when told to skip waiting ──────────────────────────────────
+self.addEventListener('message', e => {
+  if(e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
+});
