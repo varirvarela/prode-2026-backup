@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080b10">
-<title>Prode 2026 — v0.41</title>
+<title>Prode 2026 — v0.44</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -376,6 +376,7 @@ code{font-family:var(--mf);font-size:12px;background:var(--surface3);padding:2px
       <div class="ob-sub">You should have received a code from your group admin.</div>
       <div class="fg"><label class="fl">Invite Code</label><input type="text" class="fi" id="ib-code" placeholder="e.g. XGMT-7R2K" style="font-family:var(--mf);letter-spacing:2px;text-transform:uppercase" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')validateCode()"></div>
       <div id="code-err" style="font-size:13px;color:var(--accent2);min-height:18px;margin-bottom:14px"></div>
+      <div id="ib-err" style="display:none;font-size:13px;color:var(--accent2);margin:8px 0;min-height:18px;"></div>
       <button class="btn btn-p" onclick="validateCode()">Validate Code →</button>
       <div style="text-align:center;margin-top:16px">
         <button onclick="showScreen('sc-login')" style="background:none;border:none;font-family:var(--mf);font-size:11px;color:var(--text3);letter-spacing:1px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;">Already have an account? Sign in</button>
@@ -1019,6 +1020,9 @@ window.addEventListener('load', function(){
   // Init mascots on static screens
   setMascot(document.getElementById('mascot-onboard'), 'default');
   setMascot(document.getElementById('mascot-login'), 'default');
+  // PWA install banner
+  var _inst = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  if(!_inst && !localStorage.getItem('prode_install_dismissed')) setTimeout(showInstallBanner, 3000);
   // Check URL code param
   const params = new URLSearchParams(window.location.search);
   const urlCode = params.get('code');
@@ -2578,6 +2582,11 @@ function dismissInstall() {
 
 // ── UTILS ─────────────────────────────────────────────────────────────────
 
+function setErr(id, msg) {
+  var el = document.getElementById(id);
+  if(el){ el.textContent = msg; el.style.display = msg ? 'block' : 'none'; }
+}
+
 function toast(msg, type='ok'){
   const t = document.createElement('div');
   const bg = type==='ok'?'var(--accent)':type==='er'?'var(--accent2)':'var(--accent3)';
@@ -2596,7 +2605,6 @@ function simpleHash(s){
   return 'h_' + Math.abs(h).toString(36);
 }
 
-function setErr(id, msg){ const el = document.getElementById(id); if(el) el.textContent = msg; }
 </script>
 </body>
 </html>
