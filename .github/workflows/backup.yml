@@ -1,0 +1,42 @@
+name: Nightly Firebase Backup
+
+on:
+  schedule:
+    # Runs every day at 03:00 UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: npm install firebase-admin
+        working-directory: scripts
+
+      - name: Run backup
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_DATABASE_URL: https://prode-2026-7838f-default-rtdb.firebaseio.com
+        run: node backup.js
+        working-directory: scripts
+
+      - name: Commit backup
+        run: |
+          git config user.name  "Prode Backup Bot"
+          git config user.email "backup@prode2026.local"
+          git add backups/
+          git diff --staged --quiet || git commit -m "Backup $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
