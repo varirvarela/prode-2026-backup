@@ -1,0 +1,118 @@
+{
+  "avatars": {
+    "ball-football": {
+      "claimedAt": 1779253024156
+    },
+    "flag": {
+      "claimedAt": 1779338078785,
+      "claimedBy": "player_1779203997114_bcb"
+    },
+    "robot": {
+      "claimedAt": 1779476987415,
+      "claimedBy": "player_1779425628126_iqt"
+    },
+    "shirt": {
+      "claimedAt": 1779290536119
+    },
+    "silhouettes_0": {
+      "claimedAt": 1779204140427
+    }
+  },
+  "config": {
+    "backup": {
+      "repo": "varirvarela/prode-2026-backup",
+      "time": "02:00"
+    },
+    "vapidPublicKey": "BBYqOvuw2MTMVWEhZM2gTa7o3JPtUmDeaS4s2Jgbmwu20mC4ghfUEfqMHND8kh9oZVcIFxrmKcyW1gONbIMLHis"
+  },
+  "invite_codes": {
+    "VKFW-N9WR": {
+      "alias": "Vari",
+      "playerName": "Vari Rodriguez Varela",
+      "redeemed": true,
+      "redeemedAt": 1779204143471,
+      "userId": "player_1779203997114_bcb",
+      "username": "vari.varela"
+    }
+  },
+  "notifications": {
+    "notif_1779163472605": {
+      "createdAt": 1779163472605,
+      "message": "Hey",
+      "sentBy": "admin"
+    },
+    "notif_1779202509796": {
+      "createdAt": 1779202509796,
+      "message": "Predictions are locked. Check the leaderboard!",
+      "sentBy": "admin"
+    },
+    "notif_1779202796340": {
+      "createdAt": 1779202796340,
+      "message": "Predictions are locked. Check the leaderboard!",
+      "sentBy": "admin"
+    },
+    "notif_1779204169613": {
+      "createdAt": 1779204169613,
+      "message": "test",
+      "sentBy": "admin"
+    },
+    "notif_1779204188542": {
+      "createdAt": 1779204188543,
+      "message": "anda esto",
+      "sentBy": "admin"
+    }
+  },
+  "tournaments": {
+    "tournament_cotolengo_prode_2026_mpgfaphu": {
+      "avatars": {
+        "robot": {
+          "claimedAt": 1779476383112,
+          "claimedBy": "player_1779425628126_iqt"
+        }
+      },
+      "createdAt": 1779424321170,
+      "description": "",
+      "invite_codes": {
+        "4R54-U53V": {
+          "alias": "Vari",
+          "playerName": "Vari Rodriguez Varela",
+          "redeemed": true,
+          "redeemedAt": 1779476392012,
+          "userId": "player_1779425628126_iqt",
+          "username": "vari.varela"
+        }
+      },
+      "name": "Cotolengo Prode 2026",
+      "status": "active",
+      "users": {
+        "player_1779425628126_iqt": {
+          "alias": "Vari",
+          "avatarId": "robot::blue",
+          "createdAt": 1779476357376,
+          "inviteCode": "4R54-U53V",
+          "lastActive": 1779478059505,
+          "name": "Vari Rodriguez Varela",
+          "passwordHash": "h_umwf14",
+          "status": "Avatar Chosen",
+          "username": "vari.varela"
+        }
+      }
+    }
+  },
+  "users": {
+    "player_1779203997114_bcb": {
+      "alias": "Vari",
+      "avatarId": "flag::orange",
+      "createdAt": 1779203997114,
+      "inviteCode": "VKFW-N9WR",
+      "lastActive": 1779380559629,
+      "name": "Vari Rodriguez Varela",
+      "passwordHash": "h_umwf14",
+      "status": "Avatar Chosen",
+      "username": "vari.varela"
+    },
+    "player_1779425628126_iqt": {
+      "avatarId": "robot::blue"
+    }
+  }
+}
