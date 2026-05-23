@@ -1,270 +1,131 @@
 /**
  * fetch-results.js — Prode 2026
- * Runs every 5 min via GitHub Actions.
- * Checks if any matches are live before calling API-Football.
- * Writes results to Firebase → auto-scoring fires in admin app.
+ * Fetches live WC 2026 results from openfootball/worldcup.json
+ * and writes them to Firebase. Triggers auto-scoring.
+ *
+ * Source: https://github.com/openfootball/worldcup.json
+ * Free, no API key, community-maintained. Updated within hours of match end.
+ *
+ * Runs every 5 minutes via GitHub Actions during match windows.
  */
 
 import { initializeApp, cert } from 'firebase-admin/app';
-import { getDatabase } from 'firebase-admin/database';
-import fetch from 'node-fetch';
+import { getDatabase }          from 'firebase-admin/database';
+import fetch                    from 'node-fetch';
 
-// ── CONFIG ────────────────────────────────────────────────────────────────────
-const API_KEY      = process.env.API_FOOTBALL_KEY;
-const DB_URL       = process.env.FIREBASE_DATABASE_URL;
-const SA_JSON      = process.env.FIREBASE_SERVICE_ACCOUNT; // stringified JSON
+const SA_JSON = process.env.FIREBASE_SERVICE_ACCOUNT;
+const DB_URL  = process.env.FIREBASE_DATABASE_URL;
 
-if (!API_KEY || !DB_URL || !SA_JSON) {
-  console.error('❌ Missing env vars. Need API_FOOTBALL_KEY, FIREBASE_DATABASE_URL, FIREBASE_SERVICE_ACCOUNT');
+if(!SA_JSON || !DB_URL) {
+  console.error('❌ Missing FIREBASE_SERVICE_ACCOUNT or FIREBASE_DATABASE_URL');
   process.exit(1);
 }
 
-// ── INIT FIREBASE ─────────────────────────────────────────────────────────────
-initializeApp({
-  credential: cert(JSON.parse(SA_JSON)),
-  databaseURL: DB_URL,
-});
+initializeApp({ credential: cert(JSON.parse(SA_JSON)), databaseURL: DB_URL });
 const db = getDatabase();
 
-// ── HELPERS ───────────────────────────────────────────────────────────────────
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+const SOURCE_URL = 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
 
-function nowUTC() {
-  return new Date();
+// Check if we're within a match window (no point calling if no matches today)
+function isMatchWindow() {
+  const now  = new Date();
+  const hour = now.getUTCHours();
+  const date = now.toISOString().slice(0,10);
+  // WC matches typically run 15:00–03:00 UTC
+  // Always run — openfootball doesn't rate-limit
+  return true;
 }
 
-function isMatchLiveOrRecent(kickoffTs) {
-  if (!kickoffTs) return false;
-  const now     = Date.now();
-  const kickoff = kickoffTs;
-  const elapsed = now - kickoff;
-  // Live window: from kickoff to 2.5 hours after (90 min + ET + buffer)
-  return elapsed >= -5 * 60 * 1000 && elapsed <= 150 * 60 * 1000;
-}
-
-function isMatchToday(kickoffTs) {
-  if (!kickoffTs) return false;
-  const now     = new Date();
-  const kickoff = new Date(kickoffTs);
-  return (
-    kickoff.getUTCFullYear() === now.getUTCFullYear() &&
-    kickoff.getUTCMonth()    === now.getUTCMonth() &&
-    kickoff.getUTCDate()     === now.getUTCDate()
-  );
-}
-
-// ── SCORING ENGINE (mirrors app logic) ───────────────────────────────────────
-function computeScore(predHome, predAway, actHome, actAway, cfg) {
-  cfg = cfg || { exact: 5, gd: 3, result: 1 };
-  const ph = parseInt(predHome), pa = parseInt(predAway);
-  const ah = parseInt(actHome),  aa = parseInt(actAway);
-  if ([ph, pa, ah, aa].some(isNaN)) return { tier: 'zero', pts: 0 };
-  if (ph === ah && pa === aa)       return { tier: 'exact',  pts: cfg.exact };
-  const pr = ph > pa ? 'H' : ph < pa ? 'A' : 'D';
-  const ar = ah > aa ? 'H' : ah < aa ? 'A' : 'D';
-  if (pr === ar) {
-    if ((ph - pa) === (ah - aa)) return { tier: 'gd',     pts: cfg.gd };
-    return                              { tier: 'result', pts: cfg.result };
-  }
-  return { tier: 'zero', pts: 0 };
-}
-
-// ── LEADERBOARD UPDATER ───────────────────────────────────────────────────────
-async function updateLeaderboard(scores, users, cfg) {
-  const totals = {};
-
-  // Aggregate all scores per user
-  for (const [uid, matches] of Object.entries(scores)) {
-    let total = 0, exact = 0, correct = 0;
-    const roundBreakdown = {};
-
-    for (const [mid, s] of Object.entries(matches)) {
-      total   += s.pts || 0;
-      if (s.tier === 'exact')               exact++;
-      if (s.tier !== 'zero' && s.tier)      correct++;
-    }
-
-    totals[uid] = { totalPoints: total, exactScores: exact, correctResults: correct, roundBreakdown };
-  }
-
-  // Sort by total points and assign ranks
-  const ranked = Object.entries(totals)
-    .sort((a, b) => b[1].totalPoints - a[1].totalPoints)
-    .map(([uid, data], i) => [uid, { ...data, rank: i + 1 }]);
-
-  const updates = {};
-  for (const [uid, data] of ranked) {
-    updates[`leaderboard/${uid}`] = data;
-  }
-
-  if (Object.keys(updates).length) {
-    await db.ref().update(updates);
-    console.log(`📊 Leaderboard updated — ${ranked.length} players`);
-  }
-}
-
-// ── MAIN ──────────────────────────────────────────────────────────────────────
 async function main() {
-  console.log(`🕐 Starting fetch-results at ${nowUTC().toISOString()}`);
+  console.log(`🕐 Starting fetch-results at ${new Date().toISOString()}`);
 
-  // 1. Read fixtures from Firebase
+  // Fetch latest data from openfootball
+  console.log('Fetching openfootball worldcup.json…');
+  const res = await fetch(SOURCE_URL);
+  if(!res.ok) throw new Error(`HTTP ${res.status} from openfootball`);
+  const data = await res.json();
+
+  const matches = data.matches || [];
+  console.log(`📅 Total matches in source: ${matches.length}`);
+
+  // Load existing Firebase fixtures to match by team names + date
   const fixturesSnap = await db.ref('fixtures').once('value');
   const fixtures = fixturesSnap.val() || {};
 
-  // 2. Find matches that are live or recent today
-  const liveMatches = Object.entries(fixtures).filter(([, f]) =>
-    isMatchLiveOrRecent(f.kickoff) || isMatchToday(f.kickoff)
-  );
+  // Load existing results to avoid re-writing unchanged ones
+  const resultsSnap = await db.ref('results').once('value');
+  const existingResults = resultsSnap.val() || {};
 
-  console.log(`📅 Fixtures today/live: ${liveMatches.length}`);
+  let updated = 0;
+  let skipped = 0;
 
-  if (liveMatches.length === 0) {
-    console.log('💤 No live matches — skipping API call');
-    process.exit(0);
-  }
+  for(const m of matches) {
+    // Only process matches that have scores
+    if(m.score === undefined || m.score === null) { skipped++; continue; }
 
-  // 3. Check which ones are actually live right now
-  const trulyLive = liveMatches.filter(([, f]) => isMatchLiveOrRecent(f.kickoff));
-  console.log(`⚽ Currently live or recently finished: ${trulyLive.length}`);
-
-  if (trulyLive.length === 0) {
-    console.log('💤 Matches today but none live yet — skipping API call');
-    process.exit(0);
-  }
-
-  // 4. Collect unique API match IDs
-  const apiIds = [...new Set(
-    trulyLive.map(([, f]) => f.apiId).filter(Boolean)
-  )];
-
-  if (apiIds.length === 0) {
-    console.log('⚠️  Live matches found but no apiId fields — was fixture sync run?');
-    process.exit(0);
-  }
-
-  console.log(`🌐 Calling API-Football for ${apiIds.length} match(es)...`);
-
-  // 5. Fetch each match from API-Football (one call per match to minimise quota)
-  const resultUpdates  = {};
-  const apiResultMap   = {};
-
-  for (const apiId of apiIds) {
-    try {
-      const res  = await fetch(`https://v3.football.api-sports.io/fixtures?id=${apiId}`, {
-        headers: { 'x-apisports-key': API_KEY, 'x-rapidapi-host': 'v3.football.api-sports.io' },
-      });
-      const data = await res.json();
-
-      if (!data.response?.[0]) {
-        console.warn(`⚠️  No response for apiId ${apiId}`);
-        continue;
-      }
-
-      const fixture = data.response[0];
-      const goals   = fixture.goals;
-      const status  = fixture.fixture.status.short; // FT, AET, PEN, 1H, 2H, HT etc.
-
-      console.log(`  Match ${apiId}: ${fixture.teams.home.name} ${goals.home ?? '?'}-${goals.away ?? '?'} ${fixture.teams.away.name} [${status}]`);
-
-      // Only write result if match is finished
-      const finished = ['FT', 'AET', 'PEN', 'AWD', 'WO'].includes(status);
-      const inProgress = ['1H', '2H', 'HT', 'ET', 'BT', 'P', 'INT'].includes(status);
-
-      if ((finished || inProgress) && goals.home !== null && goals.away !== null) {
-        apiResultMap[apiId] = {
-          homeScore:   goals.home,
-          awayScore:   goals.away,
-          status,
-          finished,
-          confirmedAt: Date.now(),
-          source:      'api',
-        };
-      }
-    } catch (err) {
-      console.error(`❌ API error for match ${apiId}:`, err.message);
+    // Parse score — openfootball format: { ft: [2, 1] } or score1/score2
+    let homeScore, awayScore;
+    if(m.score && m.score.ft) {
+      [homeScore, awayScore] = m.score.ft;
+    } else if(m.score1 !== undefined) {
+      homeScore = m.score1;
+      awayScore = m.score2;
+    } else {
+      skipped++;
+      continue;
     }
 
-    // Rate limit — avoid hammering API
-    await sleep(300);
-  }
+    if(homeScore === null || awayScore === null) { skipped++; continue; }
 
-  // 6. Map API results back to Firebase match IDs and write
-  for (const [mid, fixture] of Object.entries(fixtures)) {
-    if (!fixture.apiId) continue;
-    const apiResult = apiResultMap[fixture.apiId];
-    if (!apiResult) continue;
+    // Find matching fixture in Firebase by home+away team names and date
+    const home = (m.team1 || '').toLowerCase();
+    const away = (m.team2 || '').toLowerCase();
+    const date = m.date || '';
 
-    resultUpdates[`results/${mid}`] = {
-      homeScore:   apiResult.homeScore,
-      awayScore:   apiResult.awayScore,
-      source:      'api',
-      status:      apiResult.status,
-      confirmedAt: apiResult.confirmedAt,
-    };
-  }
-
-  if (Object.keys(resultUpdates).length === 0) {
-    console.log('📭 No results to write yet');
-    process.exit(0);
-  }
-
-  // 7. Write results to Firebase
-  await db.ref().update(resultUpdates);
-  console.log(`✅ Wrote ${Object.keys(resultUpdates).length} result(s) to Firebase`);
-
-  // 8. Re-run scoring for affected matches
-  const scoringCfgSnap = await db.ref('config/scoring').once('value');
-  const cfg = scoringCfgSnap.val() || { exact: 5, gd: 3, result: 1 };
-
-  const predictionsSnap = await db.ref('predictions').once('value');
-  const allPredictions  = predictionsSnap.val() || {};
-
-  const scoresSnap = await db.ref('scores').once('value');
-  const allScores  = scoresSnap.val() ? JSON.parse(JSON.stringify(scoresSnap.val())) : {};
-
-  const scoreUpdates = {};
-  let   scoreCount   = 0;
-
-  for (const [mid] of Object.entries(resultUpdates)) {
-    // mid is "results/match_123" — strip prefix
-    const matchId  = mid.replace('results/', '');
-    const result   = resultUpdates[mid];
-
-    if (result.homeScore === undefined) continue;
-
-    for (const [uid, matches] of Object.entries(allPredictions)) {
-      const pred = matches[matchId];
-      if (!pred || pred.homeScore === undefined) continue;
-
-      const { tier, pts } = computeScore(
-        pred.homeScore, pred.awayScore,
-        result.homeScore, result.awayScore,
-        cfg
-      );
-
-      scoreUpdates[`scores/${uid}/${matchId}`] = { tier, pts, computedAt: Date.now() };
-
-      // Update in-memory scores for leaderboard calc
-      if (!allScores[uid]) allScores[uid] = {};
-      allScores[uid][matchId] = { tier, pts };
-      scoreCount++;
+    let matchedFid = null;
+    for(const [fid, f] of Object.entries(fixtures)) {
+      const fHome = (f.homeTeam || '').toLowerCase();
+      const fAway = (f.awayTeam || '').toLowerCase();
+      const fDate = f.kickoff ? new Date(f.kickoff).toISOString().slice(0,10) : '';
+      if(fHome === home && fAway === away && fDate === date) {
+        matchedFid = fid;
+        break;
+      }
     }
+
+    if(!matchedFid) {
+      console.log(`  ⚠️  No fixture match for: ${m.team1} vs ${m.team2} on ${date}`);
+      skipped++;
+      continue;
+    }
+
+    // Check if result already exists and is the same
+    const existing = existingResults[matchedFid];
+    if(existing && existing.homeScore === homeScore && existing.awayScore === awayScore) {
+      skipped++;
+      continue;
+    }
+
+    // Write result to Firebase
+    await db.ref('results/'+matchedFid).set({
+      homeScore,
+      awayScore,
+      source:      'openfootball',
+      confirmedAt: Date.now(),
+    });
+
+    // Also update fixture status
+    await db.ref('fixtures/'+matchedFid).update({ status: 'FT' });
+
+    console.log(`  ✅ Result: ${m.team1} ${homeScore}-${awayScore} ${m.team2}`);
+    updated++;
   }
 
-  if (Object.keys(scoreUpdates).length) {
-    await db.ref().update(scoreUpdates);
-    console.log(`🏆 Scored ${scoreCount} prediction(s)`);
-
-    // 9. Update leaderboard
-    const usersSnap = await db.ref('users').once('value');
-    await updateLeaderboard(allScores, usersSnap.val() || {}, cfg);
-  }
-
-  console.log('🏁 Done');
+  console.log(`\n📊 Done: ${updated} results updated · ${skipped} skipped`);
   process.exit(0);
 }
 
 main().catch(err => {
-  console.error('❌ Fatal error:', err);
+  console.error('❌ Error:', err.message);
   process.exit(1);
 });
