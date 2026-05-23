@@ -1,0 +1,30 @@
+name: Sync WC 2026 Fixtures
+
+on:
+  workflow_dispatch:  # manual trigger only
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: npm install firebase-admin node-fetch
+        working-directory: scripts
+
+      - name: Sync fixtures
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_DATABASE_URL: https://prode-2026-7838f-default-rtdb.firebaseio.com
+        run: node sync-fixtures.js
+        working-directory: scripts
