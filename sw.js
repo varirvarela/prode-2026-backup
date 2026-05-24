@@ -37,17 +37,11 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
 
-  // HTML files — always network first so players always get latest version
+  // HTML files — NEVER serve from cache, always network
   if(e.request.destination === 'document' || url.pathname.endsWith('.html')) {
     e.respondWith(
-      fetch(e.request)
-        .then(res => {
-          // Update cache with fresh response
-          const clone = res.clone();
-          caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
-          return res;
-        })
-        .catch(() => caches.match(e.request)) // offline fallback
+      fetch(e.request, { cache: 'no-store' })
+        .catch(() => caches.match(e.request)) // offline fallback only
     );
     return;
   }
