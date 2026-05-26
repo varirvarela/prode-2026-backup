@@ -13,9 +13,9 @@ const CACHE_ASSETS  = [
 ];
 
 // ── INSTALL ───────────────────────────────────────────────────────────────────
-self.addEventListener('install', e => {
+self.addEventListener('install', function(e) {
   e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
+    caches.open(CACHE_NAME).then(function(cache) { return  {
       // Only pre-cache CDN assets, not the HTML (always fetch fresh)
       return cache.addAll(CACHE_ASSETS).catch(() => {});
     })
@@ -24,7 +24,7 @@ self.addEventListener('install', e => {
 });
 
 // ── ACTIVATE — clean up old caches ───────────────────────────────────────────
-self.addEventListener('activate', e => {
+self.addEventListener('activate', function(e) {
   e.waitUntil(
     caches.keys().then(keys =>
       Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
@@ -34,7 +34,7 @@ self.addEventListener('activate', e => {
 });
 
 // ── FETCH ─────────────────────────────────────────────────────────────────────
-self.addEventListener('fetch', e => {
+self.addEventListener('fetch', function(e) {
   const url = new URL(e.request.url);
 
   // HTML files — NEVER serve from cache, always network
@@ -68,10 +68,12 @@ self.addEventListener('fetch', e => {
 });
 
 // ── PUSH NOTIFICATION ─────────────────────────────────────────────────────────
-self.addEventListener('push', e => {
-  let data = { title: 'Prode 2026', body: 'You have a new notification.' };
-  try { data = e.data.json(); } catch(_) {
-    try { data.body = e.data.text(); } catch(_) {}
+self.addEventListener('push', function(e) {
+  var data = { title: 'Prode 2026', body: 'You have a new notification.' };
+  if(e.data) {
+    try { data = e.data.json(); } catch(_) {
+      try { var txt = e.data.text(); if(txt) data.body = txt; } catch(_) {}
+    }
   }
   e.waitUntil(
     self.registration.showNotification(data.title || 'Prode 2026', {
@@ -86,7 +88,7 @@ self.addEventListener('push', e => {
 });
 
 // ── NOTIFICATION CLICK ────────────────────────────────────────────────────────
-self.addEventListener('notificationclick', e => {
+self.addEventListener('notificationclick', function(e) {
   e.notification.close();
   const url = (e.notification.data && e.notification.data.url) || './';
   e.waitUntil(
