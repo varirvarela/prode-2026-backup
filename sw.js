@@ -15,9 +15,9 @@ const CACHE_ASSETS  = [
 // ── INSTALL ───────────────────────────────────────────────────────────────────
 self.addEventListener('install', function(e) {
   e.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) { return  {
+    caches.open(CACHE_NAME).then(function(cache) {
       // Only pre-cache CDN assets, not the HTML (always fetch fresh)
-      return cache.addAll(CACHE_ASSETS).catch(() => {});
+      return cache.addAll(CACHE_ASSETS).catch(function() {});
     })
   );
   self.skipWaiting(); // activate immediately
@@ -26,16 +26,16 @@ self.addEventListener('install', function(e) {
 // ── ACTIVATE — clean up old caches ───────────────────────────────────────────
 self.addEventListener('activate', function(e) {
   e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-    )
+    caches.keys().then(function(keys) {
+      return Promise.all(keys.filter(function(k){ return k !== CACHE_NAME; }).map(function(k){ return caches.delete(k); }));
+    })
   );
   self.clients.claim(); // take control immediately
 });
 
 // ── FETCH ─────────────────────────────────────────────────────────────────────
 self.addEventListener('fetch', function(e) {
-  const url = new URL(e.request.url);
+  var url = new URL(e.request.url);
 
   // HTML files — NEVER serve from cache, always network
   if(e.request.destination === 'document' || url.pathname.endsWith('.html')) {
@@ -49,11 +49,11 @@ self.addEventListener('fetch', function(e) {
   // CDN assets — cache first (fast)
   if(url.hostname.includes('jsdelivr') || url.hostname.includes('googleapis')) {
     e.respondWith(
-      caches.match(e.request).then(cached => {
+      caches.match(e.request).then(function(cached) {
         if(cached) return cached;
-        return fetch(e.request).then(res => {
-          const clone = res.clone();
-          caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+        return fetch(e.request).then(function(res) {
+          var clone = res.clone();
+          caches.open(CACHE_NAME).then(function(c){ c.put(e.request, clone); });
           return res;
         });
       })
@@ -90,10 +90,10 @@ self.addEventListener('push', function(e) {
 // ── NOTIFICATION CLICK ────────────────────────────────────────────────────────
 self.addEventListener('notificationclick', function(e) {
   e.notification.close();
-  const url = (e.notification.data && e.notification.data.url) || './';
+  var url = (e.notification.data && e.notification.data.url) || './';
   e.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(cls => {
-      const match = cls.find(c => c.url.includes('prode-player'));
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function(cls) {
+      var match = cls.find(function(c){ return c.url.includes('prode-player'); });
       if(match) return match.focus();
       return clients.openWindow(url);
     })
@@ -101,6 +101,6 @@ self.addEventListener('notificationclick', function(e) {
 });
 
 // ── FORCE ACTIVATE when told to skip waiting ──────────────────────────────────
-self.addEventListener('message', e => {
+self.addEventListener('message', function(e) {
   if(e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
 });
