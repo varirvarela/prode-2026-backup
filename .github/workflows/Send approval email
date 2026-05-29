@@ -1,0 +1,36 @@
+name: Send Approval Emails
+
+on:
+  schedule:
+    # Poll every 5 minutes
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+    # Also allows manual trigger from GitHub UI
+
+jobs:
+  send-emails:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: scripts/package.json
+
+      - name: Install dependencies
+        working-directory: scripts
+        run: npm install
+
+      - name: Send approval emails
+        working-directory: scripts
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: node send-approval-email.js
