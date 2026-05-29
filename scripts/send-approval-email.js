@@ -178,20 +178,24 @@ async function main() {
     const scoring = await getScoringConfig(tid);
     console.log(`Tournament ${tid} — scoring: exact=${scoring.exact} gd=${scoring.gd} result=${scoring.result}`);
 
+    console.log(`  Found ${pendingEmails.length} pending email(s) in this tournament`);
+
     for (const [reqId, req] of pendingEmails) {
-      console.log(`  Sending to ${req.email} (${req.name})`);
+      console.log(`  Sending to ${req.email} (${req.name})...`);
       try {
-        await sendEmail(req.email, req.name || 'Player', scoring);
+        const result = await sendEmail(req.email, req.name || 'Player', scoring);
+        console.log(`  Resend response:`, JSON.stringify(result));
         await db.ref(`tournaments/${tid}/pending_requests/${reqId}`).update({
           emailSent:   true,
           emailSentAt: Date.now(),
         });
         sent++;
-        console.log(`  ✓ Sent`);
+        console.log(`  ✓ Sent successfully to ${req.email}`);
       } catch (e) {
-        console.error(`  ✗ Failed: ${e.message}`);
-        // Don't mark as sent — will retry next run
+        console.error(`  ✗ Failed for ${req.email}: ${e.message}`);
       }
+      // Small delay between sends to avoid rate limiting
+      await new Promise(resolve => setTimeout(resolve, 500));
     }
   }
 
