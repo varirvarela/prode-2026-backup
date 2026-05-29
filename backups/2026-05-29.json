@@ -1,0 +1,2048 @@
+{
+  "config": {
+    "backup": {
+      "repo": "varirvarela/prode-2026-backup",
+      "time": "02:00"
+    },
+    "vapidPublicKey": "BBYqOvuw2MTMVWEhZM2gTa7o3JPtUmDeaS4s2Jgbmwu20mC4ghfUEfqMHND8kh9oZVcIFxrmKcyW1gONbIMLHis"
+  },
+  "fixtures": {
+    "match_of_001": {
+      "awayFlag": "🇿🇦",
+      "awayTeam": "South Africa",
+      "city": "Mexico City",
+      "group": "Group A",
+      "homeFlag": "🇲🇽",
+      "homeTeam": "Mexico",
+      "kickoff": 1781204400000,
+      "matchday": "Matchday 1",
+      "round": "Group Stage — Group A",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Mexico City"
+    },
+    "match_of_002": {
+      "awayFlag": "🇨🇿",
+      "awayTeam": "Czech Republic",
+      "city": "Guadalajara (Zapopan)",
+      "group": "Group A",
+      "homeFlag": "🇰🇷",
+      "homeTeam": "South Korea",
+      "kickoff": 1781229600000,
+      "matchday": "Matchday 1",
+      "round": "Group Stage — Group A",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Guadalajara (Zapopan)"
+    },
+    "match_of_003": {
+      "awayFlag": "🇿🇦",
+      "awayTeam": "South Africa",
+      "city": "Atlanta",
+      "group": "Group A",
+      "homeFlag": "🇨🇿",
+      "homeTeam": "Czech Republic",
+      "kickoff": 1781798400000,
+      "matchday": "Matchday 8",
+      "round": "Group Stage — Group A",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_004": {
+      "awayFlag": "🇰🇷",
+      "awayTeam": "South Korea",
+      "city": "Guadalajara (Zapopan)",
+      "group": "Group A",
+      "homeFlag": "🇲🇽",
+      "homeTeam": "Mexico",
+      "kickoff": 1781830800000,
+      "matchday": "Matchday 8",
+      "round": "Group Stage — Group A",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Guadalajara (Zapopan)"
+    },
+    "match_of_005": {
+      "awayFlag": "🇲🇽",
+      "awayTeam": "Mexico",
+      "city": "Mexico City",
+      "group": "Group A",
+      "homeFlag": "🇨🇿",
+      "homeTeam": "Czech Republic",
+      "kickoff": 1782349200000,
+      "matchday": "Matchday 14",
+      "round": "Group Stage — Group A",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Mexico City"
+    },
+    "match_of_006": {
+      "awayFlag": "🇰🇷",
+      "awayTeam": "South Korea",
+      "city": "Monterrey (Guadalupe)",
+      "group": "Group A",
+      "homeFlag": "🇿🇦",
+      "homeTeam": "South Africa",
+      "kickoff": 1782349200000,
+      "matchday": "Matchday 14",
+      "round": "Group Stage — Group A",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Monterrey (Guadalupe)"
+    },
+    "match_of_007": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Bosnia & Herzegovina",
+      "city": "Toronto",
+      "group": "Group B",
+      "homeFlag": "🇨🇦",
+      "homeTeam": "Canada",
+      "kickoff": 1781290800000,
+      "matchday": "Matchday 2",
+      "round": "Group Stage — Group B",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Toronto"
+    },
+    "match_of_008": {
+      "awayFlag": "🇨🇭",
+      "awayTeam": "Switzerland",
+      "city": "San Francisco Bay Area (Santa Clara)",
+      "group": "Group B",
+      "homeFlag": "🇶🇦",
+      "homeTeam": "Qatar",
+      "kickoff": 1781377200000,
+      "matchday": "Matchday 3",
+      "round": "Group Stage — Group B",
+      "stage": "group",
+      "status": "NS",
+      "venue": "San Francisco Bay Area (Santa Clara)"
+    },
+    "match_of_009": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Bosnia & Herzegovina",
+      "city": "Los Angeles (Inglewood)",
+      "group": "Group B",
+      "homeFlag": "🇨🇭",
+      "homeTeam": "Switzerland",
+      "kickoff": 1781809200000,
+      "matchday": "Matchday 8",
+      "round": "Group Stage — Group B",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_010": {
+      "awayFlag": "🇶🇦",
+      "awayTeam": "Qatar",
+      "city": "Vancouver",
+      "group": "Group B",
+      "homeFlag": "🇨🇦",
+      "homeTeam": "Canada",
+      "kickoff": 1781820000000,
+      "matchday": "Matchday 8",
+      "round": "Group Stage — Group B",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_011": {
+      "awayFlag": "🇨🇦",
+      "awayTeam": "Canada",
+      "city": "Vancouver",
+      "group": "Group B",
+      "homeFlag": "🇨🇭",
+      "homeTeam": "Switzerland",
+      "kickoff": 1782327600000,
+      "matchday": "Matchday 14",
+      "round": "Group Stage — Group B",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_012": {
+      "awayFlag": "🇶🇦",
+      "awayTeam": "Qatar",
+      "city": "Seattle",
+      "group": "Group B",
+      "homeFlag": "🏳️",
+      "homeTeam": "Bosnia & Herzegovina",
+      "kickoff": 1782327600000,
+      "matchday": "Matchday 14",
+      "round": "Group Stage — Group B",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Seattle"
+    },
+    "match_of_013": {
+      "awayFlag": "🇲🇦",
+      "awayTeam": "Morocco",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "Group C",
+      "homeFlag": "🇧🇷",
+      "homeTeam": "Brazil",
+      "kickoff": 1781388000000,
+      "matchday": "Matchday 3",
+      "round": "Group Stage — Group C",
+      "stage": "group",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_014": {
+      "awayFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "awayTeam": "Scotland",
+      "city": "Boston (Foxborough)",
+      "group": "Group C",
+      "homeFlag": "🏳️",
+      "homeTeam": "Haiti",
+      "kickoff": 1781398800000,
+      "matchday": "Matchday 3",
+      "round": "Group Stage — Group C",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_015": {
+      "awayFlag": "🇲🇦",
+      "awayTeam": "Morocco",
+      "city": "Boston (Foxborough)",
+      "group": "Group C",
+      "homeFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "homeTeam": "Scotland",
+      "kickoff": 1781906400000,
+      "matchday": "Matchday 9",
+      "round": "Group Stage — Group C",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_016": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Haiti",
+      "city": "Philadelphia",
+      "group": "Group C",
+      "homeFlag": "🇧🇷",
+      "homeTeam": "Brazil",
+      "kickoff": 1781915400000,
+      "matchday": "Matchday 9",
+      "round": "Group Stage — Group C",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Philadelphia"
+    },
+    "match_of_017": {
+      "awayFlag": "🇧🇷",
+      "awayTeam": "Brazil",
+      "city": "Miami (Miami Gardens)",
+      "group": "Group C",
+      "homeFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "homeTeam": "Scotland",
+      "kickoff": 1782338400000,
+      "matchday": "Matchday 14",
+      "round": "Group Stage — Group C",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_018": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Haiti",
+      "city": "Atlanta",
+      "group": "Group C",
+      "homeFlag": "🇲🇦",
+      "homeTeam": "Morocco",
+      "kickoff": 1782338400000,
+      "matchday": "Matchday 14",
+      "round": "Group Stage — Group C",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_019": {
+      "awayFlag": "🇵🇾",
+      "awayTeam": "Paraguay",
+      "city": "Los Angeles (Inglewood)",
+      "group": "Group D",
+      "homeFlag": "🇺🇸",
+      "homeTeam": "USA",
+      "kickoff": 1781312400000,
+      "matchday": "Matchday 2",
+      "round": "Group Stage — Group D",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_020": {
+      "awayFlag": "🇹🇷",
+      "awayTeam": "Turkey",
+      "city": "Vancouver",
+      "group": "Group D",
+      "homeFlag": "🇦🇺",
+      "homeTeam": "Australia",
+      "kickoff": 1781409600000,
+      "matchday": "Matchday 3",
+      "round": "Group Stage — Group D",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_021": {
+      "awayFlag": "🇦🇺",
+      "awayTeam": "Australia",
+      "city": "Seattle",
+      "group": "Group D",
+      "homeFlag": "🇺🇸",
+      "homeTeam": "USA",
+      "kickoff": 1781895600000,
+      "matchday": "Matchday 9",
+      "round": "Group Stage — Group D",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Seattle"
+    },
+    "match_of_022": {
+      "awayFlag": "🇵🇾",
+      "awayTeam": "Paraguay",
+      "city": "San Francisco Bay Area (Santa Clara)",
+      "group": "Group D",
+      "homeFlag": "🇹🇷",
+      "homeTeam": "Turkey",
+      "kickoff": 1781924400000,
+      "matchday": "Matchday 9",
+      "round": "Group Stage — Group D",
+      "stage": "group",
+      "status": "NS",
+      "venue": "San Francisco Bay Area (Santa Clara)"
+    },
+    "match_of_023": {
+      "awayFlag": "🇺🇸",
+      "awayTeam": "USA",
+      "city": "Los Angeles (Inglewood)",
+      "group": "Group D",
+      "homeFlag": "🇹🇷",
+      "homeTeam": "Turkey",
+      "kickoff": 1782439200000,
+      "matchday": "Matchday 15",
+      "round": "Group Stage — Group D",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_024": {
+      "awayFlag": "🇦🇺",
+      "awayTeam": "Australia",
+      "city": "San Francisco Bay Area (Santa Clara)",
+      "group": "Group D",
+      "homeFlag": "🇵🇾",
+      "homeTeam": "Paraguay",
+      "kickoff": 1782439200000,
+      "matchday": "Matchday 15",
+      "round": "Group Stage — Group D",
+      "stage": "group",
+      "status": "NS",
+      "venue": "San Francisco Bay Area (Santa Clara)"
+    },
+    "match_of_025": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Curaçao",
+      "city": "Houston",
+      "group": "Group E",
+      "homeFlag": "🇩🇪",
+      "homeTeam": "Germany",
+      "kickoff": 1781456400000,
+      "matchday": "Matchday 4",
+      "round": "Group Stage — Group E",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_026": {
+      "awayFlag": "🇪🇨",
+      "awayTeam": "Ecuador",
+      "city": "Philadelphia",
+      "group": "Group E",
+      "homeFlag": "🇨🇮",
+      "homeTeam": "Ivory Coast",
+      "kickoff": 1781478000000,
+      "matchday": "Matchday 4",
+      "round": "Group Stage — Group E",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Philadelphia"
+    },
+    "match_of_027": {
+      "awayFlag": "🇨🇮",
+      "awayTeam": "Ivory Coast",
+      "city": "Toronto",
+      "group": "Group E",
+      "homeFlag": "🇩🇪",
+      "homeTeam": "Germany",
+      "kickoff": 1781985600000,
+      "matchday": "Matchday 10",
+      "round": "Group Stage — Group E",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Toronto"
+    },
+    "match_of_028": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Curaçao",
+      "city": "Kansas City",
+      "group": "Group E",
+      "homeFlag": "🇪🇨",
+      "homeTeam": "Ecuador",
+      "kickoff": 1782000000000,
+      "matchday": "Matchday 10",
+      "round": "Group Stage — Group E",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Kansas City"
+    },
+    "match_of_029": {
+      "awayFlag": "🇨🇮",
+      "awayTeam": "Ivory Coast",
+      "city": "Philadelphia",
+      "group": "Group E",
+      "homeFlag": "🏳️",
+      "homeTeam": "Curaçao",
+      "kickoff": 1782417600000,
+      "matchday": "Matchday 15",
+      "round": "Group Stage — Group E",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Philadelphia"
+    },
+    "match_of_030": {
+      "awayFlag": "🇩🇪",
+      "awayTeam": "Germany",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "Group E",
+      "homeFlag": "🇪🇨",
+      "homeTeam": "Ecuador",
+      "kickoff": 1782417600000,
+      "matchday": "Matchday 15",
+      "round": "Group Stage — Group E",
+      "stage": "group",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_031": {
+      "awayFlag": "🇯🇵",
+      "awayTeam": "Japan",
+      "city": "Dallas (Arlington)",
+      "group": "Group F",
+      "homeFlag": "🇳🇱",
+      "homeTeam": "Netherlands",
+      "kickoff": 1781467200000,
+      "matchday": "Matchday 4",
+      "round": "Group Stage — Group F",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_032": {
+      "awayFlag": "🇹🇳",
+      "awayTeam": "Tunisia",
+      "city": "Monterrey (Guadalupe)",
+      "group": "Group F",
+      "homeFlag": "🇸🇪",
+      "homeTeam": "Sweden",
+      "kickoff": 1781488800000,
+      "matchday": "Matchday 4",
+      "round": "Group Stage — Group F",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Monterrey (Guadalupe)"
+    },
+    "match_of_033": {
+      "awayFlag": "🇸🇪",
+      "awayTeam": "Sweden",
+      "city": "Houston",
+      "group": "Group F",
+      "homeFlag": "🇳🇱",
+      "homeTeam": "Netherlands",
+      "kickoff": 1781974800000,
+      "matchday": "Matchday 10",
+      "round": "Group Stage — Group F",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_034": {
+      "awayFlag": "🇯🇵",
+      "awayTeam": "Japan",
+      "city": "Monterrey (Guadalupe)",
+      "group": "Group F",
+      "homeFlag": "🇹🇳",
+      "homeTeam": "Tunisia",
+      "kickoff": 1782014400000,
+      "matchday": "Matchday 10",
+      "round": "Group Stage — Group F",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Monterrey (Guadalupe)"
+    },
+    "match_of_035": {
+      "awayFlag": "🇸🇪",
+      "awayTeam": "Sweden",
+      "city": "Dallas (Arlington)",
+      "group": "Group F",
+      "homeFlag": "🇯🇵",
+      "homeTeam": "Japan",
+      "kickoff": 1782428400000,
+      "matchday": "Matchday 15",
+      "round": "Group Stage — Group F",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_036": {
+      "awayFlag": "🇳🇱",
+      "awayTeam": "Netherlands",
+      "city": "Kansas City",
+      "group": "Group F",
+      "homeFlag": "🇹🇳",
+      "homeTeam": "Tunisia",
+      "kickoff": 1782428400000,
+      "matchday": "Matchday 15",
+      "round": "Group Stage — Group F",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Kansas City"
+    },
+    "match_of_037": {
+      "awayFlag": "🇪🇬",
+      "awayTeam": "Egypt",
+      "city": "Seattle",
+      "group": "Group G",
+      "homeFlag": "🇧🇪",
+      "homeTeam": "Belgium",
+      "kickoff": 1781550000000,
+      "matchday": "Matchday 5",
+      "round": "Group Stage — Group G",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Seattle"
+    },
+    "match_of_038": {
+      "awayFlag": "🇳🇿",
+      "awayTeam": "New Zealand",
+      "city": "Los Angeles (Inglewood)",
+      "group": "Group G",
+      "homeFlag": "🇮🇷",
+      "homeTeam": "Iran",
+      "kickoff": 1781571600000,
+      "matchday": "Matchday 5",
+      "round": "Group Stage — Group G",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_039": {
+      "awayFlag": "🇮🇷",
+      "awayTeam": "Iran",
+      "city": "Los Angeles (Inglewood)",
+      "group": "Group G",
+      "homeFlag": "🇧🇪",
+      "homeTeam": "Belgium",
+      "kickoff": 1782068400000,
+      "matchday": "Matchday 11",
+      "round": "Group Stage — Group G",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_040": {
+      "awayFlag": "🇪🇬",
+      "awayTeam": "Egypt",
+      "city": "Vancouver",
+      "group": "Group G",
+      "homeFlag": "🇳🇿",
+      "homeTeam": "New Zealand",
+      "kickoff": 1782090000000,
+      "matchday": "Matchday 11",
+      "round": "Group Stage — Group G",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_041": {
+      "awayFlag": "🇮🇷",
+      "awayTeam": "Iran",
+      "city": "Seattle",
+      "group": "Group G",
+      "homeFlag": "🇪🇬",
+      "homeTeam": "Egypt",
+      "kickoff": 1782529200000,
+      "matchday": "Matchday 16",
+      "round": "Group Stage — Group G",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Seattle"
+    },
+    "match_of_042": {
+      "awayFlag": "🇧🇪",
+      "awayTeam": "Belgium",
+      "city": "Vancouver",
+      "group": "Group G",
+      "homeFlag": "🇳🇿",
+      "homeTeam": "New Zealand",
+      "kickoff": 1782529200000,
+      "matchday": "Matchday 16",
+      "round": "Group Stage — Group G",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_043": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Cape Verde",
+      "city": "Atlanta",
+      "group": "Group H",
+      "homeFlag": "🇪🇸",
+      "homeTeam": "Spain",
+      "kickoff": 1781539200000,
+      "matchday": "Matchday 5",
+      "round": "Group Stage — Group H",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_044": {
+      "awayFlag": "🇺🇾",
+      "awayTeam": "Uruguay",
+      "city": "Miami (Miami Gardens)",
+      "group": "Group H",
+      "homeFlag": "🇸🇦",
+      "homeTeam": "Saudi Arabia",
+      "kickoff": 1781560800000,
+      "matchday": "Matchday 5",
+      "round": "Group Stage — Group H",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_045": {
+      "awayFlag": "🇸🇦",
+      "awayTeam": "Saudi Arabia",
+      "city": "Atlanta",
+      "group": "Group H",
+      "homeFlag": "🇪🇸",
+      "homeTeam": "Spain",
+      "kickoff": 1782057600000,
+      "matchday": "Matchday 11",
+      "round": "Group Stage — Group H",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_046": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Cape Verde",
+      "city": "Miami (Miami Gardens)",
+      "group": "Group H",
+      "homeFlag": "🇺🇾",
+      "homeTeam": "Uruguay",
+      "kickoff": 1782079200000,
+      "matchday": "Matchday 11",
+      "round": "Group Stage — Group H",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_047": {
+      "awayFlag": "🇸🇦",
+      "awayTeam": "Saudi Arabia",
+      "city": "Houston",
+      "group": "Group H",
+      "homeFlag": "🏳️",
+      "homeTeam": "Cape Verde",
+      "kickoff": 1782518400000,
+      "matchday": "Matchday 16",
+      "round": "Group Stage — Group H",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_048": {
+      "awayFlag": "🇪🇸",
+      "awayTeam": "Spain",
+      "city": "Guadalajara (Zapopan)",
+      "group": "Group H",
+      "homeFlag": "🇺🇾",
+      "homeTeam": "Uruguay",
+      "kickoff": 1782518400000,
+      "matchday": "Matchday 16",
+      "round": "Group Stage — Group H",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Guadalajara (Zapopan)"
+    },
+    "match_of_049": {
+      "awayFlag": "🇸🇳",
+      "awayTeam": "Senegal",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "Group I",
+      "homeFlag": "🇫🇷",
+      "homeTeam": "France",
+      "kickoff": 1781636400000,
+      "matchday": "Matchday 6",
+      "round": "Group Stage — Group I",
+      "stage": "group",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_050": {
+      "awayFlag": "🇳🇴",
+      "awayTeam": "Norway",
+      "city": "Boston (Foxborough)",
+      "group": "Group I",
+      "homeFlag": "🇮🇶",
+      "homeTeam": "Iraq",
+      "kickoff": 1781647200000,
+      "matchday": "Matchday 6",
+      "round": "Group Stage — Group I",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_051": {
+      "awayFlag": "🇮🇶",
+      "awayTeam": "Iraq",
+      "city": "Philadelphia",
+      "group": "Group I",
+      "homeFlag": "🇫🇷",
+      "homeTeam": "France",
+      "kickoff": 1782162000000,
+      "matchday": "Matchday 12",
+      "round": "Group Stage — Group I",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Philadelphia"
+    },
+    "match_of_052": {
+      "awayFlag": "🇸🇳",
+      "awayTeam": "Senegal",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "Group I",
+      "homeFlag": "🇳🇴",
+      "homeTeam": "Norway",
+      "kickoff": 1782172800000,
+      "matchday": "Matchday 12",
+      "round": "Group Stage — Group I",
+      "stage": "group",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_053": {
+      "awayFlag": "🇫🇷",
+      "awayTeam": "France",
+      "city": "Boston (Foxborough)",
+      "group": "Group I",
+      "homeFlag": "🇳🇴",
+      "homeTeam": "Norway",
+      "kickoff": 1782500400000,
+      "matchday": "Matchday 16",
+      "round": "Group Stage — Group I",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_054": {
+      "awayFlag": "🇮🇶",
+      "awayTeam": "Iraq",
+      "city": "Toronto",
+      "group": "Group I",
+      "homeFlag": "🇸🇳",
+      "homeTeam": "Senegal",
+      "kickoff": 1782500400000,
+      "matchday": "Matchday 16",
+      "round": "Group Stage — Group I",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Toronto"
+    },
+    "match_of_055": {
+      "awayFlag": "🇩🇿",
+      "awayTeam": "Algeria",
+      "city": "Kansas City",
+      "group": "Group J",
+      "homeFlag": "🇦🇷",
+      "homeTeam": "Argentina",
+      "kickoff": 1781658000000,
+      "matchday": "Matchday 6",
+      "round": "Group Stage — Group J",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Kansas City"
+    },
+    "match_of_056": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Jordan",
+      "city": "San Francisco Bay Area (Santa Clara)",
+      "group": "Group J",
+      "homeFlag": "🇦🇹",
+      "homeTeam": "Austria",
+      "kickoff": 1781668800000,
+      "matchday": "Matchday 6",
+      "round": "Group Stage — Group J",
+      "stage": "group",
+      "status": "NS",
+      "venue": "San Francisco Bay Area (Santa Clara)"
+    },
+    "match_of_057": {
+      "awayFlag": "🇦🇹",
+      "awayTeam": "Austria",
+      "city": "Dallas (Arlington)",
+      "group": "Group J",
+      "homeFlag": "🇦🇷",
+      "homeTeam": "Argentina",
+      "kickoff": 1782147600000,
+      "matchday": "Matchday 12",
+      "round": "Group Stage — Group J",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_058": {
+      "awayFlag": "🇩🇿",
+      "awayTeam": "Algeria",
+      "city": "San Francisco Bay Area (Santa Clara)",
+      "group": "Group J",
+      "homeFlag": "🏳️",
+      "homeTeam": "Jordan",
+      "kickoff": 1782183600000,
+      "matchday": "Matchday 12",
+      "round": "Group Stage — Group J",
+      "stage": "group",
+      "status": "NS",
+      "venue": "San Francisco Bay Area (Santa Clara)"
+    },
+    "match_of_059": {
+      "awayFlag": "🇦🇹",
+      "awayTeam": "Austria",
+      "city": "Kansas City",
+      "group": "Group J",
+      "homeFlag": "🇩🇿",
+      "homeTeam": "Algeria",
+      "kickoff": 1782612000000,
+      "matchday": "Matchday 17",
+      "round": "Group Stage — Group J",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Kansas City"
+    },
+    "match_of_060": {
+      "awayFlag": "🇦🇷",
+      "awayTeam": "Argentina",
+      "city": "Dallas (Arlington)",
+      "group": "Group J",
+      "homeFlag": "🏳️",
+      "homeTeam": "Jordan",
+      "kickoff": 1782612000000,
+      "matchday": "Matchday 17",
+      "round": "Group Stage — Group J",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_061": {
+      "awayFlag": "🇨🇩",
+      "awayTeam": "DR Congo",
+      "city": "Houston",
+      "group": "Group K",
+      "homeFlag": "🇵🇹",
+      "homeTeam": "Portugal",
+      "kickoff": 1781715600000,
+      "matchday": "Matchday 7",
+      "round": "Group Stage — Group K",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_062": {
+      "awayFlag": "🇨🇴",
+      "awayTeam": "Colombia",
+      "city": "Mexico City",
+      "group": "Group K",
+      "homeFlag": "🇺🇿",
+      "homeTeam": "Uzbekistan",
+      "kickoff": 1781748000000,
+      "matchday": "Matchday 7",
+      "round": "Group Stage — Group K",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Mexico City"
+    },
+    "match_of_063": {
+      "awayFlag": "🇺🇿",
+      "awayTeam": "Uzbekistan",
+      "city": "Houston",
+      "group": "Group K",
+      "homeFlag": "🇵🇹",
+      "homeTeam": "Portugal",
+      "kickoff": 1782234000000,
+      "matchday": "Matchday 13",
+      "round": "Group Stage — Group K",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_064": {
+      "awayFlag": "🇨🇩",
+      "awayTeam": "DR Congo",
+      "city": "Guadalajara (Zapopan)",
+      "group": "Group K",
+      "homeFlag": "🇨🇴",
+      "homeTeam": "Colombia",
+      "kickoff": 1782266400000,
+      "matchday": "Matchday 13",
+      "round": "Group Stage — Group K",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Guadalajara (Zapopan)"
+    },
+    "match_of_065": {
+      "awayFlag": "🇵🇹",
+      "awayTeam": "Portugal",
+      "city": "Miami (Miami Gardens)",
+      "group": "Group K",
+      "homeFlag": "🇨🇴",
+      "homeTeam": "Colombia",
+      "kickoff": 1782603000000,
+      "matchday": "Matchday 17",
+      "round": "Group Stage — Group K",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_066": {
+      "awayFlag": "🇺🇿",
+      "awayTeam": "Uzbekistan",
+      "city": "Atlanta",
+      "group": "Group K",
+      "homeFlag": "🇨🇩",
+      "homeTeam": "DR Congo",
+      "kickoff": 1782603000000,
+      "matchday": "Matchday 17",
+      "round": "Group Stage — Group K",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_067": {
+      "awayFlag": "🇭🇷",
+      "awayTeam": "Croatia",
+      "city": "Dallas (Arlington)",
+      "group": "Group L",
+      "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "homeTeam": "England",
+      "kickoff": 1781726400000,
+      "matchday": "Matchday 7",
+      "round": "Group Stage — Group L",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_068": {
+      "awayFlag": "🇵🇦",
+      "awayTeam": "Panama",
+      "city": "Toronto",
+      "group": "Group L",
+      "homeFlag": "🇬🇭",
+      "homeTeam": "Ghana",
+      "kickoff": 1781737200000,
+      "matchday": "Matchday 7",
+      "round": "Group Stage — Group L",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Toronto"
+    },
+    "match_of_069": {
+      "awayFlag": "🇬🇭",
+      "awayTeam": "Ghana",
+      "city": "Boston (Foxborough)",
+      "group": "Group L",
+      "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "homeTeam": "England",
+      "kickoff": 1782244800000,
+      "matchday": "Matchday 13",
+      "round": "Group Stage — Group L",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_070": {
+      "awayFlag": "🇭🇷",
+      "awayTeam": "Croatia",
+      "city": "Toronto",
+      "group": "Group L",
+      "homeFlag": "🇵🇦",
+      "homeTeam": "Panama",
+      "kickoff": 1782255600000,
+      "matchday": "Matchday 13",
+      "round": "Group Stage — Group L",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Toronto"
+    },
+    "match_of_071": {
+      "awayFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "awayTeam": "England",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "Group L",
+      "homeFlag": "🇵🇦",
+      "homeTeam": "Panama",
+      "kickoff": 1782594000000,
+      "matchday": "Matchday 17",
+      "round": "Group Stage — Group L",
+      "stage": "group",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_072": {
+      "awayFlag": "🇬🇭",
+      "awayTeam": "Ghana",
+      "city": "Philadelphia",
+      "group": "Group L",
+      "homeFlag": "🇭🇷",
+      "homeTeam": "Croatia",
+      "kickoff": 1782594000000,
+      "matchday": "Matchday 17",
+      "round": "Group Stage — Group L",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Philadelphia"
+    },
+    "match_of_073": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2B",
+      "city": "Los Angeles (Inglewood)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "2A",
+      "kickoff": 1782673200000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_074": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3A/B/C/D/F",
+      "city": "Boston (Foxborough)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1E",
+      "kickoff": 1782765000000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_075": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2C",
+      "city": "Monterrey (Guadalupe)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1F",
+      "kickoff": 1782781200000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Monterrey (Guadalupe)"
+    },
+    "match_of_076": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2F",
+      "city": "Houston",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1C",
+      "kickoff": 1782752400000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_077": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3C/D/F/G/H",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1I",
+      "kickoff": 1782853200000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_078": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2I",
+      "city": "Dallas (Arlington)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "2E",
+      "kickoff": 1782838800000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_079": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3C/E/F/H/I",
+      "city": "Mexico City",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1A",
+      "kickoff": 1782867600000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Mexico City"
+    },
+    "match_of_080": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3E/H/I/J/K",
+      "city": "Atlanta",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1L",
+      "kickoff": 1782921600000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_081": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3B/E/F/I/J",
+      "city": "San Francisco Bay Area (Santa Clara)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1D",
+      "kickoff": 1782950400000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "San Francisco Bay Area (Santa Clara)"
+    },
+    "match_of_082": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3A/E/H/I/J",
+      "city": "Seattle",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1G",
+      "kickoff": 1782936000000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Seattle"
+    },
+    "match_of_083": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2L",
+      "city": "Toronto",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "2K",
+      "kickoff": 1783033200000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Toronto"
+    },
+    "match_of_084": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2J",
+      "city": "Los Angeles (Inglewood)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1H",
+      "kickoff": 1783018800000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_085": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3E/F/G/I/J",
+      "city": "Vancouver",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1B",
+      "kickoff": 1783047600000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_086": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2H",
+      "city": "Miami (Miami Gardens)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1J",
+      "kickoff": 1783116000000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_087": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3D/E/I/J/L",
+      "city": "Kansas City",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1K",
+      "kickoff": 1783128600000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Kansas City"
+    },
+    "match_of_088": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2G",
+      "city": "Dallas (Arlington)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "2D",
+      "kickoff": 1783101600000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_089": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W77",
+      "city": "Philadelphia",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W74",
+      "kickoff": 1783198800000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Philadelphia"
+    },
+    "match_of_090": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W75",
+      "city": "Houston",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W73",
+      "kickoff": 1783184400000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_091": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W78",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W76",
+      "kickoff": 1783281600000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_092": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W80",
+      "city": "Mexico City",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W79",
+      "kickoff": 1783296000000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Mexico City"
+    },
+    "match_of_093": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W84",
+      "city": "Dallas (Arlington)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W83",
+      "kickoff": 1783364400000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_094": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W82",
+      "city": "Seattle",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W81",
+      "kickoff": 1783382400000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Seattle"
+    },
+    "match_of_095": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W88",
+      "city": "Atlanta",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W86",
+      "kickoff": 1783440000000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_096": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W87",
+      "city": "Vancouver",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W85",
+      "kickoff": 1783454400000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_097": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W90",
+      "city": "Boston (Foxborough)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W89",
+      "kickoff": 1783627200000,
+      "matchday": "Quarter-final",
+      "round": "Quarter-Finals",
+      "stage": "qf",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_098": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W94",
+      "city": "Los Angeles (Inglewood)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W93",
+      "kickoff": 1783710000000,
+      "matchday": "Quarter-final",
+      "round": "Quarter-Finals",
+      "stage": "qf",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_099": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W92",
+      "city": "Miami (Miami Gardens)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W91",
+      "kickoff": 1783803600000,
+      "matchday": "Quarter-final",
+      "round": "Quarter-Finals",
+      "stage": "qf",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_100": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W96",
+      "city": "Kansas City",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W95",
+      "kickoff": 1783818000000,
+      "matchday": "Quarter-final",
+      "round": "Quarter-Finals",
+      "stage": "qf",
+      "status": "NS",
+      "venue": "Kansas City"
+    },
+    "match_of_101": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W98",
+      "city": "Dallas (Arlington)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W97",
+      "kickoff": 1784055600000,
+      "matchday": "Semi-final",
+      "round": "Semi-Finals",
+      "stage": "sf",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_102": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W100",
+      "city": "Atlanta",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W99",
+      "kickoff": 1784142000000,
+      "matchday": "Semi-final",
+      "round": "Semi-Finals",
+      "stage": "sf",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_103": {
+      "awayFlag": "🏳️",
+      "awayTeam": "L102",
+      "city": "Miami (Miami Gardens)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "L101",
+      "kickoff": 1784408400000,
+      "matchday": "Match for third place",
+      "round": "Third Place",
+      "stage": "tp",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_104": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W102",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W101",
+      "kickoff": 1784487600000,
+      "matchday": "Final",
+      "round": "Final",
+      "stage": "final",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    }
+  },
+  "tournaments": {
+    "tournament_prode_2026_mpp276uf": {
+      "avatars": {
+        "robot": {
+          "claimedAt": 1780031308770,
+          "claimedBy": "player_1780031282285_dq6t"
+        }
+      },
+      "createdAt": 1779946517607,
+      "description": "",
+      "invite_codes": {
+        "JGRZ-AMG3": {
+          "alias": "Vari",
+          "email": "pablorvarela@gmail.com",
+          "playerName": "Vari Rodriguez Varela",
+          "redeemed": true,
+          "redeemedAt": 1780031328878,
+          "userId": "player_1780031282285_dq6t",
+          "username": "vari.varela"
+        }
+      },
+      "name": "Prode 2026",
+      "pending_requests": {
+        "req_1780030953049_pcaz": {
+          "alias": "Vari",
+          "approvedAt": 1780031083060,
+          "email": "pablorvarela@gmail.com",
+          "inviteCode": "M9UP-SJ9G",
+          "name": "Vari Rodriguez Varela",
+          "passwordHash": "h_umwf14",
+          "requestedAt": 1780030953050,
+          "status": "approved",
+          "userId": "player_1780031082979_9iz6"
+        },
+        "req_1780031235329_p68s": {
+          "alias": "Vari",
+          "approvedAt": 1780031244965,
+          "email": "pablorvarela@gmail.com",
+          "inviteCode": "E7SX-CY6Y",
+          "name": "Vari Rodriguez Varela",
+          "passwordHash": "h_umwf14",
+          "requestedAt": 1780031235329,
+          "status": "approved",
+          "userId": "player_1780031244889_qhlc"
+        },
+        "req_1780031277257_rssr": {
+          "alias": "Vari",
+          "approvedAt": 1780031282361,
+          "email": "pablorvarela@gmail.com",
+          "inviteCode": "JGRZ-AMG3",
+          "name": "Vari Rodriguez Varela",
+          "passwordHash": "h_umwf14",
+          "requestedAt": 1780031277257,
+          "status": "approved",
+          "userId": "player_1780031282285_dq6t"
+        }
+      },
+      "predictions": {
+        "player_1780023669378_jo3": {
+          "match_of_001": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780023865054
+          }
+        },
+        "player_1780031282285_dq6t": {
+          "match_of_001": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412313
+          },
+          "match_of_002": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412333
+          },
+          "match_of_003": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412344
+          },
+          "match_of_004": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412361
+          },
+          "match_of_005": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412374
+          },
+          "match_of_006": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412381
+          },
+          "match_of_007": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412389
+          },
+          "match_of_008": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412398
+          },
+          "match_of_009": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412404
+          },
+          "match_of_010": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412411
+          },
+          "match_of_011": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412418
+          },
+          "match_of_012": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412425
+          },
+          "match_of_013": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412433
+          },
+          "match_of_014": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412440
+          },
+          "match_of_015": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412447
+          },
+          "match_of_016": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412457
+          },
+          "match_of_017": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412463
+          },
+          "match_of_018": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412471
+          },
+          "match_of_019": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412478
+          },
+          "match_of_020": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412485
+          },
+          "match_of_021": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412492
+          },
+          "match_of_022": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412499
+          },
+          "match_of_023": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412511
+          },
+          "match_of_024": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412517
+          },
+          "match_of_025": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412524
+          },
+          "match_of_026": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412531
+          },
+          "match_of_027": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412538
+          },
+          "match_of_028": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412545
+          },
+          "match_of_029": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412552
+          },
+          "match_of_030": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412565
+          },
+          "match_of_031": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412572
+          },
+          "match_of_032": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412579
+          },
+          "match_of_033": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412589
+          },
+          "match_of_034": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412599
+          },
+          "match_of_035": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412607
+          },
+          "match_of_036": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412615
+          },
+          "match_of_037": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412624
+          },
+          "match_of_038": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412632
+          },
+          "match_of_039": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412655
+          },
+          "match_of_040": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412662
+          },
+          "match_of_041": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412670
+          },
+          "match_of_042": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412679
+          },
+          "match_of_043": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412687
+          },
+          "match_of_044": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412694
+          },
+          "match_of_045": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412701
+          },
+          "match_of_046": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412708
+          },
+          "match_of_047": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412718
+          },
+          "match_of_048": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412725
+          },
+          "match_of_049": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412732
+          },
+          "match_of_050": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412739
+          },
+          "match_of_051": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412747
+          },
+          "match_of_052": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412754
+          },
+          "match_of_053": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412761
+          },
+          "match_of_054": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412768
+          },
+          "match_of_055": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412781
+          },
+          "match_of_056": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412788
+          },
+          "match_of_057": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412795
+          },
+          "match_of_058": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412802
+          },
+          "match_of_059": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412809
+          },
+          "match_of_060": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412816
+          },
+          "match_of_061": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412824
+          },
+          "match_of_062": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412831
+          },
+          "match_of_063": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412843
+          },
+          "match_of_064": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412850
+          },
+          "match_of_065": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412857
+          },
+          "match_of_066": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412864
+          },
+          "match_of_067": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412871
+          },
+          "match_of_068": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412878
+          },
+          "match_of_069": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412886
+          },
+          "match_of_070": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412893
+          },
+          "match_of_071": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412905
+          },
+          "match_of_072": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412911
+          }
+        }
+      },
+      "rounds": {
+        "r_f": {
+          "createdAt": 1780019526108,
+          "name": "Final",
+          "order": 7,
+          "stage": "final",
+          "status": "unavailable",
+          "visibleToPlayers": false
+        },
+        "r_gs": {
+          "createdAt": 1780019526108,
+          "name": "Group Stage",
+          "order": 1,
+          "stage": "group",
+          "status": "active",
+          "visibleToPlayers": true
+        },
+        "r_qf": {
+          "createdAt": 1780019526108,
+          "name": "Quarter-Finals",
+          "order": 4,
+          "stage": "qf",
+          "status": "unavailable",
+          "visibleToPlayers": false
+        },
+        "r_r16": {
+          "createdAt": 1780019526108,
+          "name": "Round of 16",
+          "order": 3,
+          "stage": "r16",
+          "status": "unavailable",
+          "visibleToPlayers": false
+        },
+        "r_r32": {
+          "createdAt": 1780019526108,
+          "name": "Round of 32",
+          "order": 2,
+          "stage": "r32",
+          "status": "unavailable",
+          "visibleToPlayers": false
+        },
+        "r_sf": {
+          "createdAt": 1780019526108,
+          "name": "Semi-Finals",
+          "order": 5,
+          "stage": "sf",
+          "status": "unavailable",
+          "visibleToPlayers": false
+        },
+        "r_tp": {
+          "createdAt": 1780019526108,
+          "name": "Third Place Play-off",
+          "order": 6,
+          "stage": "tp",
+          "status": "unavailable",
+          "visibleToPlayers": false
+        }
+      },
+      "scoring": {
+        "exact": 5,
+        "gd": 3,
+        "result": 2
+      },
+      "status": "active",
+      "users": {
+        "player_1780031282285_dq6t": {
+          "alias": "Vari",
+          "avatarId": "robot::blue",
+          "createdAt": 1780031282285,
+          "email": "pablorvarela@gmail.com",
+          "inviteCode": "JGRZ-AMG3",
+          "lastActive": 1780031491629,
+          "name": "Vari Rodriguez Varela",
+          "passwordHash": "h_umwf14",
+          "status": "Group Stage — Submitted",
+          "username": "vari.varela"
+        }
+      }
+    }
+  }
+}
