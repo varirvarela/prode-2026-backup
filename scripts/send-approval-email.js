@@ -146,7 +146,7 @@ async function sendEmail(to, name, scoring) {
     body: JSON.stringify({
       from:    FROM_EMAIL,
       to:      [to],
-      subject: `&#x26BD; You've been approved &mdash; Prode 2026`,
+      subject: `⚽ You've been approved — Prode 2026`,
       html:    buildEmail(name, scoring),
     }),
   });
