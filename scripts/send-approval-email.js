@@ -29,15 +29,10 @@ const db = admin.database();
 // Brevo sender set inline in sendEmail
 const APP_URL        = 'https://varirvarela.github.io/prode-2026-backup/prode-player.html';
 
-// ── Fetch scoring config (stored globally at config/scoring) ─────────────────
+// ── Fetch scoring config from tournaments/{tid}/scoring ──────────────────────
 async function getScoringConfig(tid) {
-  // Try tournament-level first, fall back to global config/scoring
-  let snap = await db.ref(`tournaments/${tid}/config/scoring`).once('value');
-  let cfg  = snap.val();
-  if(!cfg || (!cfg.exact && !cfg.gd && !cfg.result)) {
-    snap = await db.ref('config/scoring').once('value');
-    cfg  = snap.val() || {};
-  }
+  const snap = await db.ref(`tournaments/${tid}/scoring`).once('value');
+  const cfg  = snap.val() || {};
   return {
     exact:  cfg.exact  || 5,
     gd:     cfg.gd     || 3,
