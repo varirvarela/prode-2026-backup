@@ -10,7 +10,7 @@
  * Secrets required:
  *   FIREBASE_SERVICE_ACCOUNT  — Firebase service account JSON
  *   FIREBASE_DATABASE_URL     — e.g. https://prode-2026-7838f-default-rtdb.firebaseio.com
- *   RESEND_API_KEY             — starts with re_...
+ *   BREVO_API_KEY              — from brevo.com → My Account → SMTP & API → API Keys
  */
 
 import admin from 'firebase-admin';
@@ -25,8 +25,8 @@ admin.initializeApp({
 const db = admin.database();
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const FROM_EMAIL     = 'Prode 2026 <onboarding@resend.dev>';
+// BREVO_API_KEY loaded directly in sendEmail via process.env
+// Brevo sender set inline in sendEmail
 const APP_URL        = 'https://varirvarela.github.io/prode-2026-backup/prode-player.html';
 
 // ── Fetch tournament scoring config ──────────────────────────────────────────
@@ -135,25 +135,25 @@ function buildEmail(name, scoring) {
 </html>`;
 }
 
-// ── Send via Resend ───────────────────────────────────────────────────────────
+// ── Send via Brevo ────────────────────────────────────────────────────────────
 async function sendEmail(to, name, scoring) {
-  const res = await fetch('https://api.resend.com/emails', {
+  const res = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
-      'Content-Type':  'application/json',
+      'api-key':      process.env.BREVO_API_KEY,
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from:    FROM_EMAIL,
-      to:      [to],
-      subject: `⚽ You've been approved — Prode 2026`,
-      html:    buildEmail(name, scoring),
+      sender:  { name: 'Prode 2026', email: 'noreply@prode2026.com' },
+      to:      [{ email: to, name: name }],
+      subject: '⚽ You\'ve been approved — Prode 2026',
+      htmlContent: buildEmail(name, scoring),
     }),
   });
 
   if (!res.ok) {
     const err = await res.text();
-    throw new Error(`Resend API error ${res.status}: ${err}`);
+    throw new Error(`Brevo API error ${res.status}: ${err}`);
   }
   return await res.json();
 }
