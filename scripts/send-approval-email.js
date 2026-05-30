@@ -149,7 +149,7 @@ async function sendEmail(to, name, scoring) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      sender:  { name: 'Prode 2026', email: 'noreply@prode2026.com' },
+      sender:  { name: 'Prode 2026', email: process.env.BREVO_SENDER_EMAIL || 'pablorvarela@gmail.com' },
       to:      [{ email: to, name: name }],
       subject: '⚽ You\'ve been approved — Prode 2026',
       htmlContent: buildEmail(name, scoring),
@@ -189,13 +189,18 @@ async function main() {
       console.log(`  Sending to ${req.email} (${req.name})...`);
       try {
         const result = await sendEmail(req.email, req.name || 'Player', scoring);
-        console.log(`  Resend response:`, JSON.stringify(result));
-        await db.ref(`tournaments/${tid}/pending_requests/${reqId}`).update({
-          emailSent:   true,
-          emailSentAt: Date.now(),
-        });
+        console.log(`  Email accepted by Brevo:`, JSON.stringify(result));
+        try {
+          await db.ref(`tournaments/${tid}/pending_requests/${reqId}`).update({
+            emailSent:   true,
+            emailSentAt: Date.now(),
+          });
+          console.log(`  ✓ Firebase updated — emailSent:true`);
+        } catch(fbErr) {
+          console.error(`  ✗ Firebase update failed: ${fbErr.message}`);
+        }
         sent++;
-        console.log(`  ✓ Sent successfully to ${req.email}`);
+        console.log(`  ✓ Done: ${req.email}`);
       } catch (e) {
         console.error(`  ✗ Failed for ${req.email}: ${e.message}`);
       }
