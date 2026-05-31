@@ -1,0 +1,3992 @@
+{
+  "avatars": {
+    "bolt": {
+      "claimedAt": 1780059728697,
+      "claimedBy": "player_1780058087378_0iob"
+    }
+  },
+  "config": {
+    "backup": {
+      "repo": "varirvarela/prode-2026-backup",
+      "time": "02:00"
+    },
+    "vapidPublicKey": "BBYqOvuw2MTMVWEhZM2gTa7o3JPtUmDeaS4s2Jgbmwu20mC4ghfUEfqMHND8kh9oZVcIFxrmKcyW1gONbIMLHis"
+  },
+  "fixtures": {
+    "match_of_001": {
+      "awayFlag": "🇿🇦",
+      "awayTeam": "South Africa",
+      "city": "Mexico City",
+      "group": "Group A",
+      "homeFlag": "🇲🇽",
+      "homeTeam": "Mexico",
+      "kickoff": 1781204400000,
+      "matchday": "Matchday 1",
+      "round": "Group Stage — Group A",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Mexico City"
+    },
+    "match_of_002": {
+      "awayFlag": "🇨🇿",
+      "awayTeam": "Czech Republic",
+      "city": "Guadalajara (Zapopan)",
+      "group": "Group A",
+      "homeFlag": "🇰🇷",
+      "homeTeam": "South Korea",
+      "kickoff": 1781229600000,
+      "matchday": "Matchday 1",
+      "round": "Group Stage — Group A",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Guadalajara (Zapopan)"
+    },
+    "match_of_003": {
+      "awayFlag": "🇿🇦",
+      "awayTeam": "South Africa",
+      "city": "Atlanta",
+      "group": "Group A",
+      "homeFlag": "🇨🇿",
+      "homeTeam": "Czech Republic",
+      "kickoff": 1781798400000,
+      "matchday": "Matchday 8",
+      "round": "Group Stage — Group A",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_004": {
+      "awayFlag": "🇰🇷",
+      "awayTeam": "South Korea",
+      "city": "Guadalajara (Zapopan)",
+      "group": "Group A",
+      "homeFlag": "🇲🇽",
+      "homeTeam": "Mexico",
+      "kickoff": 1781830800000,
+      "matchday": "Matchday 8",
+      "round": "Group Stage — Group A",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Guadalajara (Zapopan)"
+    },
+    "match_of_005": {
+      "awayFlag": "🇲🇽",
+      "awayTeam": "Mexico",
+      "city": "Mexico City",
+      "group": "Group A",
+      "homeFlag": "🇨🇿",
+      "homeTeam": "Czech Republic",
+      "kickoff": 1782349200000,
+      "matchday": "Matchday 14",
+      "round": "Group Stage — Group A",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Mexico City"
+    },
+    "match_of_006": {
+      "awayFlag": "🇰🇷",
+      "awayTeam": "South Korea",
+      "city": "Monterrey (Guadalupe)",
+      "group": "Group A",
+      "homeFlag": "🇿🇦",
+      "homeTeam": "South Africa",
+      "kickoff": 1782349200000,
+      "matchday": "Matchday 14",
+      "round": "Group Stage — Group A",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Monterrey (Guadalupe)"
+    },
+    "match_of_007": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Bosnia & Herzegovina",
+      "city": "Toronto",
+      "group": "Group B",
+      "homeFlag": "🇨🇦",
+      "homeTeam": "Canada",
+      "kickoff": 1781290800000,
+      "matchday": "Matchday 2",
+      "round": "Group Stage — Group B",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Toronto"
+    },
+    "match_of_008": {
+      "awayFlag": "🇨🇭",
+      "awayTeam": "Switzerland",
+      "city": "San Francisco Bay Area (Santa Clara)",
+      "group": "Group B",
+      "homeFlag": "🇶🇦",
+      "homeTeam": "Qatar",
+      "kickoff": 1781377200000,
+      "matchday": "Matchday 3",
+      "round": "Group Stage — Group B",
+      "stage": "group",
+      "status": "NS",
+      "venue": "San Francisco Bay Area (Santa Clara)"
+    },
+    "match_of_009": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Bosnia & Herzegovina",
+      "city": "Los Angeles (Inglewood)",
+      "group": "Group B",
+      "homeFlag": "🇨🇭",
+      "homeTeam": "Switzerland",
+      "kickoff": 1781809200000,
+      "matchday": "Matchday 8",
+      "round": "Group Stage — Group B",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_010": {
+      "awayFlag": "🇶🇦",
+      "awayTeam": "Qatar",
+      "city": "Vancouver",
+      "group": "Group B",
+      "homeFlag": "🇨🇦",
+      "homeTeam": "Canada",
+      "kickoff": 1781820000000,
+      "matchday": "Matchday 8",
+      "round": "Group Stage — Group B",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_011": {
+      "awayFlag": "🇨🇦",
+      "awayTeam": "Canada",
+      "city": "Vancouver",
+      "group": "Group B",
+      "homeFlag": "🇨🇭",
+      "homeTeam": "Switzerland",
+      "kickoff": 1782327600000,
+      "matchday": "Matchday 14",
+      "round": "Group Stage — Group B",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_012": {
+      "awayFlag": "🇶🇦",
+      "awayTeam": "Qatar",
+      "city": "Seattle",
+      "group": "Group B",
+      "homeFlag": "🏳️",
+      "homeTeam": "Bosnia & Herzegovina",
+      "kickoff": 1782327600000,
+      "matchday": "Matchday 14",
+      "round": "Group Stage — Group B",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Seattle"
+    },
+    "match_of_013": {
+      "awayFlag": "🇲🇦",
+      "awayTeam": "Morocco",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "Group C",
+      "homeFlag": "🇧🇷",
+      "homeTeam": "Brazil",
+      "kickoff": 1781388000000,
+      "matchday": "Matchday 3",
+      "round": "Group Stage — Group C",
+      "stage": "group",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_014": {
+      "awayFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "awayTeam": "Scotland",
+      "city": "Boston (Foxborough)",
+      "group": "Group C",
+      "homeFlag": "🏳️",
+      "homeTeam": "Haiti",
+      "kickoff": 1781398800000,
+      "matchday": "Matchday 3",
+      "round": "Group Stage — Group C",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_015": {
+      "awayFlag": "🇲🇦",
+      "awayTeam": "Morocco",
+      "city": "Boston (Foxborough)",
+      "group": "Group C",
+      "homeFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "homeTeam": "Scotland",
+      "kickoff": 1781906400000,
+      "matchday": "Matchday 9",
+      "round": "Group Stage — Group C",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_016": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Haiti",
+      "city": "Philadelphia",
+      "group": "Group C",
+      "homeFlag": "🇧🇷",
+      "homeTeam": "Brazil",
+      "kickoff": 1781915400000,
+      "matchday": "Matchday 9",
+      "round": "Group Stage — Group C",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Philadelphia"
+    },
+    "match_of_017": {
+      "awayFlag": "🇧🇷",
+      "awayTeam": "Brazil",
+      "city": "Miami (Miami Gardens)",
+      "group": "Group C",
+      "homeFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "homeTeam": "Scotland",
+      "kickoff": 1782338400000,
+      "matchday": "Matchday 14",
+      "round": "Group Stage — Group C",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_018": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Haiti",
+      "city": "Atlanta",
+      "group": "Group C",
+      "homeFlag": "🇲🇦",
+      "homeTeam": "Morocco",
+      "kickoff": 1782338400000,
+      "matchday": "Matchday 14",
+      "round": "Group Stage — Group C",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_019": {
+      "awayFlag": "🇵🇾",
+      "awayTeam": "Paraguay",
+      "city": "Los Angeles (Inglewood)",
+      "group": "Group D",
+      "homeFlag": "🇺🇸",
+      "homeTeam": "USA",
+      "kickoff": 1781312400000,
+      "matchday": "Matchday 2",
+      "round": "Group Stage — Group D",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_020": {
+      "awayFlag": "🇹🇷",
+      "awayTeam": "Turkey",
+      "city": "Vancouver",
+      "group": "Group D",
+      "homeFlag": "🇦🇺",
+      "homeTeam": "Australia",
+      "kickoff": 1781409600000,
+      "matchday": "Matchday 3",
+      "round": "Group Stage — Group D",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_021": {
+      "awayFlag": "🇦🇺",
+      "awayTeam": "Australia",
+      "city": "Seattle",
+      "group": "Group D",
+      "homeFlag": "🇺🇸",
+      "homeTeam": "USA",
+      "kickoff": 1781895600000,
+      "matchday": "Matchday 9",
+      "round": "Group Stage — Group D",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Seattle"
+    },
+    "match_of_022": {
+      "awayFlag": "🇵🇾",
+      "awayTeam": "Paraguay",
+      "city": "San Francisco Bay Area (Santa Clara)",
+      "group": "Group D",
+      "homeFlag": "🇹🇷",
+      "homeTeam": "Turkey",
+      "kickoff": 1781924400000,
+      "matchday": "Matchday 9",
+      "round": "Group Stage — Group D",
+      "stage": "group",
+      "status": "NS",
+      "venue": "San Francisco Bay Area (Santa Clara)"
+    },
+    "match_of_023": {
+      "awayFlag": "🇺🇸",
+      "awayTeam": "USA",
+      "city": "Los Angeles (Inglewood)",
+      "group": "Group D",
+      "homeFlag": "🇹🇷",
+      "homeTeam": "Turkey",
+      "kickoff": 1782439200000,
+      "matchday": "Matchday 15",
+      "round": "Group Stage — Group D",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_024": {
+      "awayFlag": "🇦🇺",
+      "awayTeam": "Australia",
+      "city": "San Francisco Bay Area (Santa Clara)",
+      "group": "Group D",
+      "homeFlag": "🇵🇾",
+      "homeTeam": "Paraguay",
+      "kickoff": 1782439200000,
+      "matchday": "Matchday 15",
+      "round": "Group Stage — Group D",
+      "stage": "group",
+      "status": "NS",
+      "venue": "San Francisco Bay Area (Santa Clara)"
+    },
+    "match_of_025": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Curaçao",
+      "city": "Houston",
+      "group": "Group E",
+      "homeFlag": "🇩🇪",
+      "homeTeam": "Germany",
+      "kickoff": 1781456400000,
+      "matchday": "Matchday 4",
+      "round": "Group Stage — Group E",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_026": {
+      "awayFlag": "🇪🇨",
+      "awayTeam": "Ecuador",
+      "city": "Philadelphia",
+      "group": "Group E",
+      "homeFlag": "🇨🇮",
+      "homeTeam": "Ivory Coast",
+      "kickoff": 1781478000000,
+      "matchday": "Matchday 4",
+      "round": "Group Stage — Group E",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Philadelphia"
+    },
+    "match_of_027": {
+      "awayFlag": "🇨🇮",
+      "awayTeam": "Ivory Coast",
+      "city": "Toronto",
+      "group": "Group E",
+      "homeFlag": "🇩🇪",
+      "homeTeam": "Germany",
+      "kickoff": 1781985600000,
+      "matchday": "Matchday 10",
+      "round": "Group Stage — Group E",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Toronto"
+    },
+    "match_of_028": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Curaçao",
+      "city": "Kansas City",
+      "group": "Group E",
+      "homeFlag": "🇪🇨",
+      "homeTeam": "Ecuador",
+      "kickoff": 1782000000000,
+      "matchday": "Matchday 10",
+      "round": "Group Stage — Group E",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Kansas City"
+    },
+    "match_of_029": {
+      "awayFlag": "🇨🇮",
+      "awayTeam": "Ivory Coast",
+      "city": "Philadelphia",
+      "group": "Group E",
+      "homeFlag": "🏳️",
+      "homeTeam": "Curaçao",
+      "kickoff": 1782417600000,
+      "matchday": "Matchday 15",
+      "round": "Group Stage — Group E",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Philadelphia"
+    },
+    "match_of_030": {
+      "awayFlag": "🇩🇪",
+      "awayTeam": "Germany",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "Group E",
+      "homeFlag": "🇪🇨",
+      "homeTeam": "Ecuador",
+      "kickoff": 1782417600000,
+      "matchday": "Matchday 15",
+      "round": "Group Stage — Group E",
+      "stage": "group",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_031": {
+      "awayFlag": "🇯🇵",
+      "awayTeam": "Japan",
+      "city": "Dallas (Arlington)",
+      "group": "Group F",
+      "homeFlag": "🇳🇱",
+      "homeTeam": "Netherlands",
+      "kickoff": 1781467200000,
+      "matchday": "Matchday 4",
+      "round": "Group Stage — Group F",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_032": {
+      "awayFlag": "🇹🇳",
+      "awayTeam": "Tunisia",
+      "city": "Monterrey (Guadalupe)",
+      "group": "Group F",
+      "homeFlag": "🇸🇪",
+      "homeTeam": "Sweden",
+      "kickoff": 1781488800000,
+      "matchday": "Matchday 4",
+      "round": "Group Stage — Group F",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Monterrey (Guadalupe)"
+    },
+    "match_of_033": {
+      "awayFlag": "🇸🇪",
+      "awayTeam": "Sweden",
+      "city": "Houston",
+      "group": "Group F",
+      "homeFlag": "🇳🇱",
+      "homeTeam": "Netherlands",
+      "kickoff": 1781974800000,
+      "matchday": "Matchday 10",
+      "round": "Group Stage — Group F",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_034": {
+      "awayFlag": "🇯🇵",
+      "awayTeam": "Japan",
+      "city": "Monterrey (Guadalupe)",
+      "group": "Group F",
+      "homeFlag": "🇹🇳",
+      "homeTeam": "Tunisia",
+      "kickoff": 1782014400000,
+      "matchday": "Matchday 10",
+      "round": "Group Stage — Group F",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Monterrey (Guadalupe)"
+    },
+    "match_of_035": {
+      "awayFlag": "🇸🇪",
+      "awayTeam": "Sweden",
+      "city": "Dallas (Arlington)",
+      "group": "Group F",
+      "homeFlag": "🇯🇵",
+      "homeTeam": "Japan",
+      "kickoff": 1782428400000,
+      "matchday": "Matchday 15",
+      "round": "Group Stage — Group F",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_036": {
+      "awayFlag": "🇳🇱",
+      "awayTeam": "Netherlands",
+      "city": "Kansas City",
+      "group": "Group F",
+      "homeFlag": "🇹🇳",
+      "homeTeam": "Tunisia",
+      "kickoff": 1782428400000,
+      "matchday": "Matchday 15",
+      "round": "Group Stage — Group F",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Kansas City"
+    },
+    "match_of_037": {
+      "awayFlag": "🇪🇬",
+      "awayTeam": "Egypt",
+      "city": "Seattle",
+      "group": "Group G",
+      "homeFlag": "🇧🇪",
+      "homeTeam": "Belgium",
+      "kickoff": 1781550000000,
+      "matchday": "Matchday 5",
+      "round": "Group Stage — Group G",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Seattle"
+    },
+    "match_of_038": {
+      "awayFlag": "🇳🇿",
+      "awayTeam": "New Zealand",
+      "city": "Los Angeles (Inglewood)",
+      "group": "Group G",
+      "homeFlag": "🇮🇷",
+      "homeTeam": "Iran",
+      "kickoff": 1781571600000,
+      "matchday": "Matchday 5",
+      "round": "Group Stage — Group G",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_039": {
+      "awayFlag": "🇮🇷",
+      "awayTeam": "Iran",
+      "city": "Los Angeles (Inglewood)",
+      "group": "Group G",
+      "homeFlag": "🇧🇪",
+      "homeTeam": "Belgium",
+      "kickoff": 1782068400000,
+      "matchday": "Matchday 11",
+      "round": "Group Stage — Group G",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_040": {
+      "awayFlag": "🇪🇬",
+      "awayTeam": "Egypt",
+      "city": "Vancouver",
+      "group": "Group G",
+      "homeFlag": "🇳🇿",
+      "homeTeam": "New Zealand",
+      "kickoff": 1782090000000,
+      "matchday": "Matchday 11",
+      "round": "Group Stage — Group G",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_041": {
+      "awayFlag": "🇮🇷",
+      "awayTeam": "Iran",
+      "city": "Seattle",
+      "group": "Group G",
+      "homeFlag": "🇪🇬",
+      "homeTeam": "Egypt",
+      "kickoff": 1782529200000,
+      "matchday": "Matchday 16",
+      "round": "Group Stage — Group G",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Seattle"
+    },
+    "match_of_042": {
+      "awayFlag": "🇧🇪",
+      "awayTeam": "Belgium",
+      "city": "Vancouver",
+      "group": "Group G",
+      "homeFlag": "🇳🇿",
+      "homeTeam": "New Zealand",
+      "kickoff": 1782529200000,
+      "matchday": "Matchday 16",
+      "round": "Group Stage — Group G",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_043": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Cape Verde",
+      "city": "Atlanta",
+      "group": "Group H",
+      "homeFlag": "🇪🇸",
+      "homeTeam": "Spain",
+      "kickoff": 1781539200000,
+      "matchday": "Matchday 5",
+      "round": "Group Stage — Group H",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_044": {
+      "awayFlag": "🇺🇾",
+      "awayTeam": "Uruguay",
+      "city": "Miami (Miami Gardens)",
+      "group": "Group H",
+      "homeFlag": "🇸🇦",
+      "homeTeam": "Saudi Arabia",
+      "kickoff": 1781560800000,
+      "matchday": "Matchday 5",
+      "round": "Group Stage — Group H",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_045": {
+      "awayFlag": "🇸🇦",
+      "awayTeam": "Saudi Arabia",
+      "city": "Atlanta",
+      "group": "Group H",
+      "homeFlag": "🇪🇸",
+      "homeTeam": "Spain",
+      "kickoff": 1782057600000,
+      "matchday": "Matchday 11",
+      "round": "Group Stage — Group H",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_046": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Cape Verde",
+      "city": "Miami (Miami Gardens)",
+      "group": "Group H",
+      "homeFlag": "🇺🇾",
+      "homeTeam": "Uruguay",
+      "kickoff": 1782079200000,
+      "matchday": "Matchday 11",
+      "round": "Group Stage — Group H",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_047": {
+      "awayFlag": "🇸🇦",
+      "awayTeam": "Saudi Arabia",
+      "city": "Houston",
+      "group": "Group H",
+      "homeFlag": "🏳️",
+      "homeTeam": "Cape Verde",
+      "kickoff": 1782518400000,
+      "matchday": "Matchday 16",
+      "round": "Group Stage — Group H",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_048": {
+      "awayFlag": "🇪🇸",
+      "awayTeam": "Spain",
+      "city": "Guadalajara (Zapopan)",
+      "group": "Group H",
+      "homeFlag": "🇺🇾",
+      "homeTeam": "Uruguay",
+      "kickoff": 1782518400000,
+      "matchday": "Matchday 16",
+      "round": "Group Stage — Group H",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Guadalajara (Zapopan)"
+    },
+    "match_of_049": {
+      "awayFlag": "🇸🇳",
+      "awayTeam": "Senegal",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "Group I",
+      "homeFlag": "🇫🇷",
+      "homeTeam": "France",
+      "kickoff": 1781636400000,
+      "matchday": "Matchday 6",
+      "round": "Group Stage — Group I",
+      "stage": "group",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_050": {
+      "awayFlag": "🇳🇴",
+      "awayTeam": "Norway",
+      "city": "Boston (Foxborough)",
+      "group": "Group I",
+      "homeFlag": "🇮🇶",
+      "homeTeam": "Iraq",
+      "kickoff": 1781647200000,
+      "matchday": "Matchday 6",
+      "round": "Group Stage — Group I",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_051": {
+      "awayFlag": "🇮🇶",
+      "awayTeam": "Iraq",
+      "city": "Philadelphia",
+      "group": "Group I",
+      "homeFlag": "🇫🇷",
+      "homeTeam": "France",
+      "kickoff": 1782162000000,
+      "matchday": "Matchday 12",
+      "round": "Group Stage — Group I",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Philadelphia"
+    },
+    "match_of_052": {
+      "awayFlag": "🇸🇳",
+      "awayTeam": "Senegal",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "Group I",
+      "homeFlag": "🇳🇴",
+      "homeTeam": "Norway",
+      "kickoff": 1782172800000,
+      "matchday": "Matchday 12",
+      "round": "Group Stage — Group I",
+      "stage": "group",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_053": {
+      "awayFlag": "🇫🇷",
+      "awayTeam": "France",
+      "city": "Boston (Foxborough)",
+      "group": "Group I",
+      "homeFlag": "🇳🇴",
+      "homeTeam": "Norway",
+      "kickoff": 1782500400000,
+      "matchday": "Matchday 16",
+      "round": "Group Stage — Group I",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_054": {
+      "awayFlag": "🇮🇶",
+      "awayTeam": "Iraq",
+      "city": "Toronto",
+      "group": "Group I",
+      "homeFlag": "🇸🇳",
+      "homeTeam": "Senegal",
+      "kickoff": 1782500400000,
+      "matchday": "Matchday 16",
+      "round": "Group Stage — Group I",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Toronto"
+    },
+    "match_of_055": {
+      "awayFlag": "🇩🇿",
+      "awayTeam": "Algeria",
+      "city": "Kansas City",
+      "group": "Group J",
+      "homeFlag": "🇦🇷",
+      "homeTeam": "Argentina",
+      "kickoff": 1781658000000,
+      "matchday": "Matchday 6",
+      "round": "Group Stage — Group J",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Kansas City"
+    },
+    "match_of_056": {
+      "awayFlag": "🏳️",
+      "awayTeam": "Jordan",
+      "city": "San Francisco Bay Area (Santa Clara)",
+      "group": "Group J",
+      "homeFlag": "🇦🇹",
+      "homeTeam": "Austria",
+      "kickoff": 1781668800000,
+      "matchday": "Matchday 6",
+      "round": "Group Stage — Group J",
+      "stage": "group",
+      "status": "NS",
+      "venue": "San Francisco Bay Area (Santa Clara)"
+    },
+    "match_of_057": {
+      "awayFlag": "🇦🇹",
+      "awayTeam": "Austria",
+      "city": "Dallas (Arlington)",
+      "group": "Group J",
+      "homeFlag": "🇦🇷",
+      "homeTeam": "Argentina",
+      "kickoff": 1782147600000,
+      "matchday": "Matchday 12",
+      "round": "Group Stage — Group J",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_058": {
+      "awayFlag": "🇩🇿",
+      "awayTeam": "Algeria",
+      "city": "San Francisco Bay Area (Santa Clara)",
+      "group": "Group J",
+      "homeFlag": "🏳️",
+      "homeTeam": "Jordan",
+      "kickoff": 1782183600000,
+      "matchday": "Matchday 12",
+      "round": "Group Stage — Group J",
+      "stage": "group",
+      "status": "NS",
+      "venue": "San Francisco Bay Area (Santa Clara)"
+    },
+    "match_of_059": {
+      "awayFlag": "🇦🇹",
+      "awayTeam": "Austria",
+      "city": "Kansas City",
+      "group": "Group J",
+      "homeFlag": "🇩🇿",
+      "homeTeam": "Algeria",
+      "kickoff": 1782612000000,
+      "matchday": "Matchday 17",
+      "round": "Group Stage — Group J",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Kansas City"
+    },
+    "match_of_060": {
+      "awayFlag": "🇦🇷",
+      "awayTeam": "Argentina",
+      "city": "Dallas (Arlington)",
+      "group": "Group J",
+      "homeFlag": "🏳️",
+      "homeTeam": "Jordan",
+      "kickoff": 1782612000000,
+      "matchday": "Matchday 17",
+      "round": "Group Stage — Group J",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_061": {
+      "awayFlag": "🇨🇩",
+      "awayTeam": "DR Congo",
+      "city": "Houston",
+      "group": "Group K",
+      "homeFlag": "🇵🇹",
+      "homeTeam": "Portugal",
+      "kickoff": 1781715600000,
+      "matchday": "Matchday 7",
+      "round": "Group Stage — Group K",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_062": {
+      "awayFlag": "🇨🇴",
+      "awayTeam": "Colombia",
+      "city": "Mexico City",
+      "group": "Group K",
+      "homeFlag": "🇺🇿",
+      "homeTeam": "Uzbekistan",
+      "kickoff": 1781748000000,
+      "matchday": "Matchday 7",
+      "round": "Group Stage — Group K",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Mexico City"
+    },
+    "match_of_063": {
+      "awayFlag": "🇺🇿",
+      "awayTeam": "Uzbekistan",
+      "city": "Houston",
+      "group": "Group K",
+      "homeFlag": "🇵🇹",
+      "homeTeam": "Portugal",
+      "kickoff": 1782234000000,
+      "matchday": "Matchday 13",
+      "round": "Group Stage — Group K",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_064": {
+      "awayFlag": "🇨🇩",
+      "awayTeam": "DR Congo",
+      "city": "Guadalajara (Zapopan)",
+      "group": "Group K",
+      "homeFlag": "🇨🇴",
+      "homeTeam": "Colombia",
+      "kickoff": 1782266400000,
+      "matchday": "Matchday 13",
+      "round": "Group Stage — Group K",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Guadalajara (Zapopan)"
+    },
+    "match_of_065": {
+      "awayFlag": "🇵🇹",
+      "awayTeam": "Portugal",
+      "city": "Miami (Miami Gardens)",
+      "group": "Group K",
+      "homeFlag": "🇨🇴",
+      "homeTeam": "Colombia",
+      "kickoff": 1782603000000,
+      "matchday": "Matchday 17",
+      "round": "Group Stage — Group K",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_066": {
+      "awayFlag": "🇺🇿",
+      "awayTeam": "Uzbekistan",
+      "city": "Atlanta",
+      "group": "Group K",
+      "homeFlag": "🇨🇩",
+      "homeTeam": "DR Congo",
+      "kickoff": 1782603000000,
+      "matchday": "Matchday 17",
+      "round": "Group Stage — Group K",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_067": {
+      "awayFlag": "🇭🇷",
+      "awayTeam": "Croatia",
+      "city": "Dallas (Arlington)",
+      "group": "Group L",
+      "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "homeTeam": "England",
+      "kickoff": 1781726400000,
+      "matchday": "Matchday 7",
+      "round": "Group Stage — Group L",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_068": {
+      "awayFlag": "🇵🇦",
+      "awayTeam": "Panama",
+      "city": "Toronto",
+      "group": "Group L",
+      "homeFlag": "🇬🇭",
+      "homeTeam": "Ghana",
+      "kickoff": 1781737200000,
+      "matchday": "Matchday 7",
+      "round": "Group Stage — Group L",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Toronto"
+    },
+    "match_of_069": {
+      "awayFlag": "🇬🇭",
+      "awayTeam": "Ghana",
+      "city": "Boston (Foxborough)",
+      "group": "Group L",
+      "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "homeTeam": "England",
+      "kickoff": 1782244800000,
+      "matchday": "Matchday 13",
+      "round": "Group Stage — Group L",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_070": {
+      "awayFlag": "🇭🇷",
+      "awayTeam": "Croatia",
+      "city": "Toronto",
+      "group": "Group L",
+      "homeFlag": "🇵🇦",
+      "homeTeam": "Panama",
+      "kickoff": 1782255600000,
+      "matchday": "Matchday 13",
+      "round": "Group Stage — Group L",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Toronto"
+    },
+    "match_of_071": {
+      "awayFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "awayTeam": "England",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "Group L",
+      "homeFlag": "🇵🇦",
+      "homeTeam": "Panama",
+      "kickoff": 1782594000000,
+      "matchday": "Matchday 17",
+      "round": "Group Stage — Group L",
+      "stage": "group",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_072": {
+      "awayFlag": "🇬🇭",
+      "awayTeam": "Ghana",
+      "city": "Philadelphia",
+      "group": "Group L",
+      "homeFlag": "🇭🇷",
+      "homeTeam": "Croatia",
+      "kickoff": 1782594000000,
+      "matchday": "Matchday 17",
+      "round": "Group Stage — Group L",
+      "stage": "group",
+      "status": "NS",
+      "venue": "Philadelphia"
+    },
+    "match_of_073": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2B",
+      "city": "Los Angeles (Inglewood)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "2A",
+      "kickoff": 1782673200000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_074": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3A/B/C/D/F",
+      "city": "Boston (Foxborough)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1E",
+      "kickoff": 1782765000000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_075": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2C",
+      "city": "Monterrey (Guadalupe)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1F",
+      "kickoff": 1782781200000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Monterrey (Guadalupe)"
+    },
+    "match_of_076": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2F",
+      "city": "Houston",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1C",
+      "kickoff": 1782752400000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_077": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3C/D/F/G/H",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1I",
+      "kickoff": 1782853200000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_078": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2I",
+      "city": "Dallas (Arlington)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "2E",
+      "kickoff": 1782838800000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_079": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3C/E/F/H/I",
+      "city": "Mexico City",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1A",
+      "kickoff": 1782867600000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Mexico City"
+    },
+    "match_of_080": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3E/H/I/J/K",
+      "city": "Atlanta",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1L",
+      "kickoff": 1782921600000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_081": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3B/E/F/I/J",
+      "city": "San Francisco Bay Area (Santa Clara)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1D",
+      "kickoff": 1782950400000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "San Francisco Bay Area (Santa Clara)"
+    },
+    "match_of_082": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3A/E/H/I/J",
+      "city": "Seattle",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1G",
+      "kickoff": 1782936000000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Seattle"
+    },
+    "match_of_083": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2L",
+      "city": "Toronto",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "2K",
+      "kickoff": 1783033200000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Toronto"
+    },
+    "match_of_084": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2J",
+      "city": "Los Angeles (Inglewood)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1H",
+      "kickoff": 1783018800000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_085": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3E/F/G/I/J",
+      "city": "Vancouver",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1B",
+      "kickoff": 1783047600000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_086": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2H",
+      "city": "Miami (Miami Gardens)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1J",
+      "kickoff": 1783116000000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_087": {
+      "awayFlag": "🏳️",
+      "awayTeam": "3D/E/I/J/L",
+      "city": "Kansas City",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "1K",
+      "kickoff": 1783128600000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Kansas City"
+    },
+    "match_of_088": {
+      "awayFlag": "🏳️",
+      "awayTeam": "2G",
+      "city": "Dallas (Arlington)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "2D",
+      "kickoff": 1783101600000,
+      "matchday": "Round of 32",
+      "round": "Round of 32",
+      "stage": "r32",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_089": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W77",
+      "city": "Philadelphia",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W74",
+      "kickoff": 1783198800000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Philadelphia"
+    },
+    "match_of_090": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W75",
+      "city": "Houston",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W73",
+      "kickoff": 1783184400000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Houston"
+    },
+    "match_of_091": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W78",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W76",
+      "kickoff": 1783281600000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    "match_of_092": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W80",
+      "city": "Mexico City",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W79",
+      "kickoff": 1783296000000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Mexico City"
+    },
+    "match_of_093": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W84",
+      "city": "Dallas (Arlington)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W83",
+      "kickoff": 1783364400000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_094": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W82",
+      "city": "Seattle",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W81",
+      "kickoff": 1783382400000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Seattle"
+    },
+    "match_of_095": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W88",
+      "city": "Atlanta",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W86",
+      "kickoff": 1783440000000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_096": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W87",
+      "city": "Vancouver",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W85",
+      "kickoff": 1783454400000,
+      "matchday": "Round of 16",
+      "round": "Round of 16",
+      "stage": "r16",
+      "status": "NS",
+      "venue": "Vancouver"
+    },
+    "match_of_097": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W90",
+      "city": "Boston (Foxborough)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W89",
+      "kickoff": 1783627200000,
+      "matchday": "Quarter-final",
+      "round": "Quarter-Finals",
+      "stage": "qf",
+      "status": "NS",
+      "venue": "Boston (Foxborough)"
+    },
+    "match_of_098": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W94",
+      "city": "Los Angeles (Inglewood)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W93",
+      "kickoff": 1783710000000,
+      "matchday": "Quarter-final",
+      "round": "Quarter-Finals",
+      "stage": "qf",
+      "status": "NS",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    "match_of_099": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W92",
+      "city": "Miami (Miami Gardens)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W91",
+      "kickoff": 1783803600000,
+      "matchday": "Quarter-final",
+      "round": "Quarter-Finals",
+      "stage": "qf",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_100": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W96",
+      "city": "Kansas City",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W95",
+      "kickoff": 1783818000000,
+      "matchday": "Quarter-final",
+      "round": "Quarter-Finals",
+      "stage": "qf",
+      "status": "NS",
+      "venue": "Kansas City"
+    },
+    "match_of_101": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W98",
+      "city": "Dallas (Arlington)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W97",
+      "kickoff": 1784055600000,
+      "matchday": "Semi-final",
+      "round": "Semi-Finals",
+      "stage": "sf",
+      "status": "NS",
+      "venue": "Dallas (Arlington)"
+    },
+    "match_of_102": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W100",
+      "city": "Atlanta",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W99",
+      "kickoff": 1784142000000,
+      "matchday": "Semi-final",
+      "round": "Semi-Finals",
+      "stage": "sf",
+      "status": "NS",
+      "venue": "Atlanta"
+    },
+    "match_of_103": {
+      "awayFlag": "🏳️",
+      "awayTeam": "L102",
+      "city": "Miami (Miami Gardens)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "L101",
+      "kickoff": 1784408400000,
+      "matchday": "Match for third place",
+      "round": "Third Place",
+      "stage": "tp",
+      "status": "NS",
+      "venue": "Miami (Miami Gardens)"
+    },
+    "match_of_104": {
+      "awayFlag": "🏳️",
+      "awayTeam": "W102",
+      "city": "New York/New Jersey (East Rutherford)",
+      "group": "",
+      "homeFlag": "🏳️",
+      "homeTeam": "W101",
+      "kickoff": 1784487600000,
+      "matchday": "Final",
+      "round": "Final",
+      "stage": "final",
+      "status": "NS",
+      "venue": "New York/New Jersey (East Rutherford)"
+    }
+  },
+  "tournaments": {
+    "tournament_prode_2026_mpp276uf": {
+      "avatars": {
+        "ball-football": {
+          "claimedAt": 1780058943956,
+          "claimedBy": "player_1780058087378_0iob"
+        },
+        "bolt": {
+          "claimedAt": 1780078019514,
+          "claimedBy": "player_1780077963905_h30l"
+        },
+        "robot": {
+          "claimedAt": 1780031308770,
+          "claimedBy": "player_1780031282285_dq6t"
+        },
+        "trophy": {
+          "claimedAt": 1780079559049,
+          "claimedBy": "player_1780079518335_tmvu"
+        }
+      },
+      "createdAt": 1779946517607,
+      "description": "",
+      "invite_codes": {
+        "2P5B-3MFS": {
+          "alias": "KB",
+          "email": "ramiroh84@yahoo.com",
+          "playerName": "Ramiro H",
+          "redeemed": false,
+          "userId": "player_1780148304058_joih",
+          "username": "ramiro.h"
+        },
+        "4KUN-T4GM": {
+          "alias": "Nacho A.",
+          "email": "ignacio.assalini@gmail.com",
+          "playerName": "Ignacio Assalini",
+          "redeemed": false,
+          "userId": "player_1780088925165_nfvv",
+          "username": "ignacio.assalini"
+        },
+        "4YP3-FBCB": {
+          "alias": "Picante",
+          "email": "ferreira.sebastian@hotmail.com",
+          "playerName": "Sebastián Ferreira",
+          "redeemed": false,
+          "userId": "player_1780196454877_k43h",
+          "username": "sebastin.ferreira"
+        },
+        "5TVC-SMRZ": {
+          "alias": "El Adri",
+          "email": "adrianmajlis@gmail.com",
+          "playerName": "Adrian Majlis",
+          "redeemed": false,
+          "userId": "player_1780196456603_0p2g",
+          "username": "adrian.majlis"
+        },
+        "67JA-DKNX": {
+          "alias": "Andres",
+          "email": "andiches@gmail.com",
+          "playerName": "Andres Chester",
+          "redeemed": false,
+          "userId": "player_1780088928765_bovt",
+          "username": "andres.chester"
+        },
+        "7DDN-PA3S": {
+          "alias": "Carito",
+          "email": "passerini.carolina@gmail.com",
+          "playerName": "Carolina Passerini",
+          "redeemed": false,
+          "userId": "player_1780069225186_5507",
+          "username": "carolina.passerini"
+        },
+        "CSR3-EJUE": {
+          "alias": "Fede G",
+          "email": "fede.m.gonzalez@gmail.com",
+          "playerName": "Fede G",
+          "redeemed": false,
+          "userId": "player_1780196619535_q5x1",
+          "username": "fede.g"
+        },
+        "DAEY-5VJL": {
+          "alias": "Marian",
+          "email": "mharriague@gmail.com",
+          "playerName": "Mariano Harriague",
+          "redeemed": true,
+          "redeemedAt": 1780058951763,
+          "userId": "player_1780058087378_0iob",
+          "username": "mariano.harriague"
+        },
+        "DXB6-4ENA": {
+          "alias": "Guli",
+          "email": "arq.agustinasanchez@gmail.com",
+          "playerName": "Agustina Sanchez",
+          "redeemed": false,
+          "userId": "player_1780091919323_8qzn",
+          "username": "agustina.sanchez"
+        },
+        "JGRZ-AMG3": {
+          "alias": "Vari",
+          "email": "pablorvarela@gmail.com",
+          "playerName": "Vari Rodriguez Varela",
+          "redeemed": true,
+          "redeemedAt": 1780031328878,
+          "userId": "player_1780031282285_dq6t",
+          "username": "vari.varela"
+        },
+        "TPQJ-B8TD": {
+          "alias": "Torra",
+          "email": "pedrotorrado@gmail.com",
+          "playerName": "Pedro Torrado",
+          "redeemed": true,
+          "redeemedAt": 1780079561981,
+          "userId": "player_1780079518335_tmvu",
+          "username": "pedro.torrado"
+        },
+        "TSG6-LYS6": {
+          "alias": "Gonza",
+          "email": "gonzaloguastavino@gmail.com",
+          "playerName": "Gonza Guastavino",
+          "redeemed": true,
+          "redeemedAt": 1780078024653,
+          "userId": "player_1780077963905_h30l",
+          "username": "gonza.guastavino"
+        },
+        "TV4U-M6B8": {
+          "alias": "Fran B",
+          "email": "franciscobianchetti@gmail.com",
+          "playerName": "Francisco Bianchetti",
+          "redeemed": false,
+          "userId": "player_1780088926897_8zvm",
+          "username": "francisco.bianchetti"
+        },
+        "YKG3-9DDV": {
+          "alias": "Nacho A",
+          "email": "ignacio.assalini@gmail.com",
+          "playerName": "Ignacio Assalini",
+          "redeemed": true,
+          "redeemedAt": 1780197705244,
+          "userId": "player_1780197672056_cga6",
+          "username": "ignacio.assalini2"
+        },
+        "ZKVP-95G4": {
+          "alias": "Marcos",
+          "email": "marcosdeestrada@gmail.com",
+          "playerName": "Marcos de Estrada",
+          "redeemed": false,
+          "userId": "player_1780069223387_ry7k",
+          "username": "marcos.estrada"
+        }
+      },
+      "name": "Prode 2026",
+      "pending_requests": {
+        "req_1780031277257_rssr": {
+          "alias": "Vari",
+          "approvedAt": 1780031282361,
+          "email": "pablorvarela@gmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780168573022,
+          "inviteCode": "JGRZ-AMG3",
+          "name": "Vari Rodriguez Varela",
+          "passwordHash": "h_umwf14",
+          "requestedAt": 1780031277257,
+          "status": "approved",
+          "userId": "player_1780031282285_dq6t"
+        },
+        "req_1780057728695_m1aa": {
+          "alias": "Marian",
+          "approvedAt": 1780058087466,
+          "email": "mharriague@gmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780156805176,
+          "inviteCode": "DAEY-5VJL",
+          "name": "Mariano Harriague",
+          "passwordHash": "h_ft6vir",
+          "requestedAt": 1780057728695,
+          "status": "approved",
+          "userId": "player_1780058087378_0iob"
+        },
+        "req_1780058109622_ddig": {
+          "alias": "Marcos",
+          "approvedAt": 1780069223469,
+          "email": "marcosdeestrada@gmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780168573777,
+          "inviteCode": "ZKVP-95G4",
+          "name": "Marcos de Estrada",
+          "passwordHash": "h_lm3hds",
+          "requestedAt": 1780058109623,
+          "status": "approved",
+          "userId": "player_1780069223387_ry7k"
+        },
+        "req_1780068819889_m9j9": {
+          "alias": "Carito",
+          "approvedAt": 1780069225267,
+          "email": "passerini.carolina@gmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780168574529,
+          "inviteCode": "7DDN-PA3S",
+          "name": "Carolina Passerini",
+          "passwordHash": "h_5qm6ac",
+          "requestedAt": 1780068819889,
+          "status": "approved",
+          "userId": "player_1780069225186_5507"
+        },
+        "req_1780077942730_0j3m": {
+          "alias": "Gonza",
+          "approvedAt": 1780077964005,
+          "email": "gonzaloguastavino@gmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780156807430,
+          "inviteCode": "TSG6-LYS6",
+          "name": "Gonza Guastavino",
+          "passwordHash": "h_lqik6j",
+          "requestedAt": 1780077942730,
+          "status": "approved",
+          "userId": "player_1780077963905_h30l"
+        },
+        "req_1780079383967_yu3c": {
+          "alias": "Torra",
+          "approvedAt": 1780079518419,
+          "email": "pedrotorrado@gmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780156808175,
+          "inviteCode": "TPQJ-B8TD",
+          "name": "Pedro Torrado",
+          "passwordHash": "h_r9pwmx",
+          "requestedAt": 1780079383967,
+          "status": "approved",
+          "userId": "player_1780079518335_tmvu"
+        },
+        "req_1780080847834_t7mg": {
+          "alias": "Andres",
+          "approvedAt": 1780088928856,
+          "email": "andiches@gmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780168575275,
+          "inviteCode": "67JA-DKNX",
+          "name": "Andres Chester",
+          "passwordHash": "h_7zwp65",
+          "requestedAt": 1780080847834,
+          "status": "approved",
+          "userId": "player_1780088928765_bovt"
+        },
+        "req_1780081213045_b846": {
+          "alias": "Fran B",
+          "approvedAt": 1780088926991,
+          "email": "franciscobianchetti@gmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780168576015,
+          "inviteCode": "TV4U-M6B8",
+          "name": "Francisco Bianchetti",
+          "passwordHash": "h_c7weno",
+          "requestedAt": 1780081213045,
+          "status": "approved",
+          "userId": "player_1780088926897_8zvm"
+        },
+        "req_1780084377041_t4j0": {
+          "alias": "Nacho A.",
+          "approvedAt": 1780088925260,
+          "email": "ignacio.assalini@gmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780168576767,
+          "inviteCode": "4KUN-T4GM",
+          "name": "Ignacio Assalini",
+          "passwordHash": "h_wawd8o",
+          "requestedAt": 1780084377041,
+          "status": "approved",
+          "userId": "player_1780088925165_nfvv"
+        },
+        "req_1780091776981_2usp": {
+          "alias": "Guli",
+          "approvedAt": 1780091919414,
+          "email": "arq.agustinasanchez@gmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780168577518,
+          "inviteCode": "DXB6-4ENA",
+          "name": "Agustina Sanchez",
+          "passwordHash": "h_o1s4h5",
+          "requestedAt": 1780091776981,
+          "status": "approved",
+          "userId": "player_1780091919323_8qzn"
+        },
+        "req_1780145673563_tywh": {
+          "alias": "KB",
+          "approvedAt": 1780148304174,
+          "email": "ramiroh84@yahoo.com",
+          "emailSent": true,
+          "emailSentAt": 1780168578260,
+          "inviteCode": "2P5B-3MFS",
+          "name": "Ramiro H",
+          "passwordHash": "h_hffrez",
+          "requestedAt": 1780145673563,
+          "status": "approved",
+          "userId": "player_1780148304058_joih"
+        },
+        "req_1780184442951_d59j": {
+          "alias": "Picante",
+          "approvedAt": 1780196455039,
+          "email": "ferreira.sebastian@hotmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780207193933,
+          "inviteCode": "4YP3-FBCB",
+          "name": "Sebastián Ferreira",
+          "passwordHash": "h_rdx8yo",
+          "requestedAt": 1780184442952,
+          "status": "approved",
+          "userId": "player_1780196454877_k43h"
+        },
+        "req_1780185840697_dzd1": {
+          "alias": "El Adri",
+          "approvedAt": 1780196456760,
+          "email": "adrianmajlis@gmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780207194603,
+          "inviteCode": "5TVC-SMRZ",
+          "name": "Adrian Majlis",
+          "passwordHash": "h_cl6a40",
+          "requestedAt": 1780185840697,
+          "status": "approved",
+          "userId": "player_1780196456603_0p2g"
+        },
+        "req_1780196552205_8ska": {
+          "alias": "Fede G",
+          "approvedAt": 1780196619682,
+          "email": "fede.m.gonzalez@gmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780207195262,
+          "inviteCode": "CSR3-EJUE",
+          "name": "Fede G",
+          "passwordHash": "h_myzouv",
+          "requestedAt": 1780196552205,
+          "status": "approved",
+          "userId": "player_1780196619535_q5x1"
+        },
+        "req_1780197659034_kgwf": {
+          "alias": "Nacho A",
+          "approvedAt": 1780197672224,
+          "email": "ignacio.assalini@gmail.com",
+          "emailSent": true,
+          "emailSentAt": 1780207195925,
+          "inviteCode": "YKG3-9DDV",
+          "name": "Ignacio Assalini",
+          "passwordHash": "h_zetprr",
+          "requestedAt": 1780197659034,
+          "status": "approved",
+          "userId": "player_1780197672056_cga6"
+        }
+      },
+      "predictions": {
+        "player_1780023669378_jo3": {
+          "match_of_001": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780023865054
+          }
+        },
+        "player_1780031282285_dq6t": {
+          "match_of_001": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412313
+          },
+          "match_of_002": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412333
+          },
+          "match_of_003": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412344
+          },
+          "match_of_004": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412361
+          },
+          "match_of_005": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412374
+          },
+          "match_of_006": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412381
+          },
+          "match_of_007": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412389
+          },
+          "match_of_008": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412398
+          },
+          "match_of_009": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412404
+          },
+          "match_of_010": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412411
+          },
+          "match_of_011": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412418
+          },
+          "match_of_012": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412425
+          },
+          "match_of_013": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412433
+          },
+          "match_of_014": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412440
+          },
+          "match_of_015": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412447
+          },
+          "match_of_016": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412457
+          },
+          "match_of_017": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412463
+          },
+          "match_of_018": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412471
+          },
+          "match_of_019": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412478
+          },
+          "match_of_020": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412485
+          },
+          "match_of_021": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412492
+          },
+          "match_of_022": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412499
+          },
+          "match_of_023": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412511
+          },
+          "match_of_024": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412517
+          },
+          "match_of_025": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412524
+          },
+          "match_of_026": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412531
+          },
+          "match_of_027": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412538
+          },
+          "match_of_028": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412545
+          },
+          "match_of_029": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412552
+          },
+          "match_of_030": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412565
+          },
+          "match_of_031": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412572
+          },
+          "match_of_032": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412579
+          },
+          "match_of_033": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412589
+          },
+          "match_of_034": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412599
+          },
+          "match_of_035": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412607
+          },
+          "match_of_036": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412615
+          },
+          "match_of_037": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412624
+          },
+          "match_of_038": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412632
+          },
+          "match_of_039": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412655
+          },
+          "match_of_040": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412662
+          },
+          "match_of_041": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412670
+          },
+          "match_of_042": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412679
+          },
+          "match_of_043": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412687
+          },
+          "match_of_044": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412694
+          },
+          "match_of_045": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412701
+          },
+          "match_of_046": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412708
+          },
+          "match_of_047": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412718
+          },
+          "match_of_048": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412725
+          },
+          "match_of_049": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412732
+          },
+          "match_of_050": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412739
+          },
+          "match_of_051": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412747
+          },
+          "match_of_052": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412754
+          },
+          "match_of_053": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412761
+          },
+          "match_of_054": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412768
+          },
+          "match_of_055": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412781
+          },
+          "match_of_056": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412788
+          },
+          "match_of_057": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412795
+          },
+          "match_of_058": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412802
+          },
+          "match_of_059": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412809
+          },
+          "match_of_060": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412816
+          },
+          "match_of_061": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412824
+          },
+          "match_of_062": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412831
+          },
+          "match_of_063": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412843
+          },
+          "match_of_064": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412850
+          },
+          "match_of_065": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412857
+          },
+          "match_of_066": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412864
+          },
+          "match_of_067": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412871
+          },
+          "match_of_068": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412878
+          },
+          "match_of_069": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412886
+          },
+          "match_of_070": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412893
+          },
+          "match_of_071": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412905
+          },
+          "match_of_072": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780031412911
+          }
+        },
+        "player_1780058087378_0iob": {
+          "match_of_001": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780059922135
+          },
+          "match_of_002": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922159
+          },
+          "match_of_003": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922170
+          },
+          "match_of_004": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922178
+          },
+          "match_of_005": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922187
+          },
+          "match_of_006": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922192
+          },
+          "match_of_007": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922197
+          },
+          "match_of_008": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922202
+          },
+          "match_of_009": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922207
+          },
+          "match_of_010": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922211
+          },
+          "match_of_011": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922216
+          },
+          "match_of_012": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922220
+          },
+          "match_of_013": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922224
+          },
+          "match_of_014": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922230
+          },
+          "match_of_015": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922236
+          },
+          "match_of_016": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922243
+          },
+          "match_of_017": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922249
+          },
+          "match_of_018": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922256
+          },
+          "match_of_019": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922262
+          },
+          "match_of_020": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922269
+          },
+          "match_of_021": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922276
+          },
+          "match_of_022": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922282
+          },
+          "match_of_023": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922288
+          },
+          "match_of_024": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922294
+          },
+          "match_of_025": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922301
+          },
+          "match_of_026": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922308
+          },
+          "match_of_027": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922314
+          },
+          "match_of_028": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922320
+          },
+          "match_of_029": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922327
+          },
+          "match_of_030": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922333
+          },
+          "match_of_031": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922340
+          },
+          "match_of_032": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922344
+          },
+          "match_of_033": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922349
+          },
+          "match_of_034": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922355
+          },
+          "match_of_035": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922360
+          },
+          "match_of_036": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922364
+          },
+          "match_of_037": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922369
+          },
+          "match_of_038": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922374
+          },
+          "match_of_039": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922381
+          },
+          "match_of_040": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922386
+          },
+          "match_of_041": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922392
+          },
+          "match_of_042": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922400
+          },
+          "match_of_043": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922404
+          },
+          "match_of_044": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922408
+          },
+          "match_of_045": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922412
+          },
+          "match_of_046": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922418
+          },
+          "match_of_047": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922421
+          },
+          "match_of_048": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922426
+          },
+          "match_of_049": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922430
+          },
+          "match_of_050": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922435
+          },
+          "match_of_051": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922439
+          },
+          "match_of_052": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922443
+          },
+          "match_of_053": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922447
+          },
+          "match_of_054": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922452
+          },
+          "match_of_055": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922456
+          },
+          "match_of_056": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922461
+          },
+          "match_of_057": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922464
+          },
+          "match_of_058": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922469
+          },
+          "match_of_059": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922473
+          },
+          "match_of_060": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922478
+          },
+          "match_of_061": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922482
+          },
+          "match_of_062": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922487
+          },
+          "match_of_063": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922490
+          },
+          "match_of_064": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922495
+          },
+          "match_of_065": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922499
+          },
+          "match_of_066": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922503
+          },
+          "match_of_067": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922507
+          },
+          "match_of_068": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922512
+          },
+          "match_of_069": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922516
+          },
+          "match_of_070": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922520
+          },
+          "match_of_071": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922524
+          },
+          "match_of_072": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780059922529
+          }
+        },
+        "player_1780069223387_ry7k": {
+          "match_of_001": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543632
+          },
+          "match_of_002": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543650
+          },
+          "match_of_003": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543657
+          },
+          "match_of_004": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543664
+          },
+          "match_of_005": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543671
+          },
+          "match_of_006": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543677
+          },
+          "match_of_007": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543682
+          },
+          "match_of_008": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543687
+          },
+          "match_of_009": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543692
+          },
+          "match_of_010": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543697
+          },
+          "match_of_011": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543702
+          },
+          "match_of_012": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543707
+          },
+          "match_of_013": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543712
+          },
+          "match_of_014": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543717
+          },
+          "match_of_015": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543722
+          },
+          "match_of_016": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543728
+          },
+          "match_of_017": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543733
+          },
+          "match_of_018": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543738
+          },
+          "match_of_019": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543743
+          },
+          "match_of_020": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543748
+          },
+          "match_of_021": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543753
+          },
+          "match_of_022": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543758
+          },
+          "match_of_023": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543763
+          },
+          "match_of_024": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543768
+          },
+          "match_of_025": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543773
+          },
+          "match_of_026": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543778
+          },
+          "match_of_027": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543783
+          },
+          "match_of_028": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543788
+          },
+          "match_of_029": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543793
+          },
+          "match_of_030": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543798
+          },
+          "match_of_031": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543803
+          },
+          "match_of_032": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543808
+          },
+          "match_of_033": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543813
+          },
+          "match_of_034": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543818
+          },
+          "match_of_035": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543823
+          },
+          "match_of_036": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543829
+          },
+          "match_of_037": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543834
+          },
+          "match_of_038": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543839
+          },
+          "match_of_039": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543848
+          },
+          "match_of_040": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543852
+          },
+          "match_of_041": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543858
+          },
+          "match_of_042": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543863
+          },
+          "match_of_043": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543869
+          },
+          "match_of_044": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543874
+          },
+          "match_of_045": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543879
+          },
+          "match_of_046": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543884
+          },
+          "match_of_047": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543890
+          },
+          "match_of_048": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543895
+          },
+          "match_of_049": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543900
+          },
+          "match_of_050": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543905
+          },
+          "match_of_051": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543911
+          },
+          "match_of_052": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543916
+          },
+          "match_of_053": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543922
+          },
+          "match_of_054": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543926
+          },
+          "match_of_055": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543933
+          },
+          "match_of_056": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543937
+          },
+          "match_of_057": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543943
+          },
+          "match_of_058": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543948
+          },
+          "match_of_059": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543954
+          },
+          "match_of_060": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543959
+          },
+          "match_of_061": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543965
+          },
+          "match_of_062": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543970
+          },
+          "match_of_063": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543976
+          },
+          "match_of_064": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543980
+          },
+          "match_of_065": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543987
+          },
+          "match_of_066": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543992
+          },
+          "match_of_067": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197543997
+          },
+          "match_of_068": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197544002
+          },
+          "match_of_069": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197544008
+          },
+          "match_of_070": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197544013
+          },
+          "match_of_071": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197544019
+          },
+          "match_of_072": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780197544023
+          }
+        },
+        "player_1780077963905_h30l": {
+          "match_of_001": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780078331441
+          },
+          "match_of_002": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780078758085
+          },
+          "match_of_003": {
+            "awayScore": 1,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780079244243
+          },
+          "match_of_004": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780079268207
+          },
+          "match_of_007": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780078766193
+          },
+          "match_of_008": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780078778228
+          },
+          "match_of_009": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780079258546
+          },
+          "match_of_010": {
+            "awayScore": 0,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780079263292
+          },
+          "match_of_013": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780078785413
+          },
+          "match_of_014": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780078789633
+          },
+          "match_of_015": {
+            "awayScore": 1,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780079287034
+          },
+          "match_of_019": {
+            "awayScore": 1,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780078772293
+          },
+          "match_of_020": {
+            "awayScore": 2,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780078799881
+          },
+          "match_of_021": {
+            "awayScore": 0,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780079281848
+          },
+          "match_of_025": {
+            "awayScore": 0,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780078807848
+          },
+          "match_of_026": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780078875361
+          },
+          "match_of_031": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780078813047
+          },
+          "match_of_032": {
+            "awayScore": 1,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780078884262
+          },
+          "match_of_037": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780078905112
+          },
+          "match_of_038": {
+            "awayScore": 0,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780078918903
+          },
+          "match_of_043": {
+            "awayScore": 0,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780078891545
+          },
+          "match_of_044": {
+            "awayScore": 1,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780078909098
+          },
+          "match_of_049": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780078924680
+          },
+          "match_of_050": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780078943621
+          },
+          "match_of_055": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780078947873
+          },
+          "match_of_056": {
+            "awayScore": 0,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780078954294
+          },
+          "match_of_061": {
+            "awayScore": 0,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780078962639
+          },
+          "match_of_062": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780079240506
+          },
+          "match_of_067": {
+            "awayScore": 1,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780078969087
+          },
+          "match_of_068": {
+            "awayScore": 0,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780078974151
+          }
+        },
+        "player_1780088928765_bovt": {
+          "match_of_001": {
+            "awayScore": 0,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780194019552
+          },
+          "match_of_002": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194117426
+          },
+          "match_of_003": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194485142
+          },
+          "match_of_004": {
+            "awayScore": 2,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780194522530
+          },
+          "match_of_005": {
+            "awayScore": 1,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780194885781
+          },
+          "match_of_006": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194892768
+          },
+          "match_of_007": {
+            "awayScore": 1,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780194127378
+          },
+          "match_of_008": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194176436
+          },
+          "match_of_009": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194502139
+          },
+          "match_of_010": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194504922
+          },
+          "match_of_011": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194850877
+          },
+          "match_of_012": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194858380
+          },
+          "match_of_013": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194202658
+          },
+          "match_of_014": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194213296
+          },
+          "match_of_015": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194617374
+          },
+          "match_of_016": {
+            "awayScore": 0,
+            "homeScore": 4,
+            "locked": false,
+            "submittedAt": 1780194627440
+          },
+          "match_of_017": {
+            "awayScore": 2,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780194863948
+          },
+          "match_of_018": {
+            "awayScore": 0,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780194872051
+          },
+          "match_of_019": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194132273
+          },
+          "match_of_020": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194311962
+          },
+          "match_of_021": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194525965
+          },
+          "match_of_022": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194633407
+          },
+          "match_of_023": {
+            "awayScore": 2,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780194951301
+          },
+          "match_of_024": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194960615
+          },
+          "match_of_025": {
+            "awayScore": 0,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780194319094
+          },
+          "match_of_026": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194363506
+          },
+          "match_of_027": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194684095
+          },
+          "match_of_028": {
+            "awayScore": 0,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780194711302
+          },
+          "match_of_029": {
+            "awayScore": 3,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194901105
+          },
+          "match_of_030": {
+            "awayScore": 2,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194908989
+          },
+          "match_of_031": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194357185
+          },
+          "match_of_032": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194371758
+          },
+          "match_of_033": {
+            "awayScore": 0,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780194676081
+          },
+          "match_of_034": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194717601
+          },
+          "match_of_035": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194917039
+          },
+          "match_of_036": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194931338
+          },
+          "match_of_037": {
+            "awayScore": 1,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780194388878
+          },
+          "match_of_038": {
+            "awayScore": 0,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780194399346
+          },
+          "match_of_039": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194731204
+          },
+          "match_of_040": {
+            "awayScore": 1,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780194743752
+          },
+          "match_of_041": {
+            "awayScore": 0,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780195001262
+          },
+          "match_of_042": {
+            "awayScore": 3,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780195295635
+          },
+          "match_of_043": {
+            "awayScore": 0,
+            "homeScore": 5,
+            "locked": false,
+            "submittedAt": 1780194379258
+          },
+          "match_of_044": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194394544
+          },
+          "match_of_045": {
+            "awayScore": 1,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780194725155
+          },
+          "match_of_046": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194737588
+          },
+          "match_of_047": {
+            "awayScore": 3,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780194987794
+          },
+          "match_of_048": {
+            "awayScore": 2,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780195548274
+          },
+          "match_of_049": {
+            "awayScore": 1,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780194405563
+          },
+          "match_of_050": {
+            "awayScore": 1,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194411705
+          },
+          "match_of_051": {
+            "awayScore": 0,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780194759495
+          },
+          "match_of_052": {
+            "awayScore": 2,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780194766343
+          },
+          "match_of_053": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194966473
+          },
+          "match_of_054": {
+            "awayScore": 0,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780194975288
+          },
+          "match_of_055": {
+            "awayScore": 1,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780194420184
+          },
+          "match_of_056": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194426267
+          },
+          "match_of_057": {
+            "awayScore": 1,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194750076
+          },
+          "match_of_058": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194784476
+          },
+          "match_of_059": {
+            "awayScore": 1,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780195651878
+          },
+          "match_of_060": {
+            "awayScore": 3,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780195103059
+          },
+          "match_of_061": {
+            "awayScore": 0,
+            "homeScore": 3,
+            "locked": false,
+            "submittedAt": 1780194429569
+          },
+          "match_of_062": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194473299
+          },
+          "match_of_063": {
+            "awayScore": 0,
+            "homeScore": 4,
+            "locked": false,
+            "submittedAt": 1780194789415
+          },
+          "match_of_064": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194819506
+          },
+          "match_of_065": {
+            "awayScore": 2,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780195054331
+          },
+          "match_of_066": {
+            "awayScore": 2,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780195070886
+          },
+          "match_of_067": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194433168
+          },
+          "match_of_068": {
+            "awayScore": 0,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780194467684
+          },
+          "match_of_069": {
+            "awayScore": 0,
+            "homeScore": 2,
+            "locked": false,
+            "submittedAt": 1780194794148
+          },
+          "match_of_070": {
+            "awayScore": 2,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780194814038
+          },
+          "match_of_071": {
+            "awayScore": 1,
+            "homeScore": 0,
+            "locked": false,
+            "submittedAt": 1780195014909
+          },
+          "match_of_072": {
+            "awayScore": 1,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780195694258
+          }
+        },
+        "player_1780091919323_8qzn": {
+          "match_of_001": {
+            "awayScore": 0,
+            "homeScore": 1,
+            "locked": false,
+            "submittedAt": 1780176630614
+          }
+        }
+      },
+      "rounds": {
+        "r_f": {
+          "createdAt": 1780019526108,
+          "name": "Final",
+          "order": 7,
+          "stage": "final",
+          "status": "unavailable",
+          "visibleToPlayers": false
+        },
+        "r_gs": {
+          "createdAt": 1780019526108,
+          "name": "Group Stage",
+          "order": 1,
+          "stage": "group",
+          "status": "active",
+          "visibleToPlayers": true
+        },
+        "r_qf": {
+          "createdAt": 1780019526108,
+          "name": "Quarter-Finals",
+          "order": 4,
+          "stage": "qf",
+          "status": "unavailable",
+          "visibleToPlayers": false
+        },
+        "r_r16": {
+          "createdAt": 1780019526108,
+          "name": "Round of 16",
+          "order": 3,
+          "stage": "r16",
+          "status": "unavailable",
+          "visibleToPlayers": false
+        },
+        "r_r32": {
+          "createdAt": 1780019526108,
+          "name": "Round of 32",
+          "order": 2,
+          "stage": "r32",
+          "status": "unavailable",
+          "visibleToPlayers": false
+        },
+        "r_sf": {
+          "createdAt": 1780019526108,
+          "name": "Semi-Finals",
+          "order": 5,
+          "stage": "sf",
+          "status": "unavailable",
+          "visibleToPlayers": false
+        },
+        "r_tp": {
+          "createdAt": 1780019526108,
+          "name": "Third Place Play-off",
+          "order": 6,
+          "stage": "tp",
+          "status": "unavailable",
+          "visibleToPlayers": false
+        }
+      },
+      "scoring": {
+        "exact": 5,
+        "gd": 3,
+        "result": 2
+      },
+      "status": "active",
+      "users": {
+        "player_1780031282285_dq6t": {
+          "alias": "Vari",
+          "avatarId": "robot::blue",
+          "createdAt": 1780031282285,
+          "email": "pablorvarela@gmail.com",
+          "inviteCode": "JGRZ-AMG3",
+          "lastActive": 1780158134623,
+          "name": "Vari Rodriguez Varela",
+          "passwordHash": "h_umwf14",
+          "status": "Group Stage — Submitted",
+          "username": "vari.varela"
+        },
+        "player_1780058087378_0iob": {
+          "alias": "Marian",
+          "avatarId": "ball-football::green",
+          "createdAt": 1780058087378,
+          "email": "mharriague@gmail.com",
+          "inviteCode": "DAEY-5VJL",
+          "lastActive": 1780111666587,
+          "name": "Mariano Harriague",
+          "passwordHash": "h_ft6vir",
+          "status": "Group Stage — Submitted",
+          "username": "mariano.harriague"
+        },
+        "player_1780069223387_ry7k": {
+          "alias": "Marcos",
+          "createdAt": 1780069223387,
+          "email": "marcosdeestrada@gmail.com",
+          "inviteCode": "ZKVP-95G4",
+          "lastActive": 1780202204856,
+          "name": "Marcos de Estrada",
+          "passwordHash": "h_lm3hds",
+          "status": "Group Stage — Submitted",
+          "username": "marcos.estrada"
+        },
+        "player_1780069225186_5507": {
+          "alias": "Carito",
+          "createdAt": 1780069225186,
+          "email": "passerini.carolina@gmail.com",
+          "inviteCode": "7DDN-PA3S",
+          "name": "Carolina Passerini",
+          "passwordHash": "h_5qm6ac",
+          "status": "Invited",
+          "username": "carolina.passerini"
+        },
+        "player_1780077963905_h30l": {
+          "alias": "Gonza",
+          "avatarId": "bolt::blue",
+          "createdAt": 1780077963905,
+          "email": "gonzaloguastavino@gmail.com",
+          "inviteCode": "TSG6-LYS6",
+          "lastActive": 1780081702745,
+          "name": "Gonza Guastavino",
+          "passwordHash": "h_lqik6j",
+          "status": "Group Stage — Submitted",
+          "username": "gonza.guastavino"
+        },
+        "player_1780079518335_tmvu": {
+          "alias": "Torra",
+          "avatarId": "trophy::gold",
+          "createdAt": 1780079518335,
+          "email": "pedrotorrado@gmail.com",
+          "inviteCode": "TPQJ-B8TD",
+          "lastActive": 1780095876564,
+          "name": "Pedro Torrado",
+          "passwordHash": "h_r9pwmx",
+          "status": "Avatar Chosen",
+          "username": "pedro.torrado"
+        },
+        "player_1780088925165_nfvv": {
+          "alias": "Nacho A.",
+          "createdAt": 1780088925165,
+          "email": "ignacio.assalini@gmail.com",
+          "inviteCode": "4KUN-T4GM",
+          "name": "Ignacio Assalini",
+          "passwordHash": "h_t3evmd",
+          "pwdResetAt": 1780197484097,
+          "status": "Invited",
+          "username": "ignacio.assalini"
+        },
+        "player_1780088926897_8zvm": {
+          "alias": "Fran B",
+          "createdAt": 1780088926897,
+          "email": "franciscobianchetti@gmail.com",
+          "inviteCode": "TV4U-M6B8",
+          "name": "Francisco Bianchetti",
+          "passwordHash": "h_c7weno",
+          "status": "Invited",
+          "username": "francisco.bianchetti"
+        },
+        "player_1780088928765_bovt": {
+          "alias": "Andres",
+          "createdAt": 1780088928765,
+          "email": "andiches@gmail.com",
+          "inviteCode": "67JA-DKNX",
+          "lastActive": 1780194012731,
+          "name": "Andres Chester",
+          "passwordHash": "h_7zwp65",
+          "status": "Group Stage — Submitted",
+          "username": "andres.chester"
+        },
+        "player_1780091919323_8qzn": {
+          "alias": "Guli",
+          "createdAt": 1780091919323,
+          "email": "arq.agustinasanchez@gmail.com",
+          "inviteCode": "DXB6-4ENA",
+          "lastActive": 1780176644704,
+          "name": "Agustina Sanchez",
+          "passwordHash": "h_o1s4h5",
+          "status": "Group Stage — Submitted",
+          "username": "agustina.sanchez"
+        },
+        "player_1780148304058_joih": {
+          "alias": "KB",
+          "createdAt": 1780148304058,
+          "email": "ramiroh84@yahoo.com",
+          "inviteCode": "2P5B-3MFS",
+          "name": "Ramiro H",
+          "passwordHash": "h_hffrez",
+          "status": "Invited",
+          "username": "ramiro.h"
+        },
+        "player_1780196454877_k43h": {
+          "alias": "Picante",
+          "createdAt": 1780196454877,
+          "email": "ferreira.sebastian@hotmail.com",
+          "inviteCode": "4YP3-FBCB",
+          "name": "Sebastián Ferreira",
+          "passwordHash": "h_rdx8yo",
+          "status": "Invited",
+          "username": "sebastin.ferreira"
+        },
+        "player_1780196456603_0p2g": {
+          "alias": "El Adri",
+          "createdAt": 1780196456604,
+          "email": "adrianmajlis@gmail.com",
+          "inviteCode": "5TVC-SMRZ",
+          "name": "Adrian Majlis",
+          "passwordHash": "h_cl6a40",
+          "status": "Invited",
+          "username": "adrian.majlis"
+        },
+        "player_1780196619535_q5x1": {
+          "alias": "Fede G",
+          "createdAt": 1780196619535,
+          "email": "fede.m.gonzalez@gmail.com",
+          "inviteCode": "CSR3-EJUE",
+          "lastActive": 1780196930372,
+          "name": "Fede G",
+          "passwordHash": "h_myzouv",
+          "status": "Invited",
+          "username": "fede.g"
+        },
+        "player_1780197672056_cga6": {
+          "alias": "Nacho A",
+          "createdAt": 1780197705123,
+          "inviteCode": "YKG3-9DDV",
+          "lastActive": 1780197705123,
+          "name": "Ignacio Assalini",
+          "passwordHash": "h_zetprr",
+          "status": "Password Set",
+          "username": "ignacio.assalini2"
+        }
+      }
+    }
+  },
+  "users": {
+    "player_1780058087378_0iob": {
+      "avatarId": "bolt::purple"
+    }
+  }
+}
