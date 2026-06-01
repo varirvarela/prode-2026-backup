@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Prode 2026 — Admin Companion v0.04</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#080b10;--surface:#10141d;--surface2:#161c28;--surface3:#1c2333;
+  --border:#1c2333;--border2:#252d3d;
+  --text:#e8edf8;--text2:#8a97b4;--text3:#4a5570;
+  --accent:#00e5a0;--accent2:#ff4d35;--blue:#4d9fff;
+  --hf:'Bebas Neue',sans-serif;--mf:'DM Mono',monospace;--sf:'DM Sans',sans-serif;
+  --r:10px;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--sf);font-size:14px;line-height:1.5;min-height:100vh;}
+
+/* ── LOGIN ── */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+.login-box{width:100%;max-width:360px;}
+.login-logo{font-family:var(--hf);font-size:52px;letter-spacing:3px;text-align:center;margin-bottom:4px;}
+.login-logo span{color:var(--accent);}
+.login-sub{text-align:center;font-family:var(--mf);font-size:10px;letter-spacing:3px;color:var(--text3);margin-bottom:28px;}
+.fi{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:12px 14px;color:var(--text);font-family:var(--sf);font-size:15px;outline:none;}
+.fi:focus{border-color:var(--accent);}
+.fg{margin-bottom:14px;}
+.fl{display:block;font-family:var(--mf);font-size:10px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-bottom:6px;}
+.err{font-size:12px;color:var(--accent2);min-height:16px;margin-top:4px;}
+
+/* ── APP SHELL ── */
+#app{display:none;flex-direction:column;min-height:100vh;}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;}
+.topbar-title{font-family:var(--hf);font-size:22px;letter-spacing:2px;flex:1;}
+.topbar-title span{color:var(--accent);}
+.topbar-badge{font-family:var(--mf);font-size:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:4px;padding:2px 8px;color:var(--text3);}
+.conn-dot{width:8px;height:8px;border-radius:50%;background:#ff4d35;flex-shrink:0;}
+.conn-dot.on{background:var(--accent);}
+
+.content{flex:1;padding:16px;padding-bottom:80px;}
+
+/* ── BOTTOM NAV ── */
+.botnav{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);display:flex;z-index:100;}
+.botnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px;background:none;border:none;cursor:pointer;color:var(--text3);font-family:var(--mf);font-size:9px;letter-spacing:.5px;position:relative;}
+.botnav-btn.act{color:var(--accent);}
+.botnav-btn .ic{font-size:20px;line-height:1;}
+.nav-badge{position:absolute;top:6px;right:calc(50% - 14px);background:var(--accent2);color:#fff;border-radius:8px;font-size:9px;font-family:var(--mf);padding:1px 5px;min-width:16px;text-align:center;}
+
+/* ── TABS ── */
+.tab{display:none;}
+.tab.act{display:block;}
+
+/* ── CARDS ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:12px;}
+.card-title{font-family:var(--mf);font-size:10px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-bottom:12px;}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.stat-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:14px 12px;text-align:center;}
+.stat-val{font-family:var(--hf);font-size:32px;letter-spacing:1px;color:var(--text);}
+.stat-val.g{color:var(--accent);}
+.stat-val.r{color:var(--accent2);}
+.stat-val.b{color:var(--blue);}
+.stat-lbl{font-family:var(--mf);font-size:9px;letter-spacing:1px;color:var(--text3);text-transform:uppercase;margin-top:4px;}
+
+/* ── BUTTONS ── */
+.btn{padding:10px 18px;border-radius:8px;border:none;font-family:var(--sf);font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s;}
+.btn:hover{opacity:.85;}
+.btn:active{opacity:.7;}
+.btn-p{background:var(--accent);color:#071810;}
+.btn-r{background:rgba(255,77,53,.15);border:1px solid rgba(255,77,53,.3);color:var(--accent2);}
+.btn-g{background:var(--surface2);border:1px solid var(--border2);color:var(--text2);}
+.btn-b{background:rgba(77,159,255,.15);border:1px solid rgba(77,159,255,.3);color:var(--blue);}
+.btn-w{width:100%;}
+.btn-sm{padding:7px 12px;font-size:12px;}
+
+/* ── PLAYER ROWS ── */
+.player-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border);}
+.player-row:last-child{border-bottom:none;}
+.player-av{width:36px;height:36px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.player-info{flex:1;min-width:0;}
+.player-name{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.player-status{font-family:var(--mf);font-size:10px;color:var(--text3);margin-top:2px;}
+.player-actions{display:flex;gap:6px;flex-shrink:0;}
+
+/* ── ROUND ROWS ── */
+.round-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border);}
+.round-row:last-child{border-bottom:none;}
+.round-name{flex:1;font-size:14px;font-weight:600;}
+.round-status{font-family:var(--mf);font-size:10px;padding:3px 8px;border-radius:4px;}
+.rs-active{background:rgba(0,229,160,.12);color:var(--accent);border:1px solid rgba(0,229,160,.2);}
+.rs-locked{background:rgba(255,77,53,.12);color:var(--accent2);border:1px solid rgba(255,77,53,.2);}
+.rs-unavail{background:var(--surface2);color:var(--text3);border:1px solid var(--border);}
+
+/* ── PENDING REQUESTS ── */
+.req-row{background:var(--surface2);border:1px solid rgba(255,77,53,.2);border-radius:8px;padding:12px;margin-bottom:10px;}
+.req-name{font-size:15px;font-weight:600;margin-bottom:3px;}
+.req-email{font-family:var(--mf);font-size:11px;color:var(--text3);margin-bottom:10px;}
+.req-btns{display:flex;gap:8px;}
+
+/* ── TOAST ── */
+.toast-wrap{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:6px;pointer-events:none;width:calc(100% - 32px);max-width:360px;}
+.toast{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--text);box-shadow:0 4px 16px rgba(0,0,0,.4);}
+.toast.ok{border-color:rgba(0,229,160,.3);color:var(--accent);}
+.toast.er{border-color:rgba(255,77,53,.3);color:var(--accent2);}
+
+/* ── BROADCAST ── */
+textarea.fi{resize:vertical;min-height:100px;}
+.section-label{font-family:var(--mf);font-size:10px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-bottom:8px;margin-top:16px;}
+.section-label:first-child{margin-top:0;}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="sc-login" class="login-wrap">
+  <div class="login-box">
+    <div class="login-logo">PRODE <span>2026</span></div>
+    <div class="login-sub">ADMIN COMPANION</div>
+    <div class="fg"><label class="fl">Password</label><input class="fi" type="password" id="li-pwd" placeholder="Admin password" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <div class="err" id="li-err"></div>
+    <button class="btn btn-p btn-w" style="margin-top:4px" onclick="doLogin()">Sign In</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="topbar-title">PRODE <span>2026</span></div>
+    <button id="tid-badge" onclick="openTournSwitcher()" style="background:var(--surface2);border:1px solid var(--border2);border-radius:6px;color:var(--text3);font-family:var(--mf);font-size:10px;letter-spacing:1px;padding:3px 8px;cursor:pointer;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">—</button>
+    <div class="conn-dot" id="conn-dot"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- DASHBOARD TAB -->
+    <div class="tab act" id="tab-dashboard">
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-val g" id="s-players">—</div><div class="stat-lbl">Players</div></div>
+        <div class="stat-card"><div class="stat-val b" id="s-pending">—</div><div class="stat-lbl">Pending</div></div>
+        <div class="stat-card"><div class="stat-val" id="s-round">—</div><div class="stat-lbl">Active Round</div></div>
+        <div class="stat-card"><div class="stat-val g" id="s-submitted">—</div><div class="stat-lbl">Submitted</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Round Control</div>
+        <div id="round-control-list">
+          <div style="color:var(--text3);font-size:13px">Loading rounds...</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Quick Actions</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <button class="btn btn-p btn-w" onclick="goTab('tab-broadcast')">📢 Send Broadcast</button>
+          <button class="btn btn-g btn-w" onclick="fixVisibility()">🔒 Fix Visibility</button>
+          <button class="btn btn-g btn-w" onclick="rescoreAll()">⚡ Rescore All</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLAYERS TAB -->
+    <div class="tab" id="tab-players">
+      <!-- Pending requests -->
+      <div id="pending-section" style="display:none">
+        <div class="card-title" style="color:var(--accent2);margin-bottom:10px">
+          ⏳ Pending Requests <span id="pending-count-badge" style="background:rgba(255,77,53,.15);border:1px solid rgba(255,77,53,.3);border-radius:8px;padding:1px 8px;font-size:11px;margin-left:4px"></span>
+        </div>
+        <div id="pending-list-mob"></div>
+      </div>
+
+      <!-- Player list -->
+      <div class="card">
+        <div class="card-title">All Players</div>
+        <div id="player-list">
+          <div style="color:var(--text3);font-size:13px">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ANALYTICS TAB -->
+    <div class="tab" id="tab-analytics">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div style="font-family:var(--mf);font-size:10px;letter-spacing:2px;color:var(--text3)">LAST 7 DAYS</div>
+        <button class="btn btn-g btn-sm" onclick="loadCompanionAnalytics()">&#x21BB; Refresh</button>
+      </div>
+
+      <!-- Overview -->
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-val g" id="ca-dau">—</div><div class="stat-lbl">Today</div></div>
+        <div class="stat-card"><div class="stat-val b" id="ca-wau">—</div><div class="stat-lbl">This Week</div></div>
+        <div class="stat-card"><div class="stat-val" id="ca-sess">—</div><div class="stat-lbl">Avg Session</div></div>
+        <div class="stat-card"><div class="stat-val g" id="ca-pwa">—</div><div class="stat-lbl">PWA %</div></div>
+      </div>
+
+      <!-- Active today -->
+      <div class="card">
+        <div class="card-title">Active Today</div>
+        <div id="ca-active-today" style="font-size:13px;color:var(--text3)">Loading...</div>
+      </div>
+
+      <!-- At risk -->
+      <div class="card">
+        <div class="card-title" style="color:#f5c542">&#9888; At-Risk Players</div>
+        <div id="ca-atrisk" style="font-size:13px;color:var(--text3)">Loading...</div>
+      </div>
+
+      <!-- Device breakdown -->
+      <div class="card">
+        <div class="card-title">Devices</div>
+        <div id="ca-devices" style="font-size:13px;color:var(--text3)">Loading...</div>
+      </div>
+
+      <!-- 7-day activity sparkline -->
+      <div class="card">
+        <div class="card-title">Daily Active Users — Last 7 Days</div>
+        <canvas id="ca-sparkline" style="width:100%;height:80px"></canvas>
+      </div>
+
+      <!-- Per-player drill-down -->
+      <div class="card">
+        <div class="card-title">Per-Player (tap for details)</div>
+        <div id="ca-player-list" style="font-size:13px;color:var(--text3)">Loading...</div>
+      </div>
+
+      <!-- Player detail modal -->
+      <div id="ca-player-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9000;padding:16px;overflow-y:auto">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;max-width:400px;margin:0 auto">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <div id="ca-modal-name" style="font-size:16px;font-weight:700;color:var(--text)"></div>
+            <button onclick="document.getElementById('ca-player-modal').style.display='none'" style="background:none;border:none;color:var(--text3);font-size:22px;cursor:pointer">&times;</button>
+          </div>
+          <div id="ca-modal-body"></div>
+        </div>
+      </div>
+    </div>
+    <!-- BROADCAST TAB -->
+    <div class="tab" id="tab-broadcast">
+      <div class="card">
+        <div class="card-title">Send Broadcast</div>
+        <div class="fg">
+          <label class="fl">Message</label>
+          <textarea class="fi" id="bc-msg" placeholder="Type your message to all players..."></textarea>
+        </div>
+        <button class="btn btn-p btn-w" onclick="doSendBroadcast()">Send to All Players</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Sign Out</div>
+        <button class="btn btn-r btn-w" onclick="signOut()">Sign Out</button>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- Bottom Nav -->
+  <nav class="botnav">
+    <button class="botnav-btn act" id="nav-dashboard" onclick="goTab('tab-dashboard')">
+      <span class="ic">🏠</span>Dashboard
+    </button>
+    <button class="botnav-btn" id="nav-players" onclick="goTab('tab-players')">
+      <span class="ic">👥</span>Players
+      <span class="nav-badge" id="players-badge" style="display:none"></span>
+    </button>
+    <button class="botnav-btn" id="nav-broadcast" onclick="goTab('tab-broadcast')">
+      <span class="ic">📢</span>Broadcast
+    </button>
+    <button class="botnav-btn" id="nav-analytics" onclick="goTab('tab-analytics');loadCompanionAnalytics()">
+      <span class="ic">📊</span>Analytics
+    </button>
+  </nav>
+</div>
+
+<!-- Toast container -->
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/firebase@9.23.0/firebase-app-compat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/firebase@9.23.0/firebase-database-compat.min.js"></script>
+<script>
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+const FB_CFG = {
+  apiKey:"AIzaSyDLQ_XF-7BaZGetlSREKn7O47b5-lDtYBk",
+  authDomain:"prode-2026-7838f.firebaseapp.com",
+  databaseURL:"https://prode-2026-7838f-default-rtdb.firebaseio.com",
+  projectId:"prode-2026-7838f",
+  storageBucket:"prode-2026-7838f.firebasestorage.app",
+  messagingSenderId:"219321732488",
+  appId:"1:219321732488:web:a45ce5f7776c3198e07e3d"
+};
+
+var K_AUTH = 'prode_admin_auth';
+var K_PWD  = 'prode_admin_pwd';
+var DEFAULT_PWD = 'prode2026';
+var db = null;
+var TOURNAMENT_ID = null;
+var allRounds = {}, allPlayers = [], allPendingRequests = {}, allTournaments = {};
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function simpleHash(s) {
+  var h = 0;
+  for(var i=0;i<s.length;i++){ h=((h<<5)-h)+s.charCodeAt(i); h|=0; }
+  return 'h_'+Math.abs(h).toString(36);
+}
+
+function tRef(path) {
+  if(!TOURNAMENT_ID) return db.ref('__no_tournament__');
+  if(!path) return db.ref('tournaments/'+TOURNAMENT_ID);
+  return db.ref('tournaments/'+TOURNAMENT_ID+'/'+path);
+}
+
+function genCode() {
+  var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789', r='';
+  for(var i=0;i<8;i++){ if(i===4) r+='-'; r+=chars[Math.floor(Math.random()*chars.length)]; }
+  return r;
+}
+
+function genUsername(name, existing) {
+  existing = existing||[];
+  var parts = name.trim().toLowerCase().split(/\s+/);
+  var base = parts.length>1 ? parts[0]+'.'+parts[parts.length-1] : parts[0];
+  base = base.replace(/[^a-z0-9.]/g,'');
+  var u=base, n=2;
+  while(existing.includes(u)){ u=base+n; n++; }
+  return u;
+}
+
+function escHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function genTempPassword() {
+  var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789', p='';
+  for(var i=0;i<4;i++) p+=chars[Math.floor(Math.random()*chars.length)];
+  return 'PRODE-'+p;
+}
+
+function setErr(id, msg) {
+  var el=document.getElementById(id);
+  if(el) el.textContent=msg||'';
+}
+
+function toast(msg, type) {
+  var wrap=document.getElementById('toast-wrap');
+  var el=document.createElement('div');
+  el.className='toast '+(type||'');
+  el.textContent=msg;
+  wrap.appendChild(el);
+  setTimeout(function(){ el.remove(); }, 3000);
+}
+
+// ── AUTH ──────────────────────────────────────────────────────────────────────
+function doLogin() {
+  var pwd = document.getElementById('li-pwd').value;
+  if(!pwd){ setErr('li-err','Enter password.'); return; }
+  var stored = localStorage.getItem(K_PWD);
+  var hash   = simpleHash(pwd);
+  var valid  = stored ? (stored===hash) : (pwd===DEFAULT_PWD);
+  if(!valid){ setErr('li-err','Incorrect password.'); return; }
+  if(!stored) localStorage.setItem(K_PWD, hash);
+  localStorage.setItem(K_AUTH, '1');
+  setErr('li-err','');
+  initFB();
+}
+
+function signOut() {
+  localStorage.removeItem(K_AUTH);
+  document.getElementById('app').style.display='none';
+  document.getElementById('sc-login').style.display='flex';
+}
+
+function autoLogin() {
+  if(localStorage.getItem(K_AUTH)==='1') initFB();
+}
+
+
+// ── TOURNAMENT SWITCHING ──────────────────────────────────────────────────────
+function selectTournament(tid) {
+  TOURNAMENT_ID = tid;
+  localStorage.setItem('prode_companion_tid', tid);
+  var tName = (allTournaments[tid]&&allTournaments[tid].name) || tid.slice(-8);
+  var badge = document.getElementById('tid-badge');
+  if(badge) badge.textContent = tName;
+  bindAll();
+}
+
+function openTournSwitcher(required) {
+  if(!db) return;
+  var entries = Object.entries(allTournaments);
+  if(!entries.length) { toast('No tournaments found','er'); return; }
+  if(entries.length === 1 && !required) {
+    selectTournament(entries[0][0]);
+    return;
+  }
+
+  // Build overlay
+  var overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9000;display:flex;align-items:center;justify-content:center;padding:24px';
+  if(!required) overlay.onclick = function(e){ if(e.target===overlay) overlay.remove(); };
+
+  var box = document.createElement('div');
+  box.style.cssText = 'background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;width:100%;max-width:360px';
+
+  var title = document.createElement('div');
+  title.style.cssText = 'font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px';
+  title.textContent = 'Select Tournament';
+  var sub = document.createElement('div');
+  sub.style.cssText = 'font-size:13px;color:var(--text3);margin-bottom:16px';
+  sub.textContent = required ? 'Choose a tournament to manage.' : 'Switch to a different tournament.';
+
+  var list = document.createElement('div');
+  list.style.cssText = 'display:flex;flex-direction:column;gap:8px';
+
+  entries.sort(function(a,b){ return (b[1].createdAt||0)-(a[1].createdAt||0); }).forEach(function(e){
+    var tid=e[0], tData=e[1];
+    var btn = document.createElement('button');
+    var isActive = tid === TOURNAMENT_ID;
+    btn.style.cssText = 'width:100%;background:'+(isActive?'rgba(0,229,160,.1)':'var(--surface2)')+';border:1px solid '+(isActive?'rgba(0,229,160,.3)':'var(--border2)')+';border-radius:10px;padding:14px;text-align:left;cursor:pointer;color:var(--text)';
+    // Count active rounds
+    var rounds = tData.rounds||{};
+    var activeRound = Object.values(rounds).find(function(r){ return r.status==='active'||r.status==='open'; });
+    var playerCount = Object.keys(tData.users||{}).length;
+    btn.innerHTML = '<div style="font-size:14px;font-weight:700;margin-bottom:3px">'+(tData.name||tid)+(isActive?' <span style="color:var(--accent);font-size:11px;font-family:var(--mf)">CURRENT</span>':'')+'</div>'
+      + '<div style="font-size:11px;color:var(--text3);font-family:var(--mf)">'
+      + playerCount+' players'
+      + (activeRound ? ' · '+activeRound.name+' active' : '')
+      + '</div>';
+    btn.onclick = (function(id){ return function(){
+      overlay.remove();
+      selectTournament(id);
+    }; })(tid);
+    list.appendChild(btn);
+  });
+
+  box.appendChild(title);
+  box.appendChild(sub);
+  box.appendChild(list);
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+}
+
+// ── FIREBASE ──────────────────────────────────────────────────────────────────
+function initFB() {
+  if(!firebase.apps.length) firebase.initializeApp(FB_CFG);
+  db = firebase.database();
+  document.getElementById('sc-login').style.display='none';
+  document.getElementById('app').style.display='flex';
+  document.getElementById('app').style.flexDirection='column';
+
+  // Monitor connection
+  db.ref('.info/connected').on('value', function(s){
+    var dot=document.getElementById('conn-dot');
+    if(dot) dot.className='conn-dot'+(s.val()?' on':'');
+  });
+
+  // Load all tournaments
+  db.ref('tournaments').once('value', function(s){
+    var tourns=s.val()||{};
+    allTournaments = tourns;
+    var entries=Object.entries(tourns);
+    if(!entries.length){ toast('No tournaments found','er'); return; }
+
+    // Try stored tournament first
+    var storedTid = localStorage.getItem('prode_companion_tid');
+    if(storedTid && tourns[storedTid]) {
+      selectTournament(storedTid);
+    } else if(entries.length === 1) {
+      selectTournament(entries[0][0]);
+    } else {
+      // Multiple tournaments — show switcher
+      openTournSwitcher(true);
+    }
+  });
+}
+
+function bindAll() {
+  // Players
+  tRef('users').on('value', function(s){
+    var val=s.val()||{};
+    allPlayers=Object.entries(val).map(function(e){ return Object.assign({uid:e[0]},e[1]); });
+    document.getElementById('s-players').textContent=allPlayers.length;
+    var submitted=allPlayers.filter(function(p){ return p.status&&p.status.indexOf('Submitted')>-1; }).length;
+    document.getElementById('s-submitted').textContent=submitted;
+    renderPlayerList();
+  });
+
+  // Rounds
+  tRef('rounds').on('value', function(s){
+    allRounds=s.val()||{};
+    renderRoundControl();
+    updateDashboardRound();
+  });
+
+  // Pending requests
+  tRef('pending_requests').on('value', function(s){
+    allPendingRequests=s.val()||{};
+    var count=Object.values(allPendingRequests).filter(function(r){ return r.status==='pending'; }).length;
+    document.getElementById('s-pending').textContent=count;
+    var badge=document.getElementById('players-badge');
+    if(badge){ badge.textContent=count; badge.style.display=count>0?'block':'none'; }
+    renderPendingMob();
+  });
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────────────────────
+function updateDashboardRound() {
+  var active=Object.values(allRounds).find(function(r){ return r.status==='active'||r.status==='open'; });
+  var el=document.getElementById('s-round');
+  if(el) el.textContent=active ? active.name.replace('Group Stage — ','').replace('Matchday','MD') : 'None';
+}
+
+function renderRoundControl() {
+  var el=document.getElementById('round-control-list');
+  if(!el) return;
+  var entries=Object.entries(allRounds).sort(function(a,b){ return (a[1].order||0)-(b[1].order||0); });
+  if(!entries.length){ el.innerHTML='<div style="color:var(--text3);font-size:13px">No rounds found</div>'; return; }
+  el.innerHTML='';
+  entries.forEach(function(e){
+    var rid=e[0], r=e[1];
+    if(r.status==='unavailable') return;
+    var row=document.createElement('div');
+    row.className='round-row';
+    var statusCls=r.status==='locked'?'rs-locked':r.status==='active'||r.status==='open'?'rs-active':'rs-unavail';
+    var name=document.createElement('div');
+    name.className='round-name';
+    name.textContent=r.name||rid;
+    var badge=document.createElement('div');
+    badge.className='round-status '+statusCls;
+    badge.textContent=r.status||'—';
+    var btns=document.createElement('div');
+    btns.style.cssText='display:flex;gap:6px';
+    if(r.status==='active'||r.status==='open'){
+      var lb=document.createElement('button');
+      lb.className='btn btn-r btn-sm';
+      lb.textContent='Lock';
+      lb.onclick=(function(id){ return function(){ lockRound(id); }; })(rid);
+      btns.appendChild(lb);
+    } else if(r.status==='locked'){
+      var ub=document.createElement('button');
+      ub.className='btn btn-g btn-sm';
+      ub.textContent='Unlock';
+      ub.onclick=(function(id){ return function(){ unlockRound(id); }; })(rid);
+      btns.appendChild(ub);
+    }
+    row.appendChild(name);
+    row.appendChild(badge);
+    row.appendChild(btns);
+    el.appendChild(row);
+  });
+}
+
+// ── ROUND CONTROL ─────────────────────────────────────────────────────────────
+function lockRound(rid) {
+  if(!confirm('Lock this round? Players will no longer be able to edit predictions.')) return;
+  tRef('rounds/'+rid).update({status:'locked',lockedAt:Date.now(),visibleToPlayers:true})
+    .then(function(){ toast('Round locked. Leaderboard now visible.','ok'); })
+    .catch(function(e){ toast('Error: '+e.message,'er'); });
+}
+
+function unlockRound(rid) {
+  if(!confirm('Unlock this round? Players can edit predictions again.')) return;
+  tRef('rounds/'+rid).update({status:'open',lockedAt:null,visibleToPlayers:false})
+    .then(function(){ toast('Round unlocked.','ok'); })
+    .catch(function(e){ toast('Error: '+e.message,'er'); });
+}
+
+function fixVisibility() {
+  if(!db||!TOURNAMENT_ID) return;
+  tRef('rounds').once('value', function(s){
+    var rounds=s.val()||{}, upd={};
+    Object.entries(rounds).forEach(function(e){
+      upd['rounds/'+e[0]+'/visibleToPlayers']=(e[1].status==='locked'||e[1].status==='scored');
+    });
+    tRef().update(upd).then(function(){ toast('Visibility fixed.','ok'); });
+  });
+}
+
+function rescoreAll() {
+  toast('Rescoring...', 'ok');
+  db.ref('results').once('value', function(s){
+    var results=s.val()||{};
+    var count=Object.keys(results).length;
+    if(!count){ toast('No results to score','er'); return; }
+    // Trigger scoring by re-writing each result (same as admin app)
+    Object.entries(results).forEach(function(e){
+      db.ref('results/'+e[0]).update({ rescoreTs: Date.now() });
+    });
+    toast('Rescore triggered for '+count+' matches.','ok');
+  });
+}
+
+// ── PLAYERS ───────────────────────────────────────────────────────────────────
+function renderPlayerList() {
+  var el=document.getElementById('player-list');
+  if(!el) return;
+  if(!allPlayers.length){ el.innerHTML='<div style="color:var(--text3);font-size:13px">No players yet</div>'; return; }
+  el.innerHTML='';
+  allPlayers.slice().sort(function(a,b){ return (a.name||'').localeCompare(b.name||''); }).forEach(function(p){
+    var row=document.createElement('div');
+    row.className='player-row';
+    var av=document.createElement('div');
+    av.className='player-av';
+    av.textContent=p.name?p.name[0].toUpperCase():'?';
+    var info=document.createElement('div');
+    info.className='player-info';
+    var nm=document.createElement('div');
+    nm.className='player-name';
+    nm.textContent=p.name||'—';
+    var st=document.createElement('div');
+    st.className='player-status';
+    st.textContent=(p.status||'Invited')+(p.email?' · '+p.email:'');
+    info.appendChild(nm);
+    info.appendChild(st);
+    var acts=document.createElement('div');
+    acts.className='player-actions';
+    var rb=document.createElement('button');
+    rb.className='btn btn-g btn-sm';
+    rb.textContent='🔑';
+    rb.title='Reset password';
+    rb.onclick=(function(uid,name){ return function(){ resetPwd(uid,name); }; })(p.uid, p.name||'Player');
+    acts.appendChild(rb);
+    row.appendChild(av);
+    row.appendChild(info);
+    row.appendChild(acts);
+    el.appendChild(row);
+  });
+}
+
+function resetPwd(uid, name) {
+  if(!confirm('Reset password for '+name+'?')) return;
+  var tmp=genTempPassword();
+  tRef('users/'+uid).update({ passwordHash:simpleHash(tmp), pwdResetAt:Date.now() })
+    .then(function(){
+      toast('Password reset for '+name,'ok');
+      showTempPwd(name, tmp);
+    })
+    .catch(function(e){ toast('Error: '+e.message,'er'); });
+}
+
+function showTempPwd(name, pwd) {
+  var overlay=document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9000;display:flex;align-items:center;justify-content:center;padding:24px';
+  overlay.onclick=function(e){ if(e.target===overlay) overlay.remove(); };
+  var box=document.createElement('div');
+  box.style.cssText='background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;width:100%;max-width:340px;text-align:center';
+  box.innerHTML='<div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px">Temp Password</div>'
+    +'<div style="font-size:13px;color:var(--text2);margin-bottom:16px">For <strong>'+escHtml(name)+'</strong> — share via WhatsApp</div>'
+    +'<div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px">'
+    +'<div style="font-family:var(--mf);font-size:26px;font-weight:700;color:var(--accent);letter-spacing:3px">'+escHtml(pwd)+'</div>'
+    +'</div>'
+    +'<div style="display:flex;gap:8px">'
+    +'<button id="copy-tmp" class="btn btn-p" style="flex:1">Copy</button>'
+    +'<button id="close-tmp" class="btn btn-g" style="flex:1">Close</button>'
+    +'</div>';
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+  document.getElementById('copy-tmp').onclick=function(){
+    navigator.clipboard.writeText(pwd).then(function(){ toast('Copied!','ok'); }).catch(function(){ toast('Select and copy manually',''); });
+  };
+  document.getElementById('close-tmp').onclick=function(){ overlay.remove(); };
+}
+
+// ── PENDING REQUESTS ──────────────────────────────────────────────────────────
+function renderPendingMob() {
+  var section=document.getElementById('pending-section');
+  var list=document.getElementById('pending-list-mob');
+  var countEl=document.getElementById('pending-count-badge');
+  if(!section||!list) return;
+  var pending=Object.entries(allPendingRequests).filter(function(e){ return e[1].status==='pending'; });
+  section.style.display=pending.length?'block':'none';
+  if(countEl) countEl.textContent=pending.length;
+  list.innerHTML='';
+  pending.sort(function(a,b){ return b[1].requestedAt-a[1].requestedAt; }).forEach(function(e){
+    var reqId=e[0], r=e[1];
+    var row=document.createElement('div');
+    row.className='req-row';
+    var ago=formatAgo(r.requestedAt);
+    row.innerHTML='<div class="req-name">'+escHtml(r.name||'Unknown')+'</div>'
+      +'<div class="req-email">'+escHtml(r.email||'no email')+' · '+ago+'</div>';
+    var btns=document.createElement('div');
+    btns.className='req-btns';
+    var ab=document.createElement('button');
+    ab.className='btn btn-p btn-sm';
+    ab.style.flex='1';
+    ab.textContent='✓ Approve';
+    ab.onclick=(function(id){ return function(){ approveRequest(id); }; })(reqId);
+    var rb=document.createElement('button');
+    rb.className='btn btn-r btn-sm';
+    rb.style.flex='1';
+    rb.textContent='✗ Reject';
+    rb.onclick=(function(id){ return function(){ rejectRequest(id); }; })(reqId);
+    btns.appendChild(ab);
+    btns.appendChild(rb);
+    row.appendChild(btns);
+    list.appendChild(row);
+  });
+}
+
+function approveRequest(reqId) {
+  var r=allPendingRequests[reqId];
+  if(!r) return;
+  if(!confirm('Approve request from '+r.name+'?')) return;
+  var existing=allPlayers.map(function(p){ return p.username; });
+  var username=genUsername(r.name, existing);
+  var alias=r.alias||r.name.split(' ')[0];
+  var code=genCode();
+  var uid='player_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);
+  tRef('users/'+uid).set({
+    name:r.name, email:r.email||'', username:username, alias:alias,
+    inviteCode:code, status:'Invited', createdAt:Date.now(),
+    lastActive:null, avatarId:null, passwordHash:r.passwordHash
+  }).then(function(){
+    return tRef('invite_codes/'+code).set({
+      playerName:r.name, email:r.email||'', username:username, alias:alias,
+      userId:uid, redeemed:false, redeemedAt:null
+    });
+  }).then(function(){
+    return tRef('pending_requests/'+reqId).update({
+      status:'approved', inviteCode:code, userId:uid, approvedAt:Date.now()
+    });
+  }).then(function(){
+    toast(r.name+' approved!','ok');
+  }).catch(function(e){ toast('Error: '+e.message,'er'); });
+}
+
+function rejectRequest(reqId) {
+  var r=allPendingRequests[reqId];
+  if(!r) return;
+  if(!confirm('Reject request from '+(r.name||'this player')+'?')) return;
+  tRef('pending_requests/'+reqId).update({ status:'rejected', rejectedAt:Date.now() })
+    .then(function(){ toast('Request rejected.','ok'); })
+    .catch(function(e){ toast('Error: '+e.message,'er'); });
+}
+
+function formatAgo(ts) {
+  var d=Date.now()-ts, m=Math.floor(d/60000);
+  if(m<1) return 'just now';
+  if(m<60) return m+'m ago';
+  var h=Math.floor(m/60);
+  if(h<24) return h+'h ago';
+  return Math.floor(h/24)+'d ago';
+}
+
+// ── BROADCAST ─────────────────────────────────────────────────────────────────
+function doSendBroadcast() {
+  var msg=document.getElementById('bc-msg').value.trim();
+  if(!msg){ toast('Enter a message first','er'); return; }
+  if(!db||!TOURNAMENT_ID){ toast('Not connected','er'); return; }
+  var nid='notif_'+Date.now();
+  tRef('notifications/'+nid).set({
+    message:msg, createdAt:Date.now(), sentBy:'admin', type:'broadcast'
+  }).then(function(){
+    toast('Broadcast sent to all players','ok');
+    document.getElementById('bc-msg').value='';
+  }).catch(function(e){ toast('Error: '+e.message,'er'); });
+}
+
+// ── NAV ───────────────────────────────────────────────────────────────────────
+function goTab(tabId) {
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('act'); });
+  document.querySelectorAll('.botnav-btn').forEach(function(b){ b.classList.remove('act'); });
+  var tab=document.getElementById(tabId);
+  if(tab) tab.classList.add('act');
+  var navId='nav-'+tabId.replace('tab-','');
+  var nav=document.getElementById(navId);
+  if(nav) nav.classList.add('act');
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+window.addEventListener('load', function(){
+  autoLogin();
+});
+
+// ── COMPANION ANALYTICS ───────────────────────────────────────────────────────
+function loadCompanionAnalytics() {
+  if(!db || !TOURNAMENT_ID) return;
+  var since = Date.now() - 7 * 86400000;
+
+  tRef('analytics/events').once('value', function(evSnap){
+    var events = Object.values(evSnap.val()||{}).filter(function(e){ return e.ts >= since; });
+
+    tRef('analytics/sessions').once('value', function(sessSnap){
+      var sessions = Object.values(sessSnap.val()||{}).filter(function(s){
+        return s.ts >= since && s.duration > 0;
+      });
+
+      var now    = Date.now();
+      var dayMs  = 86400000;
+      var weekMs = 7 * dayMs;
+
+      // DAU / WAU
+      var dauSet = new Set(events.filter(function(e){ return e.event==='app_open' && e.ts>=now-dayMs; }).map(function(e){ return e.uid; }));
+      var wauSet = new Set(events.filter(function(e){ return e.event==='app_open'; }).map(function(e){ return e.uid; }));
+
+      // Avg session
+      var validSess = sessions.filter(function(s){ return s.duration>0; });
+      var avgSess = validSess.length ? Math.round(validSess.reduce(function(s,e){ return s+e.duration; },0)/validSess.length) : 0;
+
+      // PWA %
+      var pwaOpens = events.filter(function(e){ return e.event==='app_open' && e.pwa; }).length;
+      var totOpens = events.filter(function(e){ return e.event==='app_open'; }).length;
+      var pwaPct   = totOpens ? Math.round(pwaOpens/totOpens*100) : 0;
+
+      // Set overview
+      var setTxt = function(id,v){ var el=document.getElementById(id); if(el) el.textContent=v; };
+      setTxt('ca-dau', dauSet.size);
+      setTxt('ca-wau', wauSet.size);
+      setTxt('ca-sess', avgSess+'s');
+      setTxt('ca-pwa', pwaPct+'%');
+
+      // Active today list
+      var lastSeenByUid = {};
+      events.filter(function(e){ return e.event==='app_open'; }).forEach(function(e){
+        if(!lastSeenByUid[e.uid] || e.ts>lastSeenByUid[e.uid]) lastSeenByUid[e.uid]=e.ts;
+      });
+
+      var activeEl = document.getElementById('ca-active-today');
+      if(activeEl) {
+        var todayUids = Array.from(dauSet);
+        if(!todayUids.length) {
+          activeEl.innerHTML = '<div style="color:var(--text3)">No one active today yet</div>';
+        } else {
+          activeEl.innerHTML = todayUids.map(function(uid){
+            var p = allPlayers.find(function(p){ return p.uid===uid; }) || {};
+            var ago = lastSeenByUid[uid] ? formatAgo(lastSeenByUid[uid]) : '—';
+            return '<div class="player-row" style="padding:8px 0">'
+              +'<div class="player-av" style="width:30px;height:30px;font-size:13px">'+(p.name?p.name[0]:'?')+'</div>'
+              +'<div class="player-info"><div class="player-name">'+escHtml(p.name||uid.slice(-6))+'</div>'
+              +'<div class="player-status">'+ago+'</div></div>'
+              +'</div>';
+          }).join('');
+        }
+      }
+
+      // At-risk
+      var threeDaysAgo = now - 3*dayMs;
+      var atRisk = allPlayers.filter(function(p){
+        var ls = lastSeenByUid[p.uid] || 0;
+        return ls < threeDaysAgo && p.status !== 'Invited';
+      });
+      var riskEl = document.getElementById('ca-atrisk');
+      if(riskEl) {
+        if(!atRisk.length) {
+          riskEl.innerHTML = '<div style="color:var(--accent);font-size:13px">All players active recently</div>';
+        } else {
+          riskEl.innerHTML = atRisk.slice(0,5).map(function(p){
+            var ls = lastSeenByUid[p.uid];
+            return '<div style="display:flex;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid var(--border)">'
+              +'<div style="width:28px;height:28px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">'+(p.name?p.name[0]:'?')+'</div>'
+              +'<div style="flex:1"><div style="font-size:13px;font-weight:600">'+escHtml(p.name||'—')+'</div>'
+              +'<div style="font-size:11px;color:var(--text3);font-family:var(--mf)">Last seen: '+(ls?formatAgo(ls):'never')+'</div></div>'
+              +'</div>';
+          }).join('');
+          if(atRisk.length > 5) riskEl.innerHTML += '<div style="font-size:11px;color:var(--text3);margin-top:6px">...and '+(atRisk.length-5)+' more</div>';
+        }
+      }
+
+      // Devices
+      var devCounts = {};
+      events.filter(function(e){ return e.event==='app_open'; }).forEach(function(e){
+        devCounts[e.device||'?'] = (devCounts[e.device||'?']||0)+1;
+      });
+      var totalDev = Object.values(devCounts).reduce(function(s,v){ return s+v; },0)||1;
+      var devIcons = {iphone:'📱',ipad:'📱',android_phone:'🤖',android_tablet:'🤖',windows:'🖥️',mac:'🖥️',linux:'🐧'};
+      var devEl = document.getElementById('ca-devices');
+      if(devEl) {
+        devEl.innerHTML = Object.entries(devCounts)
+          .sort(function(a,b){ return b[1]-a[1]; })
+          .map(function(e){
+            var pct = Math.round(e[1]/totalDev*100);
+            return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">'
+              +'<span style="font-size:16px;min-width:22px">'+(devIcons[e[0]]||'❓')+'</span>'
+              +'<span style="flex:1;font-size:13px;color:var(--text2)">'+e[0]+'</span>'
+              +'<span style="font-family:var(--mf);font-size:12px;color:var(--accent)">'+pct+'%</span>'
+              +'</div>';
+          }).join('') || '<div style="color:var(--text3)">No data yet</div>';
+      }
+
+      // 7-day sparkline
+      drawSparkline(events, now, dayMs);
+
+      // Per-player list
+      var playerStats = {};
+      allPlayers.forEach(function(p){
+        playerStats[p.uid] = { uid:p.uid, name:p.name||'—', sessions:0, lastSeen:0, preds:0, edited:0, h2h:0, lbViews:0, device:'—', pwa:0, pwaTotal:0 };
+      });
+      events.forEach(function(e){
+        if(!playerStats[e.uid]) return;
+        if(e.event==='app_open') {
+          if(e.ts > playerStats[e.uid].lastSeen) { playerStats[e.uid].lastSeen=e.ts; playerStats[e.uid].device=e.device||'—'; }
+          playerStats[e.uid].pwaTotal++;
+          if(e.pwa) playerStats[e.uid].pwa++;
+        }
+        if(e.event==='prediction_saved'||e.event==='prediction_edited') playerStats[e.uid].preds++;
+        if(e.event==='prediction_edited') playerStats[e.uid].edited++;
+        if(e.event==='h2h_viewed') playerStats[e.uid].h2h++;
+        if(e.event==='leaderboard_viewed') playerStats[e.uid].lbViews++;
+      });
+      sessions.forEach(function(s){
+        if(!playerStats[s.uid]) return;
+        playerStats[s.uid].sessions++;
+      });
+
+      var plEl = document.getElementById('ca-player-list');
+      if(plEl) {
+        var sorted = Object.values(playerStats).sort(function(a,b){ return b.lastSeen-a.lastSeen; });
+        if(!sorted.length) { plEl.innerHTML='<div style="color:var(--text3)">No data yet</div>'; }
+        else {
+          plEl.innerHTML = '';
+          sorted.forEach(function(p){
+            var row = document.createElement('div');
+            row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer';
+            row.innerHTML = '<div style="width:32px;height:32px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">'+(p.name?p.name[0]:'?')+'</div>'
+              +'<div style="flex:1"><div style="font-size:14px;font-weight:600">'+escHtml(p.name)+'</div>'
+              +'<div style="font-size:11px;color:var(--text3);font-family:var(--mf)">'+(p.lastSeen?formatAgo(p.lastSeen):'never')+' · '+p.sessions+' sessions</div></div>'
+              +'<div style="font-size:11px;color:var(--text3);font-family:var(--mf)">'+p.preds+' preds</div>';
+            row.onclick = (function(ps){ return function(){ showPlayerModal(ps); }; })(p);
+            plEl.appendChild(row);
+          });
+        }
+      }
+    });
+  });
+}
+
+function showPlayerModal(p) {
+  document.getElementById('ca-modal-name').textContent = p.name;
+  var pwaRate = p.pwaTotal ? Math.round(p.pwa/p.pwaTotal*100) : 0;
+  document.getElementById('ca-modal-body').innerHTML = [
+    { label:'Sessions',         val:p.sessions },
+    { label:'Last seen',        val:p.lastSeen?formatAgo(p.lastSeen):'never' },
+    { label:'Device',           val:p.device||'—' },
+    { label:'PWA usage',        val:pwaRate+'%' },
+    { label:'Predictions',      val:p.preds },
+    { label:'Edits',            val:p.edited, color:p.edited>0?'#f5c542':null },
+    { label:'H2H comparisons',  val:p.h2h },
+    { label:'Leaderboard views',val:p.lbViews }
+  ].map(function(r){
+    return '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)">'
+      +'<span style="font-size:13px;color:var(--text2)">'+r.label+'</span>'
+      +'<span style="font-family:var(--mf);font-size:13px;font-weight:700;color:'+(r.color||'var(--accent)')+'">'+r.val+'</span>'
+      +'</div>';
+  }).join('');
+  document.getElementById('ca-player-modal').style.display = 'block';
+}
+
+function drawSparkline(events, now, dayMs) {
+  var canvas = document.getElementById('ca-sparkline');
+  if(!canvas) return;
+  var w = canvas.offsetWidth || 300;
+  var h = 80;
+  canvas.width  = w * (window.devicePixelRatio||1);
+  canvas.height = h * (window.devicePixelRatio||1);
+  var ctx = canvas.getContext('2d');
+  ctx.scale(window.devicePixelRatio||1, window.devicePixelRatio||1);
+  ctx.clearRect(0,0,w,h);
+
+  var dauByDay = {};
+  for(var d=6; d>=0; d--) {
+    var dk = new Date(now - d*dayMs).toISOString().slice(0,10);
+    dauByDay[dk] = new Set();
+  }
+  events.filter(function(e){ return e.event==='app_open'; }).forEach(function(e){
+    var dk = new Date(e.ts).toISOString().slice(0,10);
+    if(dauByDay[dk]) dauByDay[dk].add(e.uid);
+  });
+  var keys = Object.keys(dauByDay).sort();
+  var vals = keys.map(function(k){ return dauByDay[k].size; });
+  var maxV = Math.max.apply(null,vals)||1;
+  var pad = {t:8,r:8,b:20,l:20};
+  var cw = w-pad.l-pad.r, ch = h-pad.t-pad.b;
+  var n = keys.length;
+  var barW = Math.max(2, (cw/n)-3);
+
+  vals.forEach(function(v,i){
+    var x = pad.l + (i/n)*cw + (cw/n-barW)/2;
+    var bh = Math.max(2,(v/maxV)*ch);
+    var y = pad.t+ch-bh;
+    ctx.fillStyle = v>0?'rgba(0,229,160,0.85)':'rgba(0,229,160,0.15)';
+    ctx.beginPath();
+    if(ctx.roundRect) ctx.roundRect(x,y,barW,bh,2); else ctx.rect(x,y,barW,bh);
+    ctx.fill();
+    ctx.fillStyle='#4a5570';
+    ctx.font='8px DM Mono,monospace';
+    ctx.textAlign='center';
+    ctx.fillText(keys[i].slice(5), x+barW/2, h-4);
+  });
+}
+
+</script>
+</body>
+</html>
