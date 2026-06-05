@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Prode 2026 — Admin Companion v0.06</title>
+<title>Prode 2026 — Admin Companion v0.07</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <meta name="mobile-web-app-capable" content="yes">
@@ -158,6 +158,11 @@ textarea.fi{resize:vertical;min-height:100px;}
         <div id="round-control-list">
           <div style="color:var(--text3);font-size:13px">Loading rounds...</div>
         </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Prize Pool</div>
+        <div id="comp-prize-summary" style="font-size:13px;color:var(--text3)">Loading...</div>
       </div>
 
       <div class="card">
@@ -610,19 +615,25 @@ function rescoreAll() {
 }
 
 // ── PLAYERS ───────────────────────────────────────────────────────────────────
-function renderPlayerList() {
-  var el=document.getElementById('player-list');
+function renderPlayerList(filterMode) {
+  filterMode = filterMode || 'all';
+  var el = document.getElementById('player-list');
   if(!el) return;
-  if(!allPlayers.length){ el.innerHTML='<div style="color:var(--text3);font-size:13px">No players yet</div>'; return; }
+  var filtered = allPlayers.slice().sort(function(a,b){ return (a.name||'').localeCompare(b.name||''); });
+  if(filterMode==='paid')   filtered = filtered.filter(function(p){ return p.paid; });
+  if(filterMode==='unpaid') filtered = filtered.filter(function(p){ return !p.paid; });
+  if(!filtered.length){ el.innerHTML='<div style="color:var(--text3);font-size:13px">No players'+(filterMode!=='all'?' in this filter':'yet')+'</div>'; return; }
   el.innerHTML='';
-  allPlayers.slice().sort(function(a,b){ return (a.name||'').localeCompare(b.name||''); }).forEach(function(p){
+  filtered.forEach(function(p){
     var row=document.createElement('div');
     row.className='player-row';
+    row.style.cssText='display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)';
     var av=document.createElement('div');
     av.className='player-av';
     av.textContent=p.name?p.name[0].toUpperCase():'?';
     var info=document.createElement('div');
     info.className='player-info';
+    info.style.flex='1';
     var nm=document.createElement('div');
     nm.className='player-name';
     nm.textContent=p.name||'—';
@@ -633,11 +644,19 @@ function renderPlayerList() {
     info.appendChild(st);
     var acts=document.createElement('div');
     acts.className='player-actions';
+    acts.style.cssText='display:flex;gap:6px;align-items:center';
+    // Paid toggle
+    var pb=document.createElement('button');
+    pb.style.cssText='background:'+(p.paid?'rgba(0,229,160,.15)':'rgba(255,77,53,.12)')+';color:'+(p.paid?'var(--accent)':'#ff4d35')+';border:1px solid '+(p.paid?'rgba(0,229,160,.3)':'rgba(255,77,53,.3)')+';border-radius:4px;padding:3px 8px;font-family:var(--mf);font-size:9px;cursor:pointer;white-space:nowrap';
+    pb.textContent=p.paid?'✓ PAID':'✗ UNPAID';
+    pb.onclick=(function(uid,name){ return function(){ toggleCompPaid(uid,name); }; })(p.uid, p.name||'Player');
+    // Reset pwd
     var rb=document.createElement('button');
     rb.className='btn btn-g btn-sm';
     rb.textContent='🔑';
     rb.title='Reset password';
     rb.onclick=(function(uid,name){ return function(){ resetPwd(uid,name); }; })(p.uid, p.name||'Player');
+    acts.appendChild(pb);
     acts.appendChild(rb);
     row.appendChild(av);
     row.appendChild(info);
@@ -1052,6 +1071,78 @@ function changePassword() {
   document.getElementById('cp-new').value = '';
   document.getElementById('cp-confirm').value = '';
   toast('Password updated successfully!', 'ok');
+}
+
+
+var compPlayerFilter = 'all';
+
+function filterCompPlayers(mode) {
+  compPlayerFilter = mode;
+  ['all','paid','unpaid'].forEach(function(f){
+    var btn = document.getElementById('cp-filter-'+f);
+    if(btn){ btn.style.background = f===mode?'var(--accent)':'var(--surface2)'; btn.style.color = f===mode?'#071810':'var(--text3)'; }
+  });
+  renderPlayerList(mode);
+}
+
+function toggleCompPaid(uid, name) {
+  var player = allPlayers.find(function(p){ return p.uid===uid; });
+  if(!player) return;
+  var newPaid = !player.paid;
+  tRef('users/'+uid).update({ paid:newPaid, paidAt:newPaid?Date.now():null })
+    .then(function(){
+      player.paid = newPaid;
+      toast((name)+' marked '+(newPaid?'PAID':'UNPAID'));
+      renderPlayerList(compPlayerFilter);
+      loadCompPaymentSummary();
+      loadCompPrizeSummary();
+    })
+    .catch(function(e){ toast('Error: '+e.message); });
+}
+
+function loadCompPaymentSummary() {
+  var el = document.getElementById('comp-payment-summary');
+  if(!el) return;
+  tRef('settings').once('value', function(s){
+    var settings = s.val() || {};
+    var fee  = settings.entryFee || 0;
+    var curr = settings.currency || 'USD';
+    var total = allPlayers.length;
+    var paid  = allPlayers.filter(function(p){ return p.paid; }).length;
+    var collected = fee * paid;
+    var expected  = fee * total;
+    el.innerHTML = paid+'/'+total+' players paid'
+      +(fee?' · <strong style="color:var(--accent)">'+curr+' '+collected.toFixed(2)+'</strong> of '+curr+' '+expected.toFixed(2):'');
+  });
+}
+
+function loadCompPrizeSummary() {
+  var el = document.getElementById('comp-prize-summary');
+  if(!el) return;
+  tRef('settings').once('value', function(s){
+    var settings = s.val() || {};
+    var fee    = settings.entryFee || 0;
+    var curr   = settings.currency || 'USD';
+    var prizes = settings.prizes || {};
+    var total  = allPlayers.length;
+    var paid   = allPlayers.filter(function(p){ return p.paid; }).length;
+    var pot    = fee * total;
+    if(!fee){ el.innerHTML='<span style="color:var(--text3)">No entry fee set</span>'; return; }
+    var icons  = {first:'🥇',second:'🥈',third:'🥉'};
+    var labels = {first:'1st',second:'2nd',third:'3rd'};
+    var html = '<div style="font-size:13px;color:var(--text2);margin-bottom:8px">💰 Pot: <strong style="color:var(--accent)">'+curr+' '+pot.toFixed(2)+'</strong> · '+paid+'/'+total+' paid</div>';
+    ['first','second','third'].forEach(function(place){
+      var pr = prizes[place];
+      if(!pr||!pr.value) return;
+      var amt = pr.type==='pct'?(pot*pr.value/100):pr.value;
+      var pct = pot>0?(amt/pot*100).toFixed(0):pr.value;
+      html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border)">'
+        +'<span>'+icons[place]+' '+labels[place]+'</span>'
+        +'<span><strong style="color:var(--accent)">'+curr+' '+amt.toFixed(2)+'</strong> <span style="color:var(--text3);font-size:11px">('+pct+'%)</span></span>'
+        +'</div>';
+    });
+    el.innerHTML = html;
+  });
 }
 
 </script>
