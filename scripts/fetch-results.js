@@ -1,7 +1,7 @@
 /**
  * fetch-results.js — Prode 2026
- * Fetches live WC 2026 results from API-Football using stored apiFixtureId.
- * Run map-fixture-ids.js first to populate apiFixtureId on all fixtures.
+ * Fetches WC 2026 results from football-data.org.
+ * Runs every 5 minutes via GitHub Actions during match windows.
  */
 
 import { initializeApp, cert } from 'firebase-admin/app';
@@ -10,29 +10,22 @@ import fetch                    from 'node-fetch';
 
 const SA_JSON = process.env.FIREBASE_SERVICE_ACCOUNT;
 const DB_URL  = process.env.FIREBASE_DATABASE_URL;
-const API_KEY = process.env.API_FOOTBALL_KEY;
+const FDO_KEY = process.env.FDO_KEY;
 
-if(!SA_JSON || !DB_URL || !API_KEY) {
-  console.error('❌ Missing env vars');
-  process.exit(1);
-}
+if(!SA_JSON || !DB_URL) { console.error('❌ Missing env vars'); process.exit(1); }
+if(!FDO_KEY) { console.error('❌ Missing FDO_KEY'); process.exit(1); }
 
 initializeApp({ credential: cert(JSON.parse(SA_JSON)), databaseURL: DB_URL });
 const db = getDatabase();
 
-async function apiFetch(path) {
-  const res = await fetch(`https://v3.football.api-sports.io${path}`, {
-    headers: { 'x-apisports-key': API_KEY }
+async function fdoFetch(path) {
+  const res = await fetch(`https://api.football-data.org/v4${path}`, {
+    headers: { 'X-Auth-Token': FDO_KEY }
   });
-  if(!res.ok) throw new Error(`HTTP ${res.status}`);
-  const data = await res.json();
-  if(data.errors && Object.keys(data.errors).length) {
-    throw new Error(JSON.stringify(data.errors));
-  }
-  return data;
+  if(!res.ok) throw new Error(`HTTP ${res.status} from football-data.org`);
+  return res.json();
 }
 
-// Match window: WC matches run roughly 14:00-03:00 UTC
 function isMatchWindow() {
   const hour = new Date().getUTCHours();
   return hour >= 14 || hour <= 4;
@@ -42,112 +35,72 @@ async function main() {
   console.log(`🕐 Starting fetch-results at ${new Date().toISOString()}`);
 
   if(!isMatchWindow()) {
-    console.log('⏰ Outside match window — skipping');
+    console.log('Outside match window — skipping');
     process.exit(0);
   }
 
-  // Load Firebase fixtures (only ones with apiFixtureId mapped)
-  const [fixturesSnap, resultsSnap] = await Promise.all([
-    db.ref('fixtures').once('value'),
-    db.ref('results').once('value')
-  ]);
-  const fixtures        = fixturesSnap.val() || {};
-  const existingResults = resultsSnap.val() || {};
+  const fixturesSnap = await db.ref('fixtures').once('value');
+  const fixtures = fixturesSnap.val() || {};
 
-  // Build reverse map: apiFixtureId → Firebase fixture ID
   const apiIdToFid = {};
   for(const [fid, f] of Object.entries(fixtures)) {
-    if(f.apiFixtureId) {
-      apiIdToFid[f.apiFixtureId] = fid;
-    }
+    if(f.apiFixtureId) apiIdToFid[f.apiFixtureId] = fid;
   }
-  const mappedCount = Object.keys(apiIdToFid).length;
-  console.log(`📦 Firebase fixtures with apiFixtureId: ${mappedCount}/${Object.keys(fixtures).length}`);
 
-  if(mappedCount === 0) {
-    console.error('❌ No fixtures have apiFixtureId. Run map-fixture-ids.js first!');
+  const mappedCount = Object.keys(apiIdToFid).length;
+  console.log(`📦 Mapped fixtures: ${mappedCount}/${Object.keys(fixtures).length}`);
+
+  if(!mappedCount) {
+    console.error('❌ No fixtures mapped. Run Map Fixture IDs in admin first!');
     process.exit(1);
   }
 
-  // Fetch today's WC 2026 fixtures from API-Football
-  const today = new Date().toISOString().slice(0, 10);
-  console.log(`📅 Fetching fixtures for: ${today}`);
-  const data = await apiFetch(`/fixtures?league=1&season=2026&date=${today}&timezone=UTC`);
-  let apiFixtures = data.response || [];
+  console.log('📡 Fetching IN_PLAY + FINISHED from football-data.org...');
+  const data = await fdoFetch('/competitions/WC/matches?season=2026&status=IN_PLAY,PAUSED,FINISHED');
+  const matches = data.matches || [];
+  console.log(`📡 Got ${matches.length} matches`);
 
-  // Also check yesterday for late-night matches
-  if(new Date().getUTCHours() <= 4) {
-    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
-    console.log(`📅 Also checking yesterday: ${yesterday}`);
-    const data2 = await apiFetch(`/fixtures?league=1&season=2026&date=${yesterday}&timezone=UTC`);
-    apiFixtures = apiFixtures.concat(data2.response || []);
-  }
+  if(!matches.length) { console.log('No active matches.'); process.exit(0); }
 
-  console.log(`📡 API returned ${apiFixtures.length} fixtures`);
-
-  const liveStatuses = ['1H','HT','2H','ET','P','BT','LIVE'];
-  const ftStatuses   = ['FT','AET','PEN'];
-  let updated = 0, skipped = 0, noMap = 0;
   const updates = {};
+  let updated=0, skipped=0, noMap=0;
 
-  for(const apiFix of apiFixtures) {
-    const apiId  = apiFix.fixture.id;
-    const status = apiFix.fixture.status.short;
-    const hg     = apiFix.goals.home;
-    const ag     = apiFix.goals.away;
+  for(const m of matches) {
+    const apiId    = m.id;
+    const status   = m.status;
+    const isLive     = ['IN_PLAY','PAUSED'].includes(status);
+    const isFinished = status === 'FINISHED';
 
-    const isLive     = liveStatuses.includes(status);
-    const isFinished = ftStatuses.includes(status);
-
-    if(!isLive && !isFinished) { skipped++; continue; }
-    if(hg === null || ag === null) { skipped++; continue; }
-
-    // Match by stored apiFixtureId
-    const fid = apiIdToFid[apiId];
-    if(!fid) {
-      console.log(`  ⚠️  No Firebase match for API ID ${apiId}: ${apiFix.teams.home.name} vs ${apiFix.teams.away.name}`);
-      noMap++;
-      continue;
+    let hg = m.score?.fullTime?.home;
+    let ag = m.score?.fullTime?.away;
+    if((hg===null||hg===undefined) && m.score?.halfTime) {
+      hg = m.score.halfTime.home;
+      ag = m.score.halfTime.away;
     }
 
-    // Skip if identical
-    const existing = existingResults[fid];
-    if(existing &&
-       existing.homeScore === hg &&
-       existing.awayScore === ag &&
-       existing.status    === status) {
-      skipped++;
-      continue;
+    if(hg===null||hg===undefined||ag===null||ag===undefined) { skipped++; continue; }
+
+    const fid = apiIdToFid[apiId];
+    if(!fid) {
+      console.log(`  ⚠️  No match for API ID ${apiId}: ${m.homeTeam?.name} vs ${m.awayTeam?.name}`);
+      noMap++; continue;
     }
 
     updates[`results/${fid}`] = {
-      homeScore:   hg,
-      awayScore:   ag,
-      status:      status,
-      source:      'api-football',
+      homeScore: hg, awayScore: ag, status,
+      source: 'football-data.org',
       confirmedAt: Date.now(),
-      isLive:      isLive && !isFinished,
-      isFinal:     isFinished
+      isLive, isFinal: isFinished
     };
+    if(isFinished) updates[`fixtures/${fid}/status`] = 'FT';
 
-    if(isFinished) {
-      updates[`fixtures/${fid}/status`] = 'FT';
-    }
-
-    const label = isFinished ? '✅ FT' : `🔴 LIVE(${status})`;
-    console.log(`  ${label}: ${apiFix.teams.home.name} ${hg}-${ag} ${apiFix.teams.away.name}`);
+    console.log(`  ${isFinished?'✅ FT':'🔴 LIVE'}: ${m.homeTeam?.name} ${hg}-${ag} ${m.awayTeam?.name}`);
     updated++;
   }
 
-  if(Object.keys(updates).length > 0) {
-    await db.ref().update(updates);
-  }
-
+  if(Object.keys(updates).length) await db.ref().update(updates);
   console.log(`\n📊 Done: ${updated} updated · ${skipped} skipped · ${noMap} unmapped`);
   process.exit(0);
 }
 
-main().catch(err => {
-  console.error('❌ Error:', err.message);
-  process.exit(1);
-});
+main().catch(err => { console.error('❌', err.message); process.exit(1); });
