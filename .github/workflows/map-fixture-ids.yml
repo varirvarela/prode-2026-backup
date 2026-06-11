@@ -1,0 +1,24 @@
+name: Map Fixture IDs
+on:
+  workflow_dispatch:
+jobs:
+  map:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install firebase-admin node-fetch
+        working-directory: scripts
+      - name: Map fixture IDs
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_DATABASE_URL: https://prode-2026-7838f-default-rtdb.firebaseio.com
+        run: node map-fixture-ids.js
+        working-directory: scripts
