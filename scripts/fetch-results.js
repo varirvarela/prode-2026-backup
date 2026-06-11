@@ -1,12 +1,7 @@
 /**
  * fetch-results.js — Prode 2026
- * Fetches live WC 2026 results from openfootball/worldcup.json
- * and writes them to Firebase. Triggers auto-scoring.
- *
- * Source: https://github.com/openfootball/worldcup.json
- * Free, no API key, community-maintained. Updated within hours of match end.
- *
- * Runs every 5 minutes via GitHub Actions during match windows.
+ * Fetches live WC 2026 results from API-Football using stored apiFixtureId.
+ * Run map-fixture-ids.js first to populate apiFixtureId on all fixtures.
  */
 
 import { initializeApp, cert } from 'firebase-admin/app';
@@ -15,113 +10,140 @@ import fetch                    from 'node-fetch';
 
 const SA_JSON = process.env.FIREBASE_SERVICE_ACCOUNT;
 const DB_URL  = process.env.FIREBASE_DATABASE_URL;
+const API_KEY = process.env.API_FOOTBALL_KEY;
 
-if(!SA_JSON || !DB_URL) {
-  console.error('❌ Missing FIREBASE_SERVICE_ACCOUNT or FIREBASE_DATABASE_URL');
+if(!SA_JSON || !DB_URL || !API_KEY) {
+  console.error('❌ Missing env vars');
   process.exit(1);
 }
 
 initializeApp({ credential: cert(JSON.parse(SA_JSON)), databaseURL: DB_URL });
 const db = getDatabase();
 
-const SOURCE_URL = 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
+async function apiFetch(path) {
+  const res = await fetch(`https://v3.football.api-sports.io${path}`, {
+    headers: { 'x-apisports-key': API_KEY }
+  });
+  if(!res.ok) throw new Error(`HTTP ${res.status}`);
+  const data = await res.json();
+  if(data.errors && Object.keys(data.errors).length) {
+    throw new Error(JSON.stringify(data.errors));
+  }
+  return data;
+}
 
-// Check if we're within a match window (no point calling if no matches today)
+// Match window: WC matches run roughly 14:00-03:00 UTC
 function isMatchWindow() {
-  const now  = new Date();
-  const hour = now.getUTCHours();
-  const date = now.toISOString().slice(0,10);
-  // WC matches typically run 15:00–03:00 UTC
-  // Always run — openfootball doesn't rate-limit
-  return true;
+  const hour = new Date().getUTCHours();
+  return hour >= 14 || hour <= 4;
 }
 
 async function main() {
   console.log(`🕐 Starting fetch-results at ${new Date().toISOString()}`);
 
-  // Fetch latest data from openfootball
-  console.log('Fetching openfootball worldcup.json…');
-  const res = await fetch(SOURCE_URL);
-  if(!res.ok) throw new Error(`HTTP ${res.status} from openfootball`);
-  const data = await res.json();
+  if(!isMatchWindow()) {
+    console.log('⏰ Outside match window — skipping');
+    process.exit(0);
+  }
 
-  const matches = data.matches || [];
-  console.log(`📅 Total matches in source: ${matches.length}`);
-
-  // Load existing Firebase fixtures to match by team names + date
-  const fixturesSnap = await db.ref('fixtures').once('value');
-  const fixtures = fixturesSnap.val() || {};
-
-  // Load existing results to avoid re-writing unchanged ones
-  const resultsSnap = await db.ref('results').once('value');
+  // Load Firebase fixtures (only ones with apiFixtureId mapped)
+  const [fixturesSnap, resultsSnap] = await Promise.all([
+    db.ref('fixtures').once('value'),
+    db.ref('results').once('value')
+  ]);
+  const fixtures        = fixturesSnap.val() || {};
   const existingResults = resultsSnap.val() || {};
 
-  let updated = 0;
-  let skipped = 0;
+  // Build reverse map: apiFixtureId → Firebase fixture ID
+  const apiIdToFid = {};
+  for(const [fid, f] of Object.entries(fixtures)) {
+    if(f.apiFixtureId) {
+      apiIdToFid[f.apiFixtureId] = fid;
+    }
+  }
+  const mappedCount = Object.keys(apiIdToFid).length;
+  console.log(`📦 Firebase fixtures with apiFixtureId: ${mappedCount}/${Object.keys(fixtures).length}`);
 
-  for(const m of matches) {
-    // Only process matches that have scores
-    if(m.score === undefined || m.score === null) { skipped++; continue; }
+  if(mappedCount === 0) {
+    console.error('❌ No fixtures have apiFixtureId. Run map-fixture-ids.js first!');
+    process.exit(1);
+  }
 
-    // Parse score — openfootball format: { ft: [2, 1] } or score1/score2
-    let homeScore, awayScore;
-    if(m.score && m.score.ft) {
-      [homeScore, awayScore] = m.score.ft;
-    } else if(m.score1 !== undefined) {
-      homeScore = m.score1;
-      awayScore = m.score2;
-    } else {
+  // Fetch today's WC 2026 fixtures from API-Football
+  const today = new Date().toISOString().slice(0, 10);
+  console.log(`📅 Fetching fixtures for: ${today}`);
+  const data = await apiFetch(`/fixtures?league=1&season=2026&date=${today}&timezone=UTC`);
+  let apiFixtures = data.response || [];
+
+  // Also check yesterday for late-night matches
+  if(new Date().getUTCHours() <= 4) {
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    console.log(`📅 Also checking yesterday: ${yesterday}`);
+    const data2 = await apiFetch(`/fixtures?league=1&season=2026&date=${yesterday}&timezone=UTC`);
+    apiFixtures = apiFixtures.concat(data2.response || []);
+  }
+
+  console.log(`📡 API returned ${apiFixtures.length} fixtures`);
+
+  const liveStatuses = ['1H','HT','2H','ET','P','BT','LIVE'];
+  const ftStatuses   = ['FT','AET','PEN'];
+  let updated = 0, skipped = 0, noMap = 0;
+  const updates = {};
+
+  for(const apiFix of apiFixtures) {
+    const apiId  = apiFix.fixture.id;
+    const status = apiFix.fixture.status.short;
+    const hg     = apiFix.goals.home;
+    const ag     = apiFix.goals.away;
+
+    const isLive     = liveStatuses.includes(status);
+    const isFinished = ftStatuses.includes(status);
+
+    if(!isLive && !isFinished) { skipped++; continue; }
+    if(hg === null || ag === null) { skipped++; continue; }
+
+    // Match by stored apiFixtureId
+    const fid = apiIdToFid[apiId];
+    if(!fid) {
+      console.log(`  ⚠️  No Firebase match for API ID ${apiId}: ${apiFix.teams.home.name} vs ${apiFix.teams.away.name}`);
+      noMap++;
+      continue;
+    }
+
+    // Skip if identical
+    const existing = existingResults[fid];
+    if(existing &&
+       existing.homeScore === hg &&
+       existing.awayScore === ag &&
+       existing.status    === status) {
       skipped++;
       continue;
     }
 
-    if(homeScore === null || awayScore === null) { skipped++; continue; }
-
-    // Find matching fixture in Firebase by home+away team names and date
-    const home = (m.team1 || '').toLowerCase();
-    const away = (m.team2 || '').toLowerCase();
-    const date = m.date || '';
-
-    let matchedFid = null;
-    for(const [fid, f] of Object.entries(fixtures)) {
-      const fHome = (f.homeTeam || '').toLowerCase();
-      const fAway = (f.awayTeam || '').toLowerCase();
-      const fDate = f.kickoff ? new Date(f.kickoff).toISOString().slice(0,10) : '';
-      if(fHome === home && fAway === away && fDate === date) {
-        matchedFid = fid;
-        break;
-      }
-    }
-
-    if(!matchedFid) {
-      console.log(`  ⚠️  No fixture match for: ${m.team1} vs ${m.team2} on ${date}`);
-      skipped++;
-      continue;
-    }
-
-    // Check if result already exists and is the same
-    const existing = existingResults[matchedFid];
-    if(existing && existing.homeScore === homeScore && existing.awayScore === awayScore) {
-      skipped++;
-      continue;
-    }
-
-    // Write result to Firebase
-    await db.ref('results/'+matchedFid).set({
-      homeScore,
-      awayScore,
-      source:      'openfootball',
+    updates[`results/${fid}`] = {
+      homeScore:   hg,
+      awayScore:   ag,
+      status:      status,
+      source:      'api-football',
       confirmedAt: Date.now(),
-    });
+      isLive:      isLive && !isFinished,
+      isFinal:     isFinished
+    };
 
-    // Also update fixture status
-    await db.ref('fixtures/'+matchedFid).update({ status: 'FT' });
+    if(isFinished) {
+      updates[`fixtures/${fid}/status`] = 'FT';
+    }
 
-    console.log(`  ✅ Result: ${m.team1} ${homeScore}-${awayScore} ${m.team2}`);
+    const label = isFinished ? '✅ FT' : `🔴 LIVE(${status})`;
+    console.log(`  ${label}: ${apiFix.teams.home.name} ${hg}-${ag} ${apiFix.teams.away.name}`);
     updated++;
   }
 
-  console.log(`\n📊 Done: ${updated} results updated · ${skipped} skipped`);
+  if(Object.keys(updates).length > 0) {
+    await db.ref().update(updates);
+  }
+
+  console.log(`\n📊 Done: ${updated} updated · ${skipped} skipped · ${noMap} unmapped`);
   process.exit(0);
 }
 
