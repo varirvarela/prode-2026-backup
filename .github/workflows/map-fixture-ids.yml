@@ -17,7 +17,7 @@ jobs:
         working-directory: scripts
       - name: Map fixture IDs
         env:
-          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          FDO_KEY: ${{ secrets.FDO_KEY }}
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           FIREBASE_DATABASE_URL: https://prode-2026-7838f-default-rtdb.firebaseio.com
         run: node map-fixture-ids.js
