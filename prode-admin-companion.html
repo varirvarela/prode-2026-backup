@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Prode 2026 — Admin Companion v0.07</title>
+<title>Prode 2026 — Admin Companion v0.08</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <meta name="mobile-web-app-capable" content="yes">
@@ -151,6 +151,14 @@ textarea.fi{resize:vertical;min-height:100px;}
         <div class="stat-card"><div class="stat-val b" id="s-pending">—</div><div class="stat-lbl">Pending</div></div>
         <div class="stat-card"><div class="stat-val" id="s-round">—</div><div class="stat-lbl">Active Round</div></div>
         <div class="stat-card"><div class="stat-val g" id="s-submitted">—</div><div class="stat-lbl">Submitted</div></div>
+      </div>
+
+      <div class="card" id="live-results-card" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div class="card-title" style="margin:0">Live Results</div>
+          <button class="btn btn-sm" onclick="triggerFetchResults()" style="font-size:11px;padding:4px 10px">⚽ Fetch</button>
+        </div>
+        <div id="live-results-list" style="font-family:var(--mf);font-size:12px"></div>
       </div>
 
       <div class="card">
@@ -320,6 +328,7 @@ var DEFAULT_PWD = 'prode2026';
 var db = null;
 var TOURNAMENT_ID = null;
 var allRounds = {}, allPlayers = [], allPendingRequests = {}, allTournaments = {};
+var allFixtures = {}, allResults = {};
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 function simpleHash(s) {
@@ -516,6 +525,10 @@ function bindAll() {
     updateDashboardRound();
   });
 
+  // Fixtures (global)
+  db.ref('fixtures').on('value', function(s){ allFixtures = s.val() || {}; });
+  // Results (global)
+  db.ref('results').on('value', function(s){ allResults = s.val() || {}; updateDashboardResults(); });
   // Pending requests
   tRef('pending_requests').on('value', function(s){
     allPendingRequests=s.val()||{};
@@ -1143,6 +1156,185 @@ function loadCompPrizeSummary() {
     });
     el.innerHTML = html;
   });
+}
+
+
+function updateDashboardResults() {
+  var card = document.getElementById('live-results-card');
+  var list = document.getElementById('live-results-list');
+  if(!card || !list) return;
+  var liveOrRecent = Object.entries(allResults).filter(function(e){
+    return e[1].isLive || e[1].isFinal;
+  }).sort(function(a,b){
+    var fa = allFixtures[a[0]], fb = allFixtures[b[0]];
+    return ((fb&&fb.kickoff)||0) - ((fa&&fa.kickoff)||0);
+  }).slice(0,5);
+  if(!liveOrRecent.length) { card.style.display='none'; return; }
+  card.style.display='block';
+  list.innerHTML = liveOrRecent.map(function(e){
+    var mid=e[0], res=e[1];
+    var fix = allFixtures[mid]||{};
+    var badge = res.isLive ? '<span style="color:#ff4d35;font-size:10px">LIVE</span>' : '<span style="color:#8a9ab8;font-size:10px">FT</span>';
+    return '<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border)">'
+      + '<span style="flex:1;color:var(--text2)">'+(fix.homeTeam||'?')+'</span>'
+      + badge
+      + '<span style="font-weight:700;padding:0 8px">'+res.homeScore+' - '+res.awayScore+'</span>'
+      + badge
+      + '<span style="flex:1;color:var(--text2);text-align:right">'+(fix.awayTeam||'?')+'</span>'
+      + '</div>';
+  }).join('');
+}
+
+function triggerFetchResults() {
+  // Trigger GitHub Actions fetch-results workflow
+  var token = localStorage.getItem('prode_gh_token');
+  var repo  = localStorage.getItem('prode_gh_repo');
+  if(!token || !repo) { toast('GitHub token/repo not set — configure in admin Settings','er'); return; }
+  toast('Triggering fetch results...', 'ok');
+  fetch('https://api.github.com/repos/'+repo+'/actions/workflows/fetch-results.yml/dispatches', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer '+token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ref: 'main' })
+  }).then(function(r){
+    if(r.status===204) toast('Fetch triggered — results in ~30s', 'ok');
+    else toast('GitHub error: '+r.status, 'er');
+  }).catch(function(){ toast('GitHub request failed', 'er'); });
+}
+
+function computeCompanionTier(ph, pa, ah, aa) {
+  ph=parseInt(ph); pa=parseInt(pa); ah=parseInt(ah); aa=parseInt(aa);
+  if(isNaN(ph)||isNaN(pa)||isNaN(ah)||isNaN(aa)) return 'zero';
+  if(ph===ah && pa===aa) return 'exact';
+  var pr=ph>pa?'H':ph<pa?'A':'D', ar=ah>aa?'H':ah<aa?'A':'D';
+  if(pr===ar) return (ph-pa)===(ah-aa)?'gd':'result';
+  return 'zero';
+}
+
+async function openCompanionPredOverride(uid) {
+  var player = allPlayers.find(function(p){ return p.uid===uid; });
+  if(!player) return toast('Player not found','er');
+
+  var tid = TOURNAMENT_ID;
+
+  // Load predictions for this player
+  var predsSnap = await db.ref('tournaments/'+tid+'/predictions/'+uid).once('value');
+  var preds = predsSnap.val() || {};
+
+  // Find locked/kicked-off matches
+  var now = Date.now();
+  var lockedMids = Object.entries(allFixtures).filter(function(e){
+    var mid=e[0], f=e[1];
+    var kicked = f.kickoff && f.kickoff <= now;
+    var hasRes = allResults[mid] !== undefined;
+    if(kicked || hasRes) return true;
+    // Check if round is locked
+    return Object.values(allRounds).some(function(r){
+      var mids = r.matchIds ? Object.keys(r.matchIds) : [];
+      return mids.indexOf(mid)>-1 && (r.status==='locked'||r.status==='scored');
+    });
+  }).sort(function(a,b){ return (b[1].kickoff||0)-(a[1].kickoff||0); });
+
+  if(!lockedMids.length) return toast('No locked matches yet','er');
+
+  // Build modal
+  var existing = document.getElementById('comp-pred-modal');
+  if(existing) existing.remove();
+
+  var overlay = document.createElement('div');
+  overlay.id = 'comp-pred-modal';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9000;display:flex;align-items:center;justify-content:center;padding:16px';
+  overlay.onclick = function(e){ if(e.target===overlay) overlay.remove(); };
+
+  var box = document.createElement('div');
+  box.style.cssText = 'background:var(--surface);border:1px solid var(--border2);border-radius:12px;width:100%;max-width:480px;max-height:85vh;overflow-y:auto';
+
+  // Header
+  var hdr = document.createElement('div');
+  hdr.style.cssText = 'padding:14px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--surface)';
+  hdr.innerHTML = '<div style="font-weight:600">' + (player.alias||player.name||uid) + ' — Override Predictions</div>';
+  var closeBtn = document.createElement('button');
+  closeBtn.textContent = '×';
+  closeBtn.style.cssText = 'background:none;border:none;color:var(--text3);font-size:22px;cursor:pointer';
+  closeBtn.onclick = function(){ overlay.remove(); };
+  hdr.appendChild(closeBtn);
+  box.appendChild(hdr);
+
+  var body = document.createElement('div');
+  body.style.padding = '12px 16px';
+
+  lockedMids.forEach(function(e){
+    var mid=e[0], fix=e[1];
+    var pred = preds[mid];
+    var res = allResults[mid];
+    var ph = pred && pred.homeScore!==undefined ? pred.homeScore : '';
+    var pa = pred && pred.awayScore!==undefined ? pred.awayScore : '';
+    var resStr = res && res.homeScore!==undefined ? res.homeScore+'-'+res.awayScore+(res.isFinal?' FT':' live') : 'no result';
+
+    var row = document.createElement('div');
+    row.style.cssText = 'margin-bottom:12px;padding:10px;background:var(--surface2);border-radius:8px';
+
+    var matchLabel = document.createElement('div');
+    matchLabel.style.cssText = 'font-size:12px;font-weight:600;margin-bottom:6px';
+    matchLabel.textContent = (fix.homeTeam||'?') + ' vs ' + (fix.awayTeam||'?') + ' — ' + resStr;
+    row.appendChild(matchLabel);
+
+    var inputRow = document.createElement('div');
+    inputRow.style.cssText = 'display:flex;align-items:center;gap:8px';
+
+    var curSpan = document.createElement('span');
+    curSpan.style.cssText = 'font-family:var(--mf);font-size:11px;color:var(--text3);flex:1';
+    curSpan.id = 'comp-cur-'+mid;
+    curSpan.textContent = ph!=='' ? 'Current: '+ph+'-'+pa : 'No prediction';
+    inputRow.appendChild(curSpan);
+
+    var inH = document.createElement('input');
+    inH.type='number'; inH.min=0; inH.max=20; inH.value=ph; inH.placeholder='H'; inH.id='comp-h-'+mid;
+    inH.style.cssText = 'width:40px;background:var(--surface);border:1px solid var(--border2);color:var(--text);border-radius:4px;padding:3px 6px;font-family:var(--mf);font-size:13px;text-align:center';
+
+    var sep = document.createTextNode(' – ');
+    var inA = document.createElement('input');
+    inA.type='number'; inA.min=0; inA.max=20; inA.value=pa; inA.placeholder='A'; inA.id='comp-a-'+mid;
+    inA.style.cssText = 'width:40px;background:var(--surface);border:1px solid var(--border2);color:var(--text);border-radius:4px;padding:3px 6px;font-family:var(--mf);font-size:13px;text-align:center';
+
+    var saveBtn = document.createElement('button');
+    saveBtn.className = 'btn btn-g btn-sm';
+    saveBtn.textContent = 'Save';
+    saveBtn.style.padding = '4px 10px';
+    saveBtn.onclick = (function(matchId){ return function(){
+      var h=parseInt(document.getElementById('comp-h-'+matchId).value);
+      var a=parseInt(document.getElementById('comp-a-'+matchId).value);
+      if(isNaN(h)||isNaN(a)||h<0||a<0){ toast('Enter valid scores','er'); return; }
+      var upd = {};
+      upd['tournaments/'+tid+'/predictions/'+uid+'/'+matchId] = {
+        homeScore:h, awayScore:a, submittedAt:Date.now(), overriddenByAdmin:true, locked:true
+      };
+      db.ref().update(upd).then(function(){
+        var res2 = allResults[matchId];
+        if(res2 && res2.homeScore!==undefined){
+          var cfg = { exact:5, gd:3, result:1 };
+          var tier = computeCompanionTier(h,a,res2.homeScore,res2.awayScore);
+          var pts = tier==='exact'?cfg.exact:tier==='gd'?cfg.gd:tier==='result'?cfg.result:0;
+          var sc = {};
+          sc['tournaments/'+tid+'/scores/'+uid+'/'+matchId] = { tier:tier, points:pts, computedAt:Date.now() };
+          db.ref().update(sc).then(function(){
+            toast('Saved + rescored: '+h+'-'+a+' ('+tier+', '+pts+'pts)', 'ok');
+          });
+        } else {
+          toast('Prediction saved', 'ok');
+        }
+        var cur = document.getElementById('comp-cur-'+matchId);
+        if(cur) cur.textContent = 'Current: '+h+'-'+a;
+      }).catch(function(){ toast('Save failed','er'); });
+    }; })(mid);
+
+    inputRow.appendChild(inH); inputRow.appendChild(sep); inputRow.appendChild(inA); inputRow.appendChild(saveBtn);
+    row.appendChild(inputRow);
+    body.appendChild(row);
+  });
+
+  box.appendChild(body);
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
 }
 
 </script>
