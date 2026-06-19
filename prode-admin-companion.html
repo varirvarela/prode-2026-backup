@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Prode 2026 — Admin Companion v0.08</title>
+<title>Prode 2026 — Admin Companion v0.09</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <meta name="mobile-web-app-capable" content="yes">
@@ -179,6 +179,7 @@ textarea.fi{resize:vertical;min-height:100px;}
           <button class="btn btn-p btn-w" onclick="goTab('tab-broadcast')">📢 Send Broadcast</button>
           <button class="btn btn-g btn-w" onclick="fixVisibility()">🔒 Fix Visibility</button>
           <button class="btn btn-g btn-w" onclick="rescoreAll()">⚡ Rescore All</button>
+         <button class="btn btn-s btn-w" onclick="recalcHistoricalRanks()" style="margin-top:6px">📊 Historical Ranks</button>
         </div>
       </div>
     </div>
@@ -613,18 +614,194 @@ function fixVisibility() {
   });
 }
 
-function rescoreAll() {
-  toast('Rescoring...', 'ok');
-  db.ref('results').once('value', function(s){
-    var results=s.val()||{};
-    var count=Object.keys(results).length;
-    if(!count){ toast('No results to score','er'); return; }
-    // Trigger scoring by re-writing each result (same as admin app)
-    Object.entries(results).forEach(function(e){
-      db.ref('results/'+e[0]).update({ rescoreTs: Date.now() });
-    });
-    toast('Rescore triggered for '+count+' matches.','ok');
+async function rescoreAll() {
+  var btn = document.querySelector('[onclick="rescoreAll()"]');
+  if(btn){ btn.disabled=true; btn.textContent='⏳ Rescoring...'; }
+  toast('Rescoring all matches...', 'ok');
+  try {
+    var resultsSnap = await db.ref('results').once('value');
+    var results = resultsSnap.val() || {};
+    var fixturesSnap = await db.ref('fixtures').once('value');
+    var fixtures = fixturesSnap.val() || {};
+
+    var mids = Object.keys(results)
+      .filter(function(mid){ var r=results[mid]; return r.homeScore!==undefined && r.awayScore!==undefined; })
+      .sort(function(a,b){ return ((fixtures[a]&&fixtures[a].kickoff)||0)-((fixtures[b]&&fixtures[b].kickoff)||0); });
+
+    if(!mids.length){ toast('No results to score','er'); return; }
+
+    for(var i=0; i<mids.length; i++){
+      var mid = mids[i];
+      var res = results[mid];
+      await runScoringAsync(mid, res.homeScore, res.awayScore);
+    }
+    await updateLeaderboardAsync();
+    toast('Rescored '+mids.length+' matches!', 'ok');
+  } catch(e) {
+    toast('Error: '+e.message, 'er');
+  } finally {
+    if(btn){ btn.disabled=false; btn.textContent='⚡ Rescore All'; }
+  }
+}
+
+function computeCompanionScore(ph, pa, ah, aa, cfg) {
+  cfg = cfg || { exact:5, gd:3, result:1 };
+  ph=parseInt(ph); pa=parseInt(pa); ah=parseInt(ah); aa=parseInt(aa);
+  if(isNaN(ph)||isNaN(pa)||isNaN(ah)||isNaN(aa)) return { tier:'zero', pts:0 };
+  if(ph===ah&&pa===aa) return { tier:'exact', pts:cfg.exact };
+  var pr=ph>pa?'H':ph<pa?'A':'D', ar=ah>aa?'H':ah<aa?'A':'D';
+  if(pr===ar) return (ph-pa)===(ah-aa)?{tier:'gd',pts:cfg.gd}:{tier:'result',pts:cfg.result};
+  return { tier:'zero', pts:0 };
+}
+
+function runScoringAsync(matchId, homeScore, awayScore) {
+  return new Promise(function(resolve, reject) {
+    var cfg = JSON.parse(localStorage.getItem('prode_scoring')||'{"exact":5,"gd":3,"result":1}');
+    tRef('predictions').once('value', function(s){
+      var all = s.val()||{};
+      var upd = {};
+      Object.entries(all).forEach(function(e){
+        var uid=e[0], preds=e[1];
+        var pred = preds[matchId];
+        if(!pred||pred.homeScore===undefined) return;
+        var result = computeCompanionScore(pred.homeScore, pred.awayScore, homeScore, awayScore, cfg);
+        upd['scores/'+uid+'/'+matchId] = { tier:result.tier, pts:result.pts, points:result.pts, computedAt:Date.now() };
+      });
+      if(Object.keys(upd).length) tRef().update(upd).then(resolve).catch(reject);
+      else resolve();
+    }, reject);
   });
+}
+
+async function updateLeaderboardAsync() {
+  var allScores = (await tRef('scores').once('value')).val()||{};
+  var users     = (await tRef('users').once('value')).val()||{};
+  var fixturesSnap = (await db.ref('fixtures').once('value')).val()||{};
+  var roundsSnap   = (await tRef('rounds').once('value')).val()||{};
+  var validUids = new Set(Object.keys(users));
+
+  var stageToRid = {}, matchToRound = {};
+  Object.entries(roundsSnap).forEach(function(e){
+    stageToRid[e[1].stage]=e[0]; stageToRid[e[0]]=e[0];
+  });
+  Object.entries(fixturesSnap).forEach(function(e){
+    var rid=stageToRid[e[1].round]||stageToRid[e[1].stage];
+    if(rid) matchToRound[e[0]]=rid;
+  });
+
+  var totals={};
+  Object.entries(allScores).forEach(function(e){
+    var uid=e[0], matches=e[1];
+    if(!validUids.has(uid)) return;
+    var total=0,exact=0,correct=0,gd=0,roundBreakdown={};
+    Object.entries(matches).forEach(function(me){
+      var mid=me[0],sc=me[1];
+      var pts=sc.points!==undefined?sc.points:(sc.pts||0);
+      total+=pts;
+      if(sc.tier==='exact') exact++;
+      if(sc.tier==='gd') gd++;
+      if(sc.tier&&sc.tier!=='zero') correct++;
+      var rid=matchToRound[mid];
+      if(rid) roundBreakdown[rid]=(roundBreakdown[rid]||0)+pts;
+    });
+    totals[uid]={totalPoints:total,exactScores:exact,correctResults:correct,gdMatches:gd,roundBreakdown:roundBreakdown,updatedAt:Date.now()};
+  });
+
+  var ranked=Object.entries(totals).sort(function(a,b){
+    var A=a[1],B=b[1];
+    if(B.totalPoints!==A.totalPoints) return B.totalPoints-A.totalPoints;
+    if((B.correctResults||0)!==(A.correctResults||0)) return (B.correctResults||0)-(A.correctResults||0);
+    if((B.exactScores||0)!==(A.exactScores||0)) return (B.exactScores||0)-(A.exactScores||0);
+    return (B.gdMatches||0)-(A.gdMatches||0);
+  });
+
+  var upd={};
+  ranked.forEach(function(e,i){
+    var existing=allLeaderboard&&allLeaderboard[e[0]];
+    upd['leaderboard/'+e[0]]=Object.assign({},e[1],{rank:i+1,previousRank:existing?(existing.rank||null):null});
+  });
+  if(Object.keys(upd).length) await tRef().update(upd);
+}
+
+async function recalcHistoricalRanks() {
+  if(!confirm('Recalculate rank history match by match?')) return;
+  var btn = document.querySelector('[onclick="recalcHistoricalRanks()"]');
+  if(btn){ btn.disabled=true; btn.textContent='⏳ Running...'; }
+  toast('Calculating historical ranks...', 'ok');
+  try {
+    var loaded = await Promise.all([
+      db.ref('fixtures').once('value'),
+      db.ref('results').once('value'),
+      tRef('scores').once('value'),
+      tRef('users').once('value'),
+      tRef('leaderboard').once('value')
+    ]);
+    var fixtures=loaded[0].val()||{};
+    var results=loaded[1].val()||{};
+    var allScores=loaded[2].val()||{};
+    var users=loaded[3].val()||{};
+    var lbData=loaded[4].val()||{};
+    var validUids=Object.keys(users);
+
+    var sortedMids=Object.entries(fixtures)
+      .filter(function(e){ return e[1].kickoff&&results[e[0]]&&results[e[0]].homeScore!==undefined; })
+      .sort(function(a,b){ return a[1].kickoff-b[1].kickoff; })
+      .map(function(e){ return e[0]; });
+
+    var cumPts={};
+    validUids.forEach(function(uid){ cumPts[uid]={pts:0,correct:0,exact:0,gd:0}; });
+    var rankHistory={};
+    validUids.forEach(function(uid){ rankHistory[uid]={}; });
+
+    for(var i=0; i<sortedMids.length; i++){
+      var mid=sortedMids[i];
+      validUids.forEach(function(uid){
+        var sc=(allScores[uid]||{})[mid];
+        if(!sc) return;
+        var pts=sc.points!==undefined?sc.points:(sc.pts||0);
+        cumPts[uid].pts+=pts;
+        if(sc.tier==='exact') cumPts[uid].exact++;
+        if(sc.tier==='gd') cumPts[uid].gd++;
+        if(sc.tier&&sc.tier!=='zero') cumPts[uid].correct++;
+      });
+      var ranked=validUids.sort(function(a,b){
+        var A=cumPts[a],B=cumPts[b];
+        if(B.pts!==A.pts) return B.pts-A.pts;
+        if(B.correct!==A.correct) return B.correct-A.correct;
+        if(B.exact!==A.exact) return B.exact-A.exact;
+        return B.gd-A.gd;
+      });
+      ranked.forEach(function(uid,idx){ rankHistory[uid][mid]=idx+1; });
+      if(i%10===0) await new Promise(function(r){ setTimeout(r,1); });
+    }
+
+    // Override last match rank with actual leaderboard rank
+    var lastMid=sortedMids[sortedMids.length-1];
+    if(lastMid) {
+      validUids.forEach(function(uid){
+        if(lbData[uid]&&lbData[uid].rank&&rankHistory[uid][lastMid]!==undefined)
+          rankHistory[uid][lastMid]=lbData[uid].rank;
+      });
+    }
+
+    var upd={};
+    validUids.forEach(function(uid){
+      if(Object.keys(rankHistory[uid]).length)
+        upd['leaderboard/'+uid+'/rankHistory']=rankHistory[uid];
+    });
+    var keys=Object.keys(upd);
+    for(var c=0;c<keys.length;c+=20){
+      var chunk={};
+      keys.slice(c,c+20).forEach(function(k){ chunk[k]=upd[k]; });
+      await tRef().update(chunk);
+    }
+    toast('Done! Rank history updated for '+validUids.length+' players.','ok');
+    alert('Historical ranks done! '+sortedMids.length+' matches processed.');
+  } catch(e) {
+    toast('Error: '+e.message,'er');
+  } finally {
+    if(btn){ btn.disabled=false; btn.textContent='📊 Historical Ranks'; }
+  }
 }
 
 // ── PLAYERS ───────────────────────────────────────────────────────────────────
