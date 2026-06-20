@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Prode 2026 — Admin Companion v0.09</title>
+<title>Prode 2026 — Admin Companion v0.10</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <meta name="mobile-web-app-capable" content="yes">
@@ -656,7 +656,9 @@ function computeCompanionScore(ph, pa, ah, aa, cfg) {
 
 function runScoringAsync(matchId, homeScore, awayScore) {
   return new Promise(function(resolve, reject) {
-    var cfg = JSON.parse(localStorage.getItem('prode_scoring')||'{"exact":5,"gd":3,"result":1}');
+    // Load scoring config from tournament, not localStorage
+    tRef('scoring').once('value', function(cfgSnap){
+      var cfg = cfgSnap.val() || { exact:5, gd:3, result:2 };
     tRef('predictions').once('value', function(s){
       var all = s.val()||{};
       var upd = {};
@@ -669,6 +671,7 @@ function runScoringAsync(matchId, homeScore, awayScore) {
       });
       if(Object.keys(upd).length) tRef().update(upd).then(resolve).catch(reject);
       else resolve();
+    }, reject);
     }, reject);
   });
 }
