@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Prode 2026 — Admin Companion v0.10</title>
+<title>Prode 2026 — Admin Companion v0.11</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <meta name="mobile-web-app-capable" content="yes">
@@ -718,9 +718,10 @@ async function updateLeaderboardAsync() {
     return (B.gdMatches||0)-(A.gdMatches||0);
   });
 
+  var lbNow = (await tRef('leaderboard').once('value')).val()||{};
   var upd={};
   ranked.forEach(function(e,i){
-    var existing=allLeaderboard&&allLeaderboard[e[0]];
+    var existing=lbNow[e[0]];
     upd['leaderboard/'+e[0]]=Object.assign({},e[1],{rank:i+1,previousRank:existing?(existing.rank||null):null});
   });
   if(Object.keys(upd).length) await tRef().update(upd);
