@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080b10">
-<title>Prode 2026 — v3.40</title>
+<title>Prode 2026 — v3.41</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -361,6 +361,12 @@ code{font-family:var(--mf);font-size:12px;background:var(--surface3);padding:2px
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+<script>
+  // Register zoom plugin globally
+  if(typeof Chart !== 'undefined' && typeof ChartZoom !== 'undefined') {
+    Chart.register(ChartZoom);
+  }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/firebase@9.23.0/firebase-app-compat.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/firebase@9.23.0/firebase-database-compat.min.js"></script>
 <link rel="manifest" href="manifest.json">
@@ -804,7 +810,7 @@ code{font-family:var(--mf);font-size:12px;background:var(--surface3);padding:2px
         <div class="div"></div>
         <button class="btn btn-g" onclick="doLogout()" style="margin-bottom:24px">Sign Out</button>
         <div style="text-align:center;padding:8px 0 16px;">
-          <div id="profile-version" onclick="showFullChangelog()" style="font-family:var(--mf);font-size:10px;color:var(--text3);letter-spacing:1px;cursor:pointer;text-decoration:underline dotted;">PRODE 2026 · v3.40</div>
+          <div id="profile-version" onclick="showFullChangelog()" style="font-family:var(--mf);font-size:10px;color:var(--text3);letter-spacing:1px;cursor:pointer;text-decoration:underline dotted;">PRODE 2026 · v3.41</div>
         </div>
       </div>
     </div>
@@ -2820,6 +2826,10 @@ function viewPlayerPreds(uid, alias){
 function drawLineChart(lb) {
   if(lb) window._lastLbData = lb;
   else lb = window._lastLbData || {};
+  // Ensure zoom plugin is registered
+  try {
+    if(typeof ChartZoom !== 'undefined') Chart.register(ChartZoom);
+  } catch(e) {}
   if(!lb || !Object.keys(lb).length) return;
 
   var sortedMids = Object.entries(allFixtures||{})
@@ -2936,11 +2946,15 @@ function drawLineChart(lb) {
           },
           zoom: {
             zoom: {
-              drag: { enabled: true, backgroundColor: 'rgba(0,229,160,.1)', borderColor: '#00e5a0', borderWidth: 1 },
-              mode: 'x',
-              onZoomComplete: function(ctx) { window._chartZoomed = true; }
+              drag: {
+                enabled: !!window._chartZoomMode,
+                backgroundColor: 'rgba(0,229,160,.1)',
+                borderColor: '#00e5a0',
+                borderWidth: 1
+              },
+              mode: 'x'
             },
-            pan: { enabled: true, mode: 'x' }
+            pan: { enabled: false, mode: 'x' }
           }
         },
         scales: {
@@ -2994,13 +3008,35 @@ function toggleChartPlayer(uid) {
 function openChartFullscreen() {
   var overlay = document.getElementById('chart-fs-overlay');
   if(!overlay) return;
-  overlay.style.display = 'flex';
-  // Try to lock landscape orientation
+
+  // Try native orientation lock first
+  var locked = false;
   try {
     if(screen.orientation && screen.orientation.lock) {
-      screen.orientation.lock('landscape').catch(function(){});
+      screen.orientation.lock('landscape-primary').then(function(){
+        locked = true;
+      }).catch(function(){});
     }
   } catch(e) {}
+
+  // CSS fallback: rotate overlay to landscape if portrait
+  overlay.style.display = 'flex';
+  var isPortrait = window.innerHeight > window.innerWidth;
+  if(isPortrait) {
+    var w = window.innerWidth, h = window.innerHeight;
+    overlay.style.width = h + 'px';
+    overlay.style.height = w + 'px';
+    overlay.style.top = '0';
+    overlay.style.left = -((h-w)/2) + 'px';
+    overlay.style.transformOrigin = 'center center';
+    overlay.style.transform = 'rotate(90deg) translateY(-' + ((h-w)/2) + 'px)';
+  } else {
+    overlay.style.width = '';
+    overlay.style.height = '';
+    overlay.style.transform = '';
+    overlay.style.left = '0';
+  }
+
   setTimeout(function(){
     if(window._chartInstanceFs) { window._chartInstanceFs.destroy(); window._chartInstanceFs=null; }
     drawLineChart(null);
@@ -3009,7 +3045,13 @@ function openChartFullscreen() {
 
 function closeChartFullscreen() {
   var overlay = document.getElementById('chart-fs-overlay');
-  if(overlay) overlay.style.display = 'none';
+  if(overlay) {
+    overlay.style.display = 'none';
+    overlay.style.transform = '';
+    overlay.style.width = '';
+    overlay.style.height = '';
+    overlay.style.left = '0';
+  }
   if(window._chartInstanceFs) { window._chartInstanceFs.destroy(); window._chartInstanceFs=null; }
   try {
     if(screen.orientation && screen.orientation.unlock) screen.orientation.unlock();
@@ -5600,7 +5642,7 @@ function buildLiveMatchCard() {
 
 
 
-var APP_VERSION = 'v3.40';
+var APP_VERSION = 'v3.41';
 var CHANGELOG = {"v2.63": [{"desc": "Ties broken by correct results, exact scores, then goal differences.", "icon": "🏆", "title": "Smarter Tie-Breakers"}, {"desc": "Green and red arrows show how each player moved after each game.", "icon": "📊", "title": "Rank Change Arrows"}, {"desc": "Tap any past match to see predictions in leaderboard order.", "icon": "👀", "title": "Match Predictions by Rank"}, {"desc": "Players perfectly tied on all criteria show a = badge in standings.", "icon": "🟡", "title": "Tie Badge"}, {"desc": "Predictions scored at 90 or 120 minutes only - no penalties.", "icon": "⚽", "title": "Knockout Scoring"}, {"desc": "This popup shows whenever the app updates with new features.", "icon": "📋", "title": "What's New Popup"}], "v2.65": [{"desc": "Back button now closes modals and returns to home before exiting.", "icon": "🔙", "title": "Android Back Button"}], "v2.72": [{"desc": "Switching tournaments no longer shows old broadcast messages again.", "icon": "🔔", "title": "Broadcast Fix"}, {"desc": "What's new popup shows only changes since your last dismissed version.", "icon": "📋", "title": "Changelog Fix"}], "v2.75": [{"desc": "New Tournament tab with Group Standings and Bracket view.", "icon": "🌍", "title": "Tournament Section (BETA)"}, {"desc": "Full projected bracket based on current standings with dates and venues.", "icon": "🗂", "title": "Bracket View (BETA)"}, {"desc": "Tap any team flag or name to see their full World Cup 2026 results.", "icon": "🔍", "title": "Team Match History"}], "v3.14": [{"desc": "Predict R32 matches as teams get confirmed. Unconfirmed matches are locked until both teams are known.", "icon": "🏅", "title": "Round of 32 Predictions"}], "v3.19": [{"desc": "Fixed flags and match history for Cape Verde, USA, Bosnia, Congo and others with name variations.", "icon": "🌍", "title": "Team Name & Flag Fixes"}, {"desc": "Round multi-select chips, missing predictions filter, and upcoming vs past toggle.", "icon": "🔽", "title": "Predict Filters"}, {"desc": "In bracket matches, score counts at end of 90 or 120 min before penalties. Added to Game Rules in Profile.", "icon": "⚽", "title": "Knockout Scoring Rule"}], "v3.22": [{"desc": "New Chart.js powered chart showing cumulative points over time.", "icon": "📈", "title": "Stats Chart"}, {"desc": "Top 5 + you shown by default. Add/remove players via chips and dropdown.", "icon": "👥", "title": "Player Selection"}, {"desc": "Drag to zoom into a match range. Double-click to reset. Expand button for fullscreen chart.", "icon": "🔍", "title": "Zoom & Expand"}, {"desc": "Hover over chart to see each player's points and score type (Exact, GD, Result) per match.", "icon": "💬", "title": "Match Tooltip"}], "v3.27": [{"desc": "Removed duplicate upcoming/past filter buttons above progress bar.", "icon": "🧹", "title": "Predict Cleanup"}], "v3.29": [{"desc": "Tap the MISSING card to filter predictions to only unpredicted matches. Card highlights when active.", "icon": "🔵", "title": "Missing Filter"}], "v3.30": [{"desc": "Progress bar cards now total correctly across multiple selected rounds.", "icon": "➕", "title": "Multi-Round Totals"}], "v3.31": [{"desc": "Cleaned up old fullscreen button that wasn't working properly.", "icon": "🧹", "title": "Removed Maximize Button"}], "v3.33": [{"desc": "Fixed chart not showing due to incorrect scores variable reference.", "icon": "📈", "title": "Chart Data Fix"}], "v3.34": [{"desc": "Chart now shows only selected players as chips. Use the dropdown to add more players to the chart.", "icon": "👥", "title": "Player Chips & Dropdown"}], "v3.35": [{"desc": "Drag horizontally on the chart to zoom into a match range. Hover to see per-match breakdown (Exact/GD/Result).", "icon": "🔍", "title": "Drag to Zoom"}, {"desc": "Tap the expand button to view the chart in fullscreen.", "icon": "⛶", "title": "Fullscreen Chart"}], "v3.36": [{"desc": "Double-click the chart to reset the zoom back to full view.", "icon": "🔄", "title": "Double-Click to Reset Zoom"}]}
 function checkVersionChangelog() {
   var uid = ME && ME.uid;
@@ -6320,7 +6362,7 @@ function showFullChangelog() {
   </div>
 </div>
 
-<div id="chart-fs-overlay" style="display:none;position:fixed;inset:0;background:#080b10;z-index:9999;flex-direction:column;padding:12px">
+<div id="chart-fs-overlay" style="display:none;position:fixed;inset:0;background:#080b10;z-index:9999;flex-direction:column;padding:12px;overflow:hidden">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-shrink:0">
     <div style="font-family:var(--hf);font-size:16px;color:var(--text)">Points Over Time</div>
     <button onclick="closeChartFullscreen()" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 14px;color:var(--text);font-family:var(--mf);font-size:12px;cursor:pointer">✕ Close</button>
