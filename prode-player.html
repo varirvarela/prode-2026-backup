@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080b10">
-<title>Prode 2026 — v3.39</title>
+<title>Prode 2026 — v3.40</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -804,7 +804,7 @@ code{font-family:var(--mf);font-size:12px;background:var(--surface3);padding:2px
         <div class="div"></div>
         <button class="btn btn-g" onclick="doLogout()" style="margin-bottom:24px">Sign Out</button>
         <div style="text-align:center;padding:8px 0 16px;">
-          <div id="profile-version" onclick="showFullChangelog()" style="font-family:var(--mf);font-size:10px;color:var(--text3);letter-spacing:1px;cursor:pointer;text-decoration:underline dotted;">PRODE 2026 · v3.39</div>
+          <div id="profile-version" onclick="showFullChangelog()" style="font-family:var(--mf);font-size:10px;color:var(--text3);letter-spacing:1px;cursor:pointer;text-decoration:underline dotted;">PRODE 2026 · v3.40</div>
         </div>
       </div>
     </div>
@@ -2914,6 +2914,7 @@ function drawLineChart(lb) {
         plugins: {
           legend: { display: false },
           tooltip: {
+            enabled: !window._chartZoomMode,
             backgroundColor: '#10141d', borderColor: '#1c2333', borderWidth: 1,
             titleColor: '#e8edf8', bodyColor: '#8a9ab8',
             callbacks: {
@@ -2972,6 +2973,18 @@ function addChartPlayer(uid) {
   drawLineChart(null);
 }
 
+function toggleChartZoomMode() {
+  window._chartZoomMode = !window._chartZoomMode;
+  var btn = document.getElementById('chart-zoom-toggle');
+  if(btn) {
+    btn.style.borderColor = window._chartZoomMode ? '#00e5a0' : 'rgba(255,255,255,.15)';
+    btn.style.color = window._chartZoomMode ? '#00e5a0' : '#8a9ab8';
+    btn.textContent = window._chartZoomMode ? '✕ Zoom' : '🔍 Zoom';
+  }
+  // Redraw with updated tooltip setting
+  drawLineChart(null);
+}
+
 function toggleChartPlayer(uid) {
   if(!window._chartSelectedPlayers) window._chartSelectedPlayers={};
   window._chartSelectedPlayers[uid] = !window._chartSelectedPlayers[uid];
@@ -2982,16 +2995,25 @@ function openChartFullscreen() {
   var overlay = document.getElementById('chart-fs-overlay');
   if(!overlay) return;
   overlay.style.display = 'flex';
+  // Try to lock landscape orientation
+  try {
+    if(screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape').catch(function(){});
+    }
+  } catch(e) {}
   setTimeout(function(){
     if(window._chartInstanceFs) { window._chartInstanceFs.destroy(); window._chartInstanceFs=null; }
     drawLineChart(null);
-  }, 50);
+  }, 100);
 }
 
 function closeChartFullscreen() {
   var overlay = document.getElementById('chart-fs-overlay');
   if(overlay) overlay.style.display = 'none';
   if(window._chartInstanceFs) { window._chartInstanceFs.destroy(); window._chartInstanceFs=null; }
+  try {
+    if(screen.orientation && screen.orientation.unlock) screen.orientation.unlock();
+  } catch(e) {}
 }
 
 function lineChartColor(uid, allLbEntries) {
@@ -3192,6 +3214,7 @@ function renderStats(lb){
       <div style="position:relative;height:220px;margin-bottom:8px">
         <canvas id="line-chart-canvas" style="width:100%;height:100%;"></canvas>
         <button onclick="openChartFullscreen()" style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:4px 8px;color:#8a9ab8;font-size:13px;cursor:pointer" title="Expand">⛶</button>
+        <button id="chart-zoom-toggle" onclick="toggleChartZoomMode()" style="position:absolute;top:6px;right:38px;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:4px 8px;color:#8a9ab8;font-size:11px;cursor:pointer;font-family:var(--mf)" title="Toggle zoom mode">🔍 Zoom</button>
       </div>
       <div style="display:flex;align-items:center;gap:8px;padding:6px 0 4px;flex-wrap:wrap">
         <div id="chart-player-chips" style="display:flex;flex-wrap:wrap;gap:6px;flex:1"></div>
@@ -3200,7 +3223,7 @@ function renderStats(lb){
           <option value="">+ Add player</option>
         </select>
       </div>
-      <div style="font-family:var(--mf);font-size:9px;color:var(--text3);padding-bottom:8px">Drag to zoom · Double-tap to reset</div>
+      <div style="font-family:var(--mf);font-size:9px;color:var(--text3);padding-bottom:8px">Tap 🔍 Zoom to enable drag-zoom · Double-click to reset</div>
 
       <div id="chart-tooltip" style="display:none;position:absolute;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-family:var(--mf);font-size:11px;pointer-events:none;z-index:10;max-width:180px;"></div>
     </div>`;
@@ -5577,7 +5600,7 @@ function buildLiveMatchCard() {
 
 
 
-var APP_VERSION = 'v3.39';
+var APP_VERSION = 'v3.40';
 var CHANGELOG = {"v2.63": [{"desc": "Ties broken by correct results, exact scores, then goal differences.", "icon": "🏆", "title": "Smarter Tie-Breakers"}, {"desc": "Green and red arrows show how each player moved after each game.", "icon": "📊", "title": "Rank Change Arrows"}, {"desc": "Tap any past match to see predictions in leaderboard order.", "icon": "👀", "title": "Match Predictions by Rank"}, {"desc": "Players perfectly tied on all criteria show a = badge in standings.", "icon": "🟡", "title": "Tie Badge"}, {"desc": "Predictions scored at 90 or 120 minutes only - no penalties.", "icon": "⚽", "title": "Knockout Scoring"}, {"desc": "This popup shows whenever the app updates with new features.", "icon": "📋", "title": "What's New Popup"}], "v2.65": [{"desc": "Back button now closes modals and returns to home before exiting.", "icon": "🔙", "title": "Android Back Button"}], "v2.72": [{"desc": "Switching tournaments no longer shows old broadcast messages again.", "icon": "🔔", "title": "Broadcast Fix"}, {"desc": "What's new popup shows only changes since your last dismissed version.", "icon": "📋", "title": "Changelog Fix"}], "v2.75": [{"desc": "New Tournament tab with Group Standings and Bracket view.", "icon": "🌍", "title": "Tournament Section (BETA)"}, {"desc": "Full projected bracket based on current standings with dates and venues.", "icon": "🗂", "title": "Bracket View (BETA)"}, {"desc": "Tap any team flag or name to see their full World Cup 2026 results.", "icon": "🔍", "title": "Team Match History"}], "v3.14": [{"desc": "Predict R32 matches as teams get confirmed. Unconfirmed matches are locked until both teams are known.", "icon": "🏅", "title": "Round of 32 Predictions"}], "v3.19": [{"desc": "Fixed flags and match history for Cape Verde, USA, Bosnia, Congo and others with name variations.", "icon": "🌍", "title": "Team Name & Flag Fixes"}, {"desc": "Round multi-select chips, missing predictions filter, and upcoming vs past toggle.", "icon": "🔽", "title": "Predict Filters"}, {"desc": "In bracket matches, score counts at end of 90 or 120 min before penalties. Added to Game Rules in Profile.", "icon": "⚽", "title": "Knockout Scoring Rule"}], "v3.22": [{"desc": "New Chart.js powered chart showing cumulative points over time.", "icon": "📈", "title": "Stats Chart"}, {"desc": "Top 5 + you shown by default. Add/remove players via chips and dropdown.", "icon": "👥", "title": "Player Selection"}, {"desc": "Drag to zoom into a match range. Double-click to reset. Expand button for fullscreen chart.", "icon": "🔍", "title": "Zoom & Expand"}, {"desc": "Hover over chart to see each player's points and score type (Exact, GD, Result) per match.", "icon": "💬", "title": "Match Tooltip"}], "v3.27": [{"desc": "Removed duplicate upcoming/past filter buttons above progress bar.", "icon": "🧹", "title": "Predict Cleanup"}], "v3.29": [{"desc": "Tap the MISSING card to filter predictions to only unpredicted matches. Card highlights when active.", "icon": "🔵", "title": "Missing Filter"}], "v3.30": [{"desc": "Progress bar cards now total correctly across multiple selected rounds.", "icon": "➕", "title": "Multi-Round Totals"}], "v3.31": [{"desc": "Cleaned up old fullscreen button that wasn't working properly.", "icon": "🧹", "title": "Removed Maximize Button"}], "v3.33": [{"desc": "Fixed chart not showing due to incorrect scores variable reference.", "icon": "📈", "title": "Chart Data Fix"}], "v3.34": [{"desc": "Chart now shows only selected players as chips. Use the dropdown to add more players to the chart.", "icon": "👥", "title": "Player Chips & Dropdown"}], "v3.35": [{"desc": "Drag horizontally on the chart to zoom into a match range. Hover to see per-match breakdown (Exact/GD/Result).", "icon": "🔍", "title": "Drag to Zoom"}, {"desc": "Tap the expand button to view the chart in fullscreen.", "icon": "⛶", "title": "Fullscreen Chart"}], "v3.36": [{"desc": "Double-click the chart to reset the zoom back to full view.", "icon": "🔄", "title": "Double-Click to Reset Zoom"}]}
 function checkVersionChangelog() {
   var uid = ME && ME.uid;
