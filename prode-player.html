@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080b10">
-<title>Prode 2026 — v3.45</title>
+<title>Prode 2026 — v3.47</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -786,6 +786,10 @@ code{font-family:var(--mf);font-size:12px;background:var(--surface3);padding:2px
               <div style="font-family:var(--mf);font-size:11px;font-weight:600;color:var(--accent);margin-bottom:4px">⚽ Bracket Matches</div>
               <div style="font-size:12px;color:var(--text2);line-height:1.6">Score is counted at the end of <strong>90 or 120 minutes</strong> — before penalties. A match decided on penalties is scored at the end of extra time (e.g. 1-1 counts, not the penalty shootout).</div>
             </div>
+            <div style="margin-top:12px;padding:10px 12px;background:rgba(201,168,76,.06);border-radius:8px;border:1px solid rgba(201,168,76,.2)">
+              <div style="font-family:var(--mf);font-size:11px;font-weight:600;color:#C9A84C;margin-bottom:4px">🥩 The Asado Rule</div>
+              <div style="font-size:12px;color:var(--text2);line-height:1.6">The winner of Prode 2026 has the honor — and the responsibility — of inviting all other players to an asado. 🔥</div>
+            </div>
             <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
               <div style="font-family:var(--mf);font-size:10px;letter-spacing:2px;color:var(--text3);margin-bottom:8px">TIE-BREAKER ORDER</div>
               <div style="display:flex;flex-direction:column;gap:6px">
@@ -818,7 +822,7 @@ code{font-family:var(--mf);font-size:12px;background:var(--surface3);padding:2px
         <div class="div"></div>
         <button class="btn btn-g" onclick="doLogout()" style="margin-bottom:24px">Sign Out</button>
         <div style="text-align:center;padding:8px 0 16px;">
-          <div id="profile-version" onclick="showFullChangelog()" style="font-family:var(--mf);font-size:10px;color:var(--text3);letter-spacing:1px;cursor:pointer;text-decoration:underline dotted;">PRODE 2026 · v3.45</div>
+          <div id="profile-version" onclick="showFullChangelog()" style="font-family:var(--mf);font-size:10px;color:var(--text3);letter-spacing:1px;cursor:pointer;text-decoration:underline dotted;">PRODE 2026 · v3.47</div>
         </div>
       </div>
     </div>
@@ -2072,6 +2076,7 @@ function bindAppData(){
     renderLeaderboard();
     renderStats(allLeaderboard);
     scheduleBracketRefresh();
+    setTimeout(showPodiumIfReady, 1500);
 
   });
 }
@@ -5642,7 +5647,7 @@ function buildLiveMatchCard() {
 
 
 
-var APP_VERSION = 'v3.45';
+var APP_VERSION = 'v3.47';
 var CHANGELOG = {"v2.63": [{"desc": "Ties broken by correct results, exact scores, then goal differences.", "icon": "🏆", "title": "Smarter Tie-Breakers"}, {"desc": "Green and red arrows show how each player moved after each game.", "icon": "📊", "title": "Rank Change Arrows"}, {"desc": "Tap any past match to see predictions in leaderboard order.", "icon": "👀", "title": "Match Predictions by Rank"}, {"desc": "Players perfectly tied on all criteria show a = badge in standings.", "icon": "🟡", "title": "Tie Badge"}, {"desc": "Predictions scored at 90 or 120 minutes only - no penalties.", "icon": "⚽", "title": "Knockout Scoring"}, {"desc": "This popup shows whenever the app updates with new features.", "icon": "📋", "title": "What's New Popup"}], "v2.65": [{"desc": "Back button now closes modals and returns to home before exiting.", "icon": "🔙", "title": "Android Back Button"}], "v2.72": [{"desc": "Switching tournaments no longer shows old broadcast messages again.", "icon": "🔔", "title": "Broadcast Fix"}, {"desc": "What's new popup shows only changes since your last dismissed version.", "icon": "📋", "title": "Changelog Fix"}], "v2.75": [{"desc": "New Tournament tab with Group Standings and Bracket view.", "icon": "🌍", "title": "Tournament Section (BETA)"}, {"desc": "Full projected bracket based on current standings with dates and venues.", "icon": "🗂", "title": "Bracket View (BETA)"}, {"desc": "Tap any team flag or name to see their full World Cup 2026 results.", "icon": "🔍", "title": "Team Match History"}], "v3.14": [{"desc": "Predict R32 matches as teams get confirmed. Unconfirmed matches are locked until both teams are known.", "icon": "🏅", "title": "Round of 32 Predictions"}], "v3.19": [{"desc": "Fixed flags and match history for Cape Verde, USA, Bosnia, Congo and others with name variations.", "icon": "🌍", "title": "Team Name & Flag Fixes"}, {"desc": "Round multi-select chips, missing predictions filter, and upcoming vs past toggle.", "icon": "🔽", "title": "Predict Filters"}, {"desc": "In bracket matches, score counts at end of 90 or 120 min before penalties. Added to Game Rules in Profile.", "icon": "⚽", "title": "Knockout Scoring Rule"}], "v3.22": [{"desc": "New Chart.js powered chart showing cumulative points over time.", "icon": "📈", "title": "Stats Chart"}, {"desc": "Top 5 + you shown by default. Add/remove players via chips and dropdown.", "icon": "👥", "title": "Player Selection"}, {"desc": "Drag to zoom into a match range. Double-click to reset. Expand button for fullscreen chart.", "icon": "🔍", "title": "Zoom & Expand"}, {"desc": "Hover over chart to see each player's points and score type (Exact, GD, Result) per match.", "icon": "💬", "title": "Match Tooltip"}], "v3.27": [{"desc": "Removed duplicate upcoming/past filter buttons above progress bar.", "icon": "🧹", "title": "Predict Cleanup"}], "v3.29": [{"desc": "Tap the MISSING card to filter predictions to only unpredicted matches. Card highlights when active.", "icon": "🔵", "title": "Missing Filter"}], "v3.30": [{"desc": "Progress bar cards now total correctly across multiple selected rounds.", "icon": "➕", "title": "Multi-Round Totals"}], "v3.31": [{"desc": "Cleaned up old fullscreen button that wasn't working properly.", "icon": "🧹", "title": "Removed Maximize Button"}], "v3.33": [{"desc": "Fixed chart not showing due to incorrect scores variable reference.", "icon": "📈", "title": "Chart Data Fix"}], "v3.34": [{"desc": "Chart now shows only selected players as chips. Use the dropdown to add more players to the chart.", "icon": "👥", "title": "Player Chips & Dropdown"}], "v3.35": [{"desc": "Drag horizontally on the chart to zoom into a match range. Hover to see per-match breakdown (Exact/GD/Result).", "icon": "🔍", "title": "Drag to Zoom"}, {"desc": "Tap the expand button to view the chart in fullscreen.", "icon": "⛶", "title": "Fullscreen Chart"}], "v3.36": [{"desc": "Double-click the chart to reset the zoom back to full view.", "icon": "🔄", "title": "Double-Click to Reset Zoom"}]}
 function checkVersionChangelog() {
   var uid = ME && ME.uid;
@@ -6329,6 +6334,91 @@ function showFullChangelog() {
 
   html += '</div>';
   showOverlay('What\'s New', html);
+}
+
+
+var _podiumShown = false;
+
+function showPodiumIfReady() {
+  if(_podiumShown) return;
+  // Only show when leaderboard is loaded and has data
+  if(!allLeaderboard || Object.keys(allLeaderboard).length === 0) return;
+  // Check if we already showed it this session
+  if(sessionStorage.getItem('podiumShown')) return;
+
+  // Sort leaderboard
+  var sorted = Object.entries(allLeaderboard)
+    .filter(function(e){ return e[1].totalPoints > 0; })
+    .sort(function(a,b){
+      if(b[1].totalPoints !== a[1].totalPoints) return b[1].totalPoints - a[1].totalPoints;
+      if(b[1].correctResults !== a[1].correctResults) return b[1].correctResults - a[1].correctResults;
+      return (b[1].exactScores||0) - (a[1].exactScores||0);
+    });
+
+  if(sorted.length < 1) return;
+
+  var podium = [
+    { icon:'🥇', label:'1st Place', color:'#C9A84C', uid: sorted[0] ? sorted[0][0] : null },
+    { icon:'🥈', label:'2nd Place', color:'#9CA3AF', uid: sorted[1] ? sorted[1][0] : null },
+    { icon:'🥉', label:'3rd Place', color:'#CD7F32', uid: sorted[2] ? sorted[2][0] : null },
+  ];
+
+  // Get prize amounts
+  var pot = 0, curr = '', prizes = {};
+  var settings = {};
+  tRef('settings').once('value', function(s){
+    settings = s.val() || {};
+    pot = settings.pot || (settings.entryFee || 0) * Object.keys(allLeaderboard).length;
+    curr = settings.currency || '';
+    prizes = settings.prizes || {};
+
+    var prizeAmts = {
+      first:  prizes.first  ? (prizes.first.type==='pct'  ? pot*prizes.first.value/100  : prizes.first.value)  : 0,
+      second: prizes.second ? (prizes.second.type==='pct' ? pot*prizes.second.value/100 : prizes.second.value) : 0,
+      third:  prizes.third  ? (prizes.third.type==='pct'  ? pot*prizes.third.value/100  : prizes.third.value)  : 0,
+    };
+    var placeKeys = ['first','second','third'];
+
+    var html = '<div style="text-align:center;padding:8px 0 16px">'
+      + '<div style="font-size:32px;margin-bottom:4px">🏆</div>'
+      + '<div style="font-family:var(--hf);font-size:22px;letter-spacing:2px;margin-bottom:4px">PRODE 2026</div>'
+      + '<div style="font-family:var(--mf);font-size:12px;color:var(--text3);margin-bottom:20px">Final Standings</div>'
+      + '</div>';
+
+    // Podium cards
+    html += '<div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">';
+    podium.forEach(function(p, i){
+      if(!p.uid) return;
+      var u = (window.cachedUsers||{})[p.uid] || allLeaderboard[p.uid] || {};
+      var name = u.alias || u.name || p.uid;
+      var pts = allLeaderboard[p.uid] ? allLeaderboard[p.uid].totalPoints : 0;
+      var prizeAmt = prizeAmts[placeKeys[i]];
+      var prizeStr = prizeAmt > 0 ? ' · <span style="color:'+p.color+'">'+curr+' '+prizeAmt.toFixed(0)+'</span>' : '';
+      html += '<div style="display:flex;align-items:center;gap:12px;background:var(--surface);border-radius:10px;padding:12px 16px;border:1px solid '+(i===0?'rgba(201,168,76,.3)':'var(--border)')+'">'
+        + '<div style="font-size:28px">'+p.icon+'</div>'
+        + '<div style="flex:1">'
+        +   '<div style="font-size:15px;font-weight:700;color:var(--text)">'+name+'</div>'
+        +   '<div style="font-family:var(--mf);font-size:11px;color:var(--text3)">'+p.label+' · '+pts+' pts'+prizeStr+'</div>'
+        + '</div>'
+        + '</div>';
+    });
+    html += '</div>';
+
+    // Asado reminder
+    if(sorted[0]) {
+      var winner = (window.cachedUsers||{})[sorted[0][0]] || {};
+      var winnerName = winner.alias || winner.name || 'The winner';
+      html += '<div style="padding:10px 14px;background:rgba(201,168,76,.08);border-radius:8px;border:1px solid rgba(201,168,76,.2);text-align:center">'
+        + '<div style="font-size:18px;margin-bottom:4px">🥩🔥</div>'
+        + '<div style="font-family:var(--mf);font-size:12px;color:#C9A84C;font-weight:600;margin-bottom:4px">The Asado Rule</div>'
+        + '<div style="font-family:var(--mf);font-size:12px;color:var(--text2);line-height:1.5">'+winnerName+' wins Prode 2026 and earns the honor — and responsibility — of hosting the asado for everyone. 🎉</div>'
+        + '</div>';
+    }
+
+    _podiumShown = true;
+    sessionStorage.setItem('podiumShown', '1');
+    showOverlay('🏆 Prode 2026 — Final Results', html);
+  });
 }
 
 </script>
